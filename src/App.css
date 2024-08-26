@@ -1,0 +1,50 @@
+@media print {
+    @page {
+        margin: 20px; /* Removes margin around the page */
+    }
+    body {
+        -webkit-print-color-adjust: exact;
+        font-size: 12px; /* Adjust this size as needed */
+    }
+
+    header, footer {
+        display: none; /* Hides header and footer elements */
+    }
+
+    body::before, body::after {
+        content: none !important;
+    }
+    /* Remove the page title and other elements that might show up in the print preview */
+    title, .url-bar, .print-hidden {
+        display: none !important;
+    }
+
+    form {
+        font-size: 12px; /* Adjust this size as needed */
+    }
+
+    input,
+    select,
+    label {
+        font-size: 12px; /* Adjust this size as needed */
+    }
+
+    .print-adjust {
+        font-size: 12px; /* Adjust this size as needed */
+    }
+}
+
+.customShadow{
+    box-shadow: 0px 0px 12px rgba(0,0,0,0.2);
+}
+
+.userTable{
+    @apply bg-white
+}
+
+.userTable th{
+    @apply border text-base font-medium
+}
+.userTable td{
+    @apply border text-base text-center
+}
