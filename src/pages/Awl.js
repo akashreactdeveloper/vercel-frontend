@@ -1029,6 +1029,14 @@ const Awl = () => {
                 console.log("weightofMasterBag", total)
                 setTotalTruckWeight(total ? total.toFixed(2) : '');
 
+            } else if (category === 'Besan') {
+
+                const NumberofTotalBags = numberOfBags;
+                const weightOfBag = 12.235;
+                const total = NumberofTotalBags && weightOfBag ? parseFloat(NumberofTotalBags * weightOfBag) : '';
+                console.log("weightofMasterBag", total)
+                setTotalTruckWeight(total ? total.toFixed(2) : '');
+
             } else if (category === 'Atta Scheme' && subcategories === '10') {
 
                 const WeightofMasterBags = numberOfBags * 0.075;
@@ -1397,6 +1405,14 @@ const Awl = () => {
                 console.log("weightofMasterBag", total)
                 setTotalTruckWeight1(total ? total.toFixed(2) : '');
 
+            } else if (category1 === 'Besan') {
+
+                const NumberofTotalBags = numberOfBags1;
+                const weightOfBag = 12.235;
+                const total = NumberofTotalBags && weightOfBag ? parseFloat(NumberofTotalBags * weightOfBag) : '';
+                console.log("weightofMasterBag", total)
+                setTotalTruckWeight1(total ? total.toFixed(2) : '');
+
             } else if (category1 === 'Atta Scheme' && subcategories1 === '10') {
 
                 const WeightofMasterBags = numberOfBags1 * 0.075;
@@ -1739,6 +1755,14 @@ const Awl = () => {
 
                 const NumberofTotalBags = numberOfBags2
                 const weightOfBag = 10.17
+                const total = NumberofTotalBags && weightOfBag ? parseFloat(NumberofTotalBags * weightOfBag) : '';
+                console.log("weightofMasterBag", total)
+                setTotalTruckWeight2(total ? total.toFixed(2) : '');
+
+            } else if (category2 === 'Besan') {
+
+                const NumberofTotalBags = numberOfBags2;
+                const weightOfBag = 12.235;
                 const total = NumberofTotalBags && weightOfBag ? parseFloat(NumberofTotalBags * weightOfBag) : '';
                 console.log("weightofMasterBag", total)
                 setTotalTruckWeight2(total ? total.toFixed(2) : '');
@@ -2087,6 +2111,14 @@ const Awl = () => {
                 const NumberofTotalBags = numberOfBags3
                 const weightOfBag = 10.17
                 const total = NumberofTotalBags && weightOfBag? parseFloat(NumberofTotalBags * weightOfBag) : '';
+                console.log("weightofMasterBag", total)
+                setTotalTruckWeight3(total ? total.toFixed(2) : '');
+
+            } else if (category3 === 'Besan') {
+
+                const NumberofTotalBags = numberOfBags3;
+                const weightOfBag = 12.235;
+                const total = NumberofTotalBags && weightOfBag ? parseFloat(NumberofTotalBags * weightOfBag) : '';
                 console.log("weightofMasterBag", total)
                 setTotalTruckWeight3(total ? total.toFixed(2) : '');
 
