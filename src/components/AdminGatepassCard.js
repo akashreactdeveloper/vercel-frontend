@@ -3,9 +3,12 @@ import { MdModeEditOutline } from 'react-icons/md';
 import AminEditGatepass from './AminEditGatepass';
 import ROLE from '../common/role';
 import { useSelector } from 'react-redux';
+import { MdCancelPresentation } from "react-icons/md";
+import AdminCancelGatepass from './AdminCancelGatepass';
 
 const AdminGatepassCard = ({ data }) => {
     const [editGatepass, setEditGatepass] = useState(false);
+    const [cancelGatepass, setCancelGatepass] = useState(false);
     const [remainingTime, setRemainingTime] = useState(null);
     const user = useSelector(state => state?.user?.user);
 
@@ -76,6 +79,7 @@ const AdminGatepassCard = ({ data }) => {
                         <MdModeEditOutline className="text-green-600" size={20} />
                     </div>
                 )}
+                
             </div>
             
             {/* Remaining Time Display */}
@@ -92,11 +96,28 @@ const AdminGatepassCard = ({ data }) => {
                 <p className="text-sm text-gray-600 font-semibold">Total Amount: Rs. {data.totalValue} /-</p>
                 <p className="text-sm text-gray-600">Total Weight: {data.totalWeight / 100} Qtl.</p>
             </div>
+            {shouldShowEditButton() && (
+                <div className='flex'>
+                    <div
+                    className="w-10 h-10 flex items-center justify-center bg-gradient-to-r from-red-100 to-red-300 hover:from-red-300 hover:to-red-500 cursor-pointer"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setCancelGatepass(true);
+                    }}
+                >
+                    <MdCancelPresentation className="text-red-600" size={20} />
+                </div>
+                </div>
+            )}
 
             {/* Edit gatepass modal */}
             {editGatepass && (
                 <AminEditGatepass gatepassData={data} onClose={() => setEditGatepass(false)} />
             )}
+            {cancelGatepass && (
+                <AdminCancelGatepass gatepassData={data} onClose={() => setCancelGatepass(false)} />
+            )}
+
         </div>
     );
 };

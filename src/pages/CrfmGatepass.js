@@ -14,6 +14,8 @@ const CrfmGatepass = () => {
         perbagprice: '',
         productValue: '',
         perKgRate: '',
+        perkgrateScrap: '',
+        typeOfScrap: '',
         weightOfTruck: '',
         isMaida_BulkerSelected: false,
         loadingCharger: '0',
@@ -81,6 +83,8 @@ const CrfmGatepass = () => {
         loadingDoneBy: '',
     });
 
+    console.log("latest",AwlformData.subcategories)
+
     const [gatepassNumberList, setGatepassNumberList] = useState([]);
     const [selectedGatepass, setSelectedGatepass] = useState(null);
     const gatepassRef = useRef(null);
@@ -96,7 +100,7 @@ const CrfmGatepass = () => {
             const filteredData = dataResponse.data.filter(entry => entry.type === 'CRFM');
             setGatepassNumberList(filteredData);
             if (filteredData.length > 0) {
-                setSelectedGatepass(filteredData[0].gatepassNumber); // Automatically select the first gatepass
+                setSelectedGatepass(filteredData[0].gatepassNumber); 
             }
         }
 
@@ -130,22 +134,25 @@ const CrfmGatepass = () => {
     
 
     const handlePrint = () => {
+        const originalTitle = document.title; // Save the original title
+        document.title = ''; // Clear the title
+
         if (gatepassRef.current) {
             const printContents = gatepassRef.current.innerHTML;
             const originalContents = document.body.innerHTML;
 
             document.body.innerHTML = `
-                <div style="width: 48%; float: left;">
+                <div style="width: 49.5%; float: left;">
                     ${printContents}
                 </div>
-                <div style="width: 48%; float: right;">
+                <div style="width: 49.5%; float: right;">
                     ${printContents}
                 </div>
                 <div style="clear: both;"></div>
             `;
             window.print();
             document.body.innerHTML = originalContents;
-            window.location.reload(); // Reload to restore the original state
+            document.title = originalTitle;
         } else {
             console.error('gatepassRef is not defined');
         }
@@ -157,16 +164,26 @@ const CrfmGatepass = () => {
         {
             category: AwlformData.category,
             subcategories: AwlformData.subcategories,
+            subsubcategories: AwlformData.subsubcategories,
+            otherSubsubcategories: AwlformData.otherSubsubcategories,
+            totalWeight : AwlformData.totalWeight,
+            productValue : AwlformData.productValue,
             numberOfBags: AwlformData.numberOfBags,
             perbagprice: AwlformData.perbagprice,
             productValue: AwlformData.productValue,
             weight: AwlformData.weight,
             perqtlrate: AwlformData.perqtlrate,
+            perkgrateScrap: AwlformData.perkgrateScrap,
+            typeOfScrap: AwlformData.typeOfScrap,
             totalamount: AwlformData.totalamount
         },
         {
             category: AwlformData.category1,
             subcategories: AwlformData.subcategories1,
+            subsubcategories: AwlformData.subsubcategories1,
+            otherSubsubcategories: AwlformData.otherSubsubcategories1,
+            totalWeight : AwlformData.totalWeight11,
+            productValue : AwlformData.productValue1,
             numberOfBags: AwlformData.numberOfBags1,
             perbagprice: AwlformData.perbagprice1,
             productValue: AwlformData.productValue1,
@@ -177,20 +194,28 @@ const CrfmGatepass = () => {
         {
             category: AwlformData.category2,
             subcategories: AwlformData.subcategories2,
+            subsubcategories: AwlformData.subsubcategories2,
+            otherSubsubcategories: AwlformData.otherSubsubcategories2,
+            totalWeight : AwlformData.totalWeight2,
+            productValue : AwlformData.productValue3,
             numberOfBags: AwlformData.numberOfBags2,
             perbagprice: AwlformData.perbagprice2,
             productValue: AwlformData.productValue2,
-            weight: AwlformData.weight2,
+            weight : AwlformData.weight2,
             perqtlrate: AwlformData.perqtlrate2,
             totalamount: AwlformData.totalamount2
         },
         {
             category: AwlformData.category3,
             subcategories: AwlformData.subcategories3,
+            subsubcategories: AwlformData.subsubcategories3,
+            otherSubsubcategories: AwlformData.otherSubsubcategories3,
+            totalWeight : AwlformData.totalWeight3,
+            productValue : AwlformData.productValue3,
             numberOfBags: AwlformData.numberOfBags3,
             perbagprice: AwlformData.perbagprice3,
             productValue: AwlformData.productValue3,
-            weight: AwlformData.weight3,
+            weight : AwlformData.weight3,
             perqtlrate: AwlformData.perqtlrate3,
             totalamount: AwlformData.totalamount3
         }
@@ -202,27 +227,27 @@ const CrfmGatepass = () => {
         <div>
             {selectedGatepassData && (
                 <div ref={gatepassRef}>
-                    {AwlformData.category === "Refraction" ? (
+                    {AwlformData.category === 'Maida' && AwlformData.subcategories === 'Maida_Bulker' ? (
                         <table className='border-2 border-black'>
                             <thead>
                                 <tr className="border">
-                                    <th colSpan="5" className='text-2xl'>GATE PASS</th>
+                                    <th colSpan="4" className='text-lg'>GATE PASS</th>
                                 </tr>
                                 <tr className="border">
-                                    <th colSpan="4">Chandigarh Roller Flour Mills Pvt. Ltd.</th>
+                                    <th colSpan="4" className='text-lg'>Chandigarh Roller Flour Mills Pvt. Ltd.</th>
                                 </tr>
                                 <tr className="border">
-                                    <th>No. C-{selectedGatepassData?.gatepassNumber-1000}</th>
+                                    <th>No. {selectedGatepassData?.gatepassNumber}</th>
                                     <th>Date : {getCurrentDateTime().date}</th>
                                     <td></td>
                                     <th>Time : {getCurrentDateTime().time}</th>
                                 </tr>
-                                <tr>
-                                    <th colSpan={2} className='p-4'>Name of Party : {AwlformData.partyName}</th>
+                                <tr className='h-10'>
+                                    <th colSpan={2} className=''>Name of Party : {AwlformData.partyName}</th>
                                     <th colSpan={2}>Truck Number : {AwlformData.trucknumber}</th>
                                 </tr>
                                 <tr className='border-2 border-black'>
-                                    <th className="px-1 py-3 border border-black">Name of Product</th>
+                                    <th className="px-1 py-1 border border-black">Name of Product</th>
                                     <th className="px-1 border border-black">Weight</th>
                                     <th className="px-1 border border-black">Per Qtl. Rate</th>
                                     <th className="px-1 border border-black">Amount</th>
@@ -234,9 +259,9 @@ const CrfmGatepass = () => {
                                         <td className="px-1 text-center border border-black">
                                             {item.category} <br /> {item.subcategories}
                                         </td>
-                                        <td className="px-1 text-center border border-black">{item.weight}</td>
+                                        <td className="px-1 text-center border border-black">{item.totalWeight}</td>
                                         <td className="px-1 text-center border border-black">{item.perqtlrate}</td>
-                                        <td className="px-1 text-center border border-black">{item.totalamount}</td>
+                                        <td className="px-1 text-center border border-black">{item.productValue}</td>
                                     </tr>
                                 ))}
                                 {Array.from({ length: MAX_ROWS - items.length }).map((_, index) => (
@@ -251,11 +276,70 @@ const CrfmGatepass = () => {
                                     <th className="px-1 text-center border border-black">Total</th>
                                     <td className="px-1 text-center border border-black">{AwlformData.TotalGatepassWeight} Qtl.</td>
                                     <td className="px-1 text-center border border-black"></td>
-                                    <td className="px-1 text-center border border-black">{AwlformData.TotalGatepassAmount}</td>
+                                    <td className="px-1 text-center border border-black">Rs. {AwlformData.TotalGatepassAmount}</td>
                                 </tr>
                                 <tr className="h-8"> {/* Adjust the height here */}
-                                    <th colSpan={2}>Total Atta Weight : {(AwlformData.TotalGatepassWeight / 100).toFixed(2)} <></> Qtl.</th>
-                                    <th colSpan={2}>Total Truck Weight : {(AwlformData.TotalGatepassTruckWeight / 100).toFixed(2)} <></> Qtl.</th>
+                                    <th colSpan={4}>Total Truck Weight : {(parseFloat(AwlformData.TotalGatepassWeight) || 0).toFixed(2)} Qtl.</th>
+                                </tr>
+                            </tbody>
+                            <tr>
+                                <th className='pt-6 pb-1' colSpan={2}>Loading Done By</th>
+                                <th className='pt-6 pb-1' colSpan={2}>Authorized Signatory</th>
+                            </tr>
+                        </table>
+                    ) : AwlformData.category === 'scrap' ? (
+                        <table className='border-2 border-black'>
+                            <thead>
+                                <tr className="border">
+                                    <th colSpan="4" className='text-lg'>GATE PASS</th>
+                                </tr>
+                                <tr className="border">
+                                    <th colSpan="4" className='text-lg'>Chandigarh Roller Flour Mills Pvt. Ltd.</th>
+                                </tr>
+                                <tr className="border">
+                                    <th>No. {selectedGatepassData?.gatepassNumber}</th>
+                                    <th>Date : {getCurrentDateTime().date}</th>
+                                    <td></td>
+                                    <th>Time : {getCurrentDateTime().time}</th>
+                                </tr>
+                                <tr className='h-10'>
+                                    <th colSpan={2} className=''>Name of Party : {AwlformData.partyName}</th>
+                                    <th colSpan={2}>Truck Number : {AwlformData.trucknumber}</th>
+                                </tr>
+                                <tr className='border-2 border-black'>
+                                    <th className="px-1 py-1 border border-black">Name of Product</th>
+                                    <th className="px-1 border border-black">Weight</th>
+                                    <th className="px-1 border border-black">Per Kg. Rate</th>
+                                    <th className="px-1 border border-black">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody className="border border-black">
+                                {items.map((item, index) => (
+                                    <tr key={index} className="h-10">
+                                        <td className="px-1 text-center border border-black">
+                                            {item.category} <br /> {item.typeOfScrap}
+                                        </td>
+                                        <td className="px-1 text-center border border-black">{item.totalWeight}</td>
+                                        <td className="px-1 text-center border border-black">{item.perkgrateScrap}</td>
+                                        <td className="px-1 text-center border border-black">{item.productValue}</td>
+                                    </tr>
+                                ))}
+                                {Array.from({ length: MAX_ROWS - items.length }).map((_, index) => (
+                                    <tr key={`placeholder-${index}`} className="h-10">
+                                        <td className="px-1 text-center border border-black">&nbsp;</td>
+                                        <td className="px-1 text-center border border-black">&nbsp;</td>
+                                        <td className="px-1 text-center border border-black">&nbsp;</td>
+                                        <td className="px-1 text-center border border-black">&nbsp;</td>
+                                    </tr>
+                                ))}
+                                <tr>
+                                    <th className="px-1 text-center border border-black">Total</th>
+                                    <td className="px-1 text-center border border-black">{AwlformData.TotalGatepassWeight} Kg.</td>
+                                    <td className="px-1 text-center border border-black"></td>
+                                    <td className="px-1 text-center border border-black">Rs. {AwlformData.TotalGatepassAmount}</td>
+                                </tr>
+                                <tr className="h-8"> {/* Adjust the height here */}
+                                    <th colSpan={4}>Total Truck Weight : {(parseFloat(AwlformData.TotalGatepassWeight) || 0).toFixed(2)} Kg.</th>
                                 </tr>
                             </tbody>
                             <tr>
@@ -267,23 +351,21 @@ const CrfmGatepass = () => {
                         <table className='border-2 border-black'>
                             <thead>
                                 <tr className="border">
-                                    <th colSpan="5" className='text-2xl'>GATE PASS</th>
+                                    <th colSpan="4" className='text-lg'>GATE PASS</th>
                                 </tr>
                                 <tr className="border">
-                                    <th colSpan="4">Chandigarh Roller Flour Mills Pvt. Ltd.</th>
+                                    <th colSpan="4" className='text-lg'>Chandigarh Roller Flour Mills Pvt. Ltd.</th>
                                 </tr>
                                 <tr className="border">
-                                    <th>No. C-{selectedGatepassData?.gatepassNumber}</th>
-                                    <th>Date : {getCurrentDateTime().date}</th>
-                                    <td></td>
-                                    <th>Time : {getCurrentDateTime().time}</th>
+                                    <th>No. {selectedGatepassData?.gatepassNumber}</th>
+                                    <th colSpan={3}>Date : {getCurrentDateTime().date}<> Time : {getCurrentDateTime().time}</></th>
                                 </tr>
-                                <tr>
-                                    <th colSpan={2} className='p-4'>Name of Party : {AwlformData.partyName}</th>
-                                    <th colSpan={2}>Truck Number : {AwlformData.trucknumber}</th>
+                                <tr className='h-10'>
+                                    <th colSpan={2} className='px-1'>Name of Party : {AwlformData.partyName} </th>
+                                    <th colSpan={2} className='px-1'>Truck Number : {AwlformData.trucknumber}</th>
                                 </tr>
                                 <tr className='border-2 border-black'>
-                                    <th className="px-1 py-3 border border-black">Name of Product</th>
+                                    <th className="px-1 py-1 border border-black">Name of Product</th>
                                     <th className="px-1 border border-black">No. of Bags</th>
                                     <th className="px-1 border border-black">Per Bag Rate</th>
                                     <th className="px-1 border border-black">Amount</th>
@@ -293,11 +375,11 @@ const CrfmGatepass = () => {
                                 {items.map((item, index) => (
                                     <tr key={index} className="h-10">
                                         <td className="px-1 text-center border border-black">
-                                            {item.category} <br /> {item.subcategories}
+                                            {item.category} {item.category !== 'Refraction' && item.subsubcategories !== 'Others'? item.subsubcategories : '' || item.subsubcategories === 'Others' ? `${item.otherSubsubcategories*1000} gm` : ''} <br /> {item.subcategories}<br/>{item.category === 'Refraction' ? `Total Weight - ${item.weight} KG` : ''}
                                         </td>
                                         <td className="px-1 text-center border border-black">{item.numberOfBags}</td>
                                         <td className="px-1 text-center border border-black">{item.perbagprice}</td>
-                                        <td className="px-1 text-center border border-black">{item.productValue}</td>
+                                        <td className="px-1 text-center border border-black">{item.category === 'Refraction'?item.totalamount : item.productValue}</td>
                                     </tr>
                                 ))}
                                 {Array.from({ length: MAX_ROWS - items.length }).map((_, index) => (
@@ -312,11 +394,10 @@ const CrfmGatepass = () => {
                                     <th className="px-1 text-center border border-black">Total</th>
                                     <td className="px-1 text-center border border-black">{AwlformData.TotalnumberOfBagsInGatepass}</td>
                                     <td className="px-1 text-center border border-black"></td>
-                                    <td className="px-1 text-center border border-black">{AwlformData.TotalGatepassAmount}</td>
+                                    <td className="px-1 text-center border border-black">Rs. {AwlformData.TotalGatepassAmount}</td>
                                 </tr>
                                 <tr className="h-8"> {/* Adjust the height here */}
-                                    <th colSpan={2}>Total Atta Weight : {(AwlformData.TotalGatepassWeight / 100).toFixed(2)} <></> Qtl.</th>
-                                    <th colSpan={2}>Total Truck Weight : {(AwlformData.TotalGatepassTruckWeight / 100).toFixed(2)} <></> Qtl.</th>
+                                    <th colSpan={4}>Total Weight : {(AwlformData.TotalGatepassWeight / 100).toFixed(2)} <></> Qtl.</th>
                                 </tr>
                             </tbody>
                             <tr>

@@ -155,7 +155,6 @@ const AwlGatepass = () => {
             window.print();
             document.body.innerHTML = originalContents;
             document.title = originalTitle;
-            window.location.reload(); // Reload to restore the original state
         } else {
             console.error('gatepassRef is not defined');
         }
@@ -193,7 +192,7 @@ const AwlGatepass = () => {
                                 <td colSpan={2} className='text-center text-xs text-black font-bold'>GSTINNo. : 03AABCA8056G1ZZ</td>
                             </tr>
                             <tr className="border">
-                                <th>No. A-{selectedGatepassData?.gatepassNumber}</th>
+                                <th>No. {selectedGatepassData?.gatepassNumber}</th>
                                 <th colSpan={2}>Date : {getCurrentDateTime().date}</th>
                                 <th>Time : {getCurrentDateTime().time}</th>
 

@@ -19,7 +19,7 @@ const VerficationCard = ({ data }) => {
     return (
         <div className={` bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out p-4 m-2 flex-shrink-0 w-64  ${getBackgroundColor()}`} onClick={handleCardClick}>
             <div className="flex items-center justify-between">
-                <div><h1 className="text-lg font-semibold text-gray-800 truncate">Gatepass No. : {data.type === 'AWL'?'A-' : 'C-'}{data.gatepassNumber}</h1></div>
+                <div><h1 className="text-lg font-semibold text-gray-800 truncate">Gatepass No. : {data.gatepassNumber}</h1></div>
             </div>
             
             {/* Additional details or actions */}

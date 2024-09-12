@@ -6,6 +6,7 @@ import { LuIndianRupee } from "react-icons/lu";
 
 const Awl = () => {
     const [type, settype] = useState('');
+    const [remarks, setremarks] = useState('');
     const [partyName, setPartyName] = useState('');
     const [batchnumber, setBatchNumber] = useState('');
     const [trucknumber, settrucknumber] = useState('');
@@ -17,8 +18,9 @@ const Awl = () => {
     const [isMaida_BulkerSelected, setIsMaida_BulkerSelected] = useState(false);
     const [otherSubsubcategories, setOtherSubsubcategories] = useState('');
     const [numberOfBags, setNumberOfBags] = useState('');
+    const [typeOfScrap, settypeOfScrap] = useState('');
     const [perbagprice, setPerbagprice] = useState('');
-    const [productValue, setProductValue] = useState('');
+    const [productValue, setProductValue] = useState('0');
     const [perKgRate, setPerKgRate] = useState('');
     const [weightOfTruck, setWeightOfTruck] = useState('');
     const [loadingCharger, setLoadingCharger] = useState('0');
@@ -102,7 +104,13 @@ const Awl = () => {
     const [typeofsale, settypeofsale] = useState('')
     const [loadingDoneBy, setloadingDoneBy] = useState('')
     const [verified ,setverified] = useState('No')
+    const [weightDifference ,setWeightDifference] = useState('')
+    const [status ,setStatus] = useState('')
+    const [reason ,setReason] = useState('')
+    const [difference ,setDifference] = useState('')
     const [kandaWeight , setkandaWeight] = useState('')
+    const [weightOfScrap , setweightOfScrap] = useState('')
+    const [perkgrateScrap , setperkgrateScrap] = useState('')
 
 
     const navigate = useNavigate();
@@ -155,12 +163,13 @@ const Awl = () => {
                 Maida_Bulker: ['others']
             }
         },
-        "Chakki aata and bajra jo maize": {
+        "Chakki aata": {
             unit: 'KG',
             subcategories: {
                 Regular: ['5', '10', '26', '30', '40', '50 ', 'Others'],
                 Jute: ['10', '5'],
                 LD: ['10', '5'],
+                'D-Mart Regular' : ['5','10','26']
             }
         },
         "MILL ATTA": {
@@ -202,6 +211,12 @@ const Awl = () => {
                 Plastic_Best_Quality: ['Others'],
                 Plastic_Medium_Quality: ['Others'],
                 Plastic_Low_Quality: ['Others'],
+                Others: ['Others'],
+            }
+        },
+        scrap: {
+            unit: 'Kg',
+            subcategories: {
                 Others: ['Others'],
             }
         },
@@ -254,12 +269,13 @@ const Awl = () => {
                 Maida_Bulker: ['others']
             }
         },
-        "Chakki aata and bajra jo maize": {
+        "Chakki aata": {
             unit: 'KG',
             subcategories1: {
                 Regular: ['5', '10', '26', '30', '40', '50 ', 'Others'],
                 Jute: ['10', '5'],
                 LD: ['10', '5'],
+                'D-Mart Regular' : ['5','10','26']
             }
         },
         "MILL ATTA": {
@@ -301,6 +317,12 @@ const Awl = () => {
                 Plastic_Best_Quality: ['Others'],
                 Plastic_Medium_Quality: ['Others'],
                 Plastic_Low_Quality: ['Others'],
+                Others: ['Others'],
+            }
+        },
+        scrap: {
+            unit: 'Kg',
+            subcategories: {
                 Others: ['Others'],
             }
         },
@@ -353,12 +375,13 @@ const Awl = () => {
                 Maida_Bulker: ['others']
             }
         },
-        "Chakki aata and bajra jo maize": {
+        "Chakki aata": {
             unit: 'KG',
             subcategories2: {
                 Regular: ['5', '10', '26', '30', '40', '50 ', 'Others'],
                 Jute: ['10', '5'],
                 LD: ['10', '5'],
+                'D-Mart Regular' : ['5','10','26']
             }
         },
         "MILL ATTA": {
@@ -400,6 +423,12 @@ const Awl = () => {
                 Plastic_Best_Quality: ['Others'],
                 Plastic_Medium_Quality: ['Others'],
                 Plastic_Low_Quality: ['Others'],
+                Others: ['Others'],
+            }
+        },
+        scrap: {
+            unit: 'Kg',
+            subcategories: {
                 Others: ['Others'],
             }
         },
@@ -452,12 +481,13 @@ const Awl = () => {
                 Maida_Bulker: ['others']
             }
         },
-        "Chakki aata and bajra jo maize": {
+        "Chakki aata": {
             unit: 'KG',
             subcategories3: {
                 Regular: ['5', '10', '26', '30', '40', '50 ', 'Others'],
                 Jute: ['10', '5'],
                 LD: ['10', '5'],
+                'D-Mart Regular' : ['5','10','26']
             }
         },
         "MILL ATTA": {
@@ -502,6 +532,12 @@ const Awl = () => {
                 Others: ['Others'],
             }
         },
+        scrap: {
+            unit: 'Kg',
+            subcategories: {
+                Others: ['Others'],
+            }
+        },
     };
 
     const categories = type === 'CRFM' ? crfmCategories : awlCategories;
@@ -520,9 +556,14 @@ const Awl = () => {
         settypeofsale(e.target.value)
     }
 
+    const handleremarks = (e) => {
+        setremarks(e.target.value);
+    };
     const handlePartyNameChange = (e) => {
         setPartyName(e.target.value);
     };
+
+
 
     const handleBatchNumberChange = (e) => {
         setBatchNumber(e.target.value);
@@ -544,8 +585,19 @@ const Awl = () => {
         calculateTotalPrice(weight, perKgRate);
         if (isMaida_BulkerSelected) {
             setTotalWeight(weight);
+            setTotalTruckWeight(weight);
         }
     };
+
+    const handleWeightOfScrapChange = (e) => {
+        const scrapWeight = e.target.value;
+        setweightOfScrap(scrapWeight);
+    }
+    const handleperkgrateScrapChange = (e) => {
+        const scrapPerKgRate = e.target.value;
+        setperkgrateScrap(scrapPerKgRate);
+    }
+
     const handleGenerateGatepass = async () => {
         const AwlformData = {
             type,
@@ -565,7 +617,9 @@ const Awl = () => {
             cgst,
             sgst,
             weightOfTruck,
+            perkgrateScrap,
             totalValue,
+            typeOfScrap,
             totalWeight,
             perqtlrate,
             totalamount,
@@ -631,7 +685,14 @@ const Awl = () => {
             typeofsale,
             loadingDoneBy,
             kandaWeight,
-            verified
+            verified,
+            remarks,
+            weightDifference,
+            difference,
+            status,
+            reason,
+            weightOfScrap,
+            perkgrateScrap
         };
 
 
@@ -671,6 +732,12 @@ const Awl = () => {
         setProductValue('');
         setPerKgRate('');
     };
+
+    const handletypeOfScrapChange = (e) => {
+        const scrapType = e.target.value;
+        settypeOfScrap(scrapType)
+    }
+
     const handleSubcategoriesChange = (e) => {
         const selectedSubcategories = e.target.value;
         setSubcategories(selectedSubcategories);
@@ -721,25 +788,32 @@ const Awl = () => {
     };
     const handleweightChange = (e) => {
         setweight(e.target.value);
-
     };
     const handleperqtlrateChange = (e) => {
-        setperqtlrate(e.target.value);
-        calculateTotalPrice(weightOfTruck, perqtlrate);
+        const newperqtlrate = e.target.value;
+        setperqtlrate(newperqtlrate);
+        calculateTotalPrice(weightOfTruck, newperqtlrate);
     };
-    const calculateTotalPrice = (weightOfTruck, perKgRate) => {
-        if (weightOfTruck && perKgRate) {
-            const totalPrice = parseFloat(weightOfTruck) * parseFloat(perqtlrate);
+    const calculateTotalPrice = (weightOfTruck, newperqtlrate) => {
+        if (weightOfTruck && newperqtlrate) {
+            console.log("weightoftruck",weightOfTruck)
+            console.log("perqtlrate",newperqtlrate)
+            const totalPrice = parseFloat(weightOfTruck) * parseFloat(newperqtlrate);
+            console.log("total price",totalPrice)
             setProductValue(totalPrice.toFixed(2));
-        } else {
+           
+
+        } 
+        else {
             setProductValue('');
         }
     };
     const calculateProductValue = (numberOfBags, perbagprice) => {
-        if (numberOfBags && perbagprice) {
+        if (numberOfBags && perbagprice && category !== 'scrap') {
             const product = parseFloat(numberOfBags) * parseFloat(perbagprice);
             setProductValue(product.toFixed(2));
-        } else {
+        }
+         else {
             setProductValue('');
             setPerKgRate('');
         }
@@ -747,6 +821,17 @@ const Awl = () => {
     useEffect(() => {
         calculateTotalValue(productValue, loadingCharger, cgst, sgst);
     }, [productValue, loadingCharger, cgst, sgst]);
+
+    const calculateScrapPrice = (weightOfScrap,perkgrateScrap) => {
+        const scrapPrice = parseFloat(weightOfScrap) * parseFloat(perkgrateScrap);
+        setProductValue(scrapPrice.toFixed(2));
+        setTotalWeight(weightOfScrap)
+    }
+
+    useEffect(() => {
+        calculateScrapPrice(weightOfScrap,perkgrateScrap);
+    }, [weightOfScrap,perkgrateScrap]);
+    
     const calculatetotalamount = (weight, perqtlrate) => {
         if (weight && perqtlrate) {
             const amount = parseFloat(weight) * parseFloat(perqtlrate);
@@ -770,8 +855,11 @@ const Awl = () => {
     };
     const calculatePerKgRate = (totalValue, subcategories, subsubcategories, otherSubsubcategories, numberOfBags) => {
         if (type === 'CRFM') {
-            if (totalValue && subsubcategories && numberOfBags) {
+            if (totalValue && subsubcategories !== 'Others' && numberOfBags) {
                 const perKg = parseFloat(totalValue) / (parseFloat(subsubcategories) * parseFloat(numberOfBags));
+                setPerKgRate(perKg.toFixed(2));
+            } else if (totalValue && otherSubsubcategories && numberOfBags) {
+                const perKg = parseFloat(totalValue) / (parseFloat(otherSubsubcategories) * parseFloat(numberOfBags));
                 setPerKgRate(perKg.toFixed(2));
             } else {
                 setPerKgRate('');
@@ -840,23 +928,29 @@ const Awl = () => {
             }
         }
         else if (type === 'CRFM') {
-            if (category === 'Chakki aata and bajra jo maize' && subcategories === 'Regular') {
+            if (category === 'Chakki aata' && subcategories === 'D-Mart Regular') {
                 if (subsubcategories === '5') {
                     const NumberofTotalBags = numberOfBags * 6
                     const weightOfBag = subcategories
                     const total = NumberofTotalBags && weightOfBag ? parseFloat(NumberofTotalBags) * parseFloat(weightOfBag) : '';
                     setTotalWeight(total ? total.toFixed(2) : '');
                 } else if (subsubcategories === '10') {
-                    const NumberofTotalBags = numberOfBags * 3
-                    const weightOfBag = subcategories
+                    const NumberofTotalBags = numberOfBags * 3;
+                    const weightOfBag = subsubcategories
                     const total = NumberofTotalBags && weightOfBag ? parseFloat(NumberofTotalBags) * parseFloat(weightOfBag) : '';
+                    console.log("Dmart",total)
                     setTotalWeight(total ? total.toFixed(2) : '');
                 } else {
                     const weightOfBag = subsubcategories === 'Others' ? parseFloat(otherSubsubcategories) : parseFloat(subsubcategories);
                     const total = numberOfBags && weightOfBag ? parseFloat(numberOfBags) * weightOfBag : '';
                     setTotalWeight(total ? total.toFixed(2) : '');
                 }
-            } else {
+            }
+            else if (category === 'scrap') {
+                setTotalWeight(weightOfScrap);
+                console.log("total scrap weight",totalWeight)
+            }
+            else {
                 const weightOfBag = subsubcategories === 'Others' ? parseFloat(otherSubsubcategories) : parseFloat(subsubcategories);
                 const total = numberOfBags && weightOfBag ? parseFloat(numberOfBags) * weightOfBag : '';
                 setTotalWeight(total ? total.toFixed(2) : '');
@@ -864,7 +958,9 @@ const Awl = () => {
         }
         else if (isMaida_BulkerSelected) {
             setTotalWeight(weightOfTruck);
+            console.log("total weight",totalWeight)
         }
+        
     };
 
     useEffect(() => {
@@ -951,7 +1047,7 @@ const Awl = () => {
         }
         else if (type === 'CRFM') {
 
-            if (category === 'Chakki aata and bajra jo maize' && subcategories === 'Regular') {
+            if (category === 'Chakki aata' && subcategories === 'D-Mart Regular') {
                 if (subsubcategories === '5') {
                     const WeightofMasterBags = numberOfBags * 0.075;
                     const NumberofTotalBags = numberOfBags * 6
@@ -968,15 +1064,20 @@ const Awl = () => {
                     console.log("weightofMasterBag", total)
                     setTotalTruckWeight(total ? total.toFixed(2) : '');
                 }
-            } else {
+            }
+            else if (category === 'Maida' && subcategories === 'Maida_Bulker'){
+                console.log("inside",weightOfTruck)
+                setTotalTruckWeight(weightOfTruck);
+                console.log("truck weight",TotalTruckWeight)
+            }
+            
+             else {
                 const weightOfBag = subsubcategories === 'Others' ? parseFloat(otherSubsubcategories) : parseFloat(subsubcategories);
                 const total = numberOfBags && weightOfBag ? parseFloat(numberOfBags) * weightOfBag : '';
                 setTotalTruckWeight(total ? total.toFixed(2) : '');
             }
         }
-        else if (isMaida_BulkerSelected) {
-            setTotalTruckWeight(weightOfTruck);
-        }
+        
     };
 
     useEffect(() => {
@@ -1203,7 +1304,7 @@ const Awl = () => {
             }
         }
         else if (type === 'CRFM') {
-            if (category1 === 'Chakki aata and bajra jo maize' && subcategories1 === 'Regular') {
+            if (category1 === 'Chakki aata' && subcategories1 === 'D-Mart Regular') {
                 if (subsubcategories1 === '5') {
                     const NumberofTotalBags = numberOfBags1 * 6
                     const weightOfBag = subcategories1
@@ -1314,7 +1415,7 @@ const Awl = () => {
         }
         else if (type === 'CRFM') {
 
-            if (category1 === 'Chakki aata and bajra jo maize' && subcategories1 === 'Regular') {
+            if (category1 === 'Chakki aata' && subcategories1 === 'D-Mart Regular') {
                 if (subsubcategories1 === '5') {
                     const WeightofMasterBags = numberOfBags1 * 0.075;
                     const NumberofTotalBags = numberOfBags1 * 6
@@ -1549,7 +1650,7 @@ const Awl = () => {
             }
         }
         else if (type === 'CRFM') {
-            if (category2 === 'Chakki aata and bajra jo maize' && subcategories2 === 'Regular') {
+            if (category2 === 'Chakki aata' && subcategories2 === 'D-Mart Regular') {
                 if (subsubcategories2 === '5') {
                     const NumberofTotalBags = numberOfBags2 * 6
                     const weightOfBag = subcategories2
@@ -1660,7 +1761,7 @@ const Awl = () => {
         }
         else if (type === 'CRFM') {
 
-            if (category2 === 'Chakki aata and bajra jo maize' && subcategories2 === 'Regular') {
+            if (category2 === 'Chakki aata' && subcategories2 === 'D-Mart Regular') {
                 if (subsubcategories2 === '5') {
                     const WeightofMasterBags = numberOfBags2 * 0.075;
                     const NumberofTotalBags = numberOfBags2 * 6
@@ -1896,7 +1997,7 @@ const Awl = () => {
             }
         }
         else if (type === 'CRFM') {
-            if (category3 === 'Chakki aata and bajra jo maize' && subcategories3 === 'Regular') {
+            if (category3 === 'Chakki aata' && subcategories3 === 'D-Mart Regular') {
                 if (subsubcategories3 === '5') {
                     const NumberofTotalBags = numberOfBags3 * 6
                     const weightOfBag = subcategories3
@@ -2008,7 +2109,7 @@ const Awl = () => {
         }
         else if (type === 'CRFM') {
 
-            if (category3 === 'Chakki aata and bajra jo maize' && subcategories3 === 'Regular') {
+            if (category3 === 'Chakki aata' && subcategories3 === 'D-Mart Regular') {
                 if (subsubcategories3 === '5') {
                     const WeightofMasterBags = numberOfBags3 * 0.075;
                     const NumberofTotalBags = numberOfBags3 * 6
@@ -2406,7 +2507,7 @@ const Awl = () => {
                             </select>
                         </div>
                     )}
-                    {category === "Refraction" && (
+                    {category === "Refraction"&& category !== "Scrap" && (
                         <>
                             <div className="mb-4">
                                 <label htmlFor="weight" className="block text-gray-700 text-sm font-bold mb-2">
@@ -2418,12 +2519,12 @@ const Awl = () => {
                                     value={weight}
                                     onChange={handleweightChange}
                                     className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    placeholder="Enter Weight"
-                                /><> Qtl.</>
+                                    placeholder="Enter Weight in Kg"
+                                /><> kg</>
                             </div>
                             <div className="mb-4">
                                 <label htmlFor="perqtlrate" className="block text-gray-700 text-sm font-bold mb-2">
-                                    Per Qtl. Rate:
+                                    Per kg. Rate:
                                 </label>
                                 <input
                                     type="number"
@@ -2431,8 +2532,8 @@ const Awl = () => {
                                     value={perqtlrate}
                                     onChange={handleperqtlrateChange}
                                     className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    placeholder="Enter Per Qtl. Rate:"
-                                /><> RS./Qtl.</>
+                                    placeholder="Enter Per Kg. Rate:"
+                                /><> RS./Kg.</>
                             </div>
                             <div className="mb-4">
                                 <label htmlFor="totalamount" className="block text-gray-700 text-sm font-bold mb-2">Total Amount:</label>
@@ -2447,10 +2548,69 @@ const Awl = () => {
                         </>
                     )}
 
+                    {category === 'scrap' && (
+                        <>
+                        
+                            <div className="mb-4">
+                                <label htmlFor="typeOfScrap" className="block text-gray-700 text-sm font-bold mb-2">type of Scrap :</label>
+                                <input
+                                    type="text"
+                                    id="typeOfScrap"
+                                    value={typeOfScrap}
+                                    onChange={handletypeOfScrapChange}
+                                    placeholder="type of Scrap"
+                                    className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                />
+                            </div>
+                            <div className="mb-4">
+                                <label htmlFor="weightOfScrap" className="block text-gray-700 text-sm font-bold mb-2">Weight of Scrap :</label>
+                                <input
+                                    type="number"
+                                    id="weightOfScrap"
+                                    value={weightOfScrap}
+                                    onChange={handleWeightOfScrapChange}
+                                    placeholder="Weight of Scrap"
+                                    className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                /><> Kg.</>
+                            </div>
+                            <div className="mb-4">
+                                <label htmlFor="perkgrateScrap" className="block text-gray-700 text-sm font-bold mb-2">Per Kg. Rate:</label>
+                                <input
+                                    type="number"
+                                    id="perkgrateScrap"
+                                    value={perkgrateScrap}
+                                    onChange={handleperkgrateScrapChange}
+                                    placeholder="Per kg. Rate"
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                />
+                            </div>
+                            <div className="mb-4">
+                                <label htmlFor="productValue" className="block text-gray-700 text-sm font-bold mb-2">Total Price:</label>
+                                <input
+                                    type="text"
+                                    id="productValue"
+                                    value={productValue}
+                                    readOnly
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                                />
+                            </div>
+                            <div className="mb-4">
+                                <label htmlFor="totalWeight" className="block text-gray-700 text-sm font-bold mb-2">Total Weight:</label>
+                                <input
+                                    type="text"
+                                    id="totalWeight"
+                                    value={totalWeight}
+                                    readOnly
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                                />
+                            </div>
+                        </>
+                    )}
 
 
 
-                    {category !== "Refraction" && !isMaida_BulkerSelected && (
+
+                    {category !== "Refraction" && category !== "scrap" && !isMaida_BulkerSelected && (
                         <>
                             <div className="mb-4">
                                 <label htmlFor="subsubcategories" className="block text-gray-700 text-sm font-bold mb-2">Weight of Bag:</label>
@@ -2927,7 +3087,7 @@ const Awl = () => {
                                 <>
                                     <div className="mb-4">
                                         <label htmlFor="weight1" className="block text-gray-700 text-sm font-bold mb-2">
-                                            Weight1 :
+                                            Weight :
                                         </label>
                                         <input
                                             type="number"
@@ -2935,12 +3095,12 @@ const Awl = () => {
                                             value={weight1}
                                             onChange={handleweight1Change}
                                             className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                            placeholder="Enter Weight1"
-                                        /><> Qtl.</>
+                                            placeholder="Enter Weight in Kg"
+                                        /><> Kg.</>
                                     </div>
                                     <div className="mb-4">
                                         <label htmlFor="perqtlrate1" className="block text-gray-700 text-sm font-bold mb-2">
-                                            Per Qtl. Rate:
+                                            Per Kg. Rate:
                                         </label>
                                         <input
                                             type="number"
@@ -2948,8 +3108,8 @@ const Awl = () => {
                                             value={perqtlrate1}
                                             onChange={handleperqtlrate1Change}
                                             className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                            placeholder="Enter Per Qtl. Rate:"
-                                        /><> RS./Qtl.</>
+                                            placeholder="Enter Per Kg. Rate:"
+                                        /><> RS./Kg.</>
                                     </div>
                                     <div className="mb-4">
                                         <label htmlFor="totalamount1" className="block text-gray-700 text-sm font-bold mb-2">Total Amount:</label>
@@ -3439,7 +3599,7 @@ const Awl = () => {
                                         <>
                                             <div className="mb-4">
                                                 <label htmlFor="weight2" className="block text-gray-700 text-sm font-bold mb-2">
-                                                    Weight2 :
+                                                    Weight :
                                                 </label>
                                                 <input
                                                     type="number"
@@ -3447,12 +3607,12 @@ const Awl = () => {
                                                     value={weight2}
                                                     onChange={handleweight2Change}
                                                     className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                    placeholder="Enter Weight2"
-                                                /><> Qtl.</>
+                                                    placeholder="Enter Weight in Kg"
+                                                /><> Kg.</>
                                             </div>
                                             <div className="mb-4">
                                                 <label htmlFor="perqtlrate2" className="block text-gray-700 text-sm font-bold mb-2">
-                                                    Per Qtl. Rate:
+                                                    Per Kg. Rate:
                                                 </label>
                                                 <input
                                                     type="number"
@@ -3460,8 +3620,8 @@ const Awl = () => {
                                                     value={perqtlrate2}
                                                     onChange={handleperqtlrate2Change}
                                                     className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                    placeholder="Enter Per Qtl. Rate:"
-                                                /><> RS./Qtl.</>
+                                                    placeholder="Enter Per Kg. Rate:"
+                                                /><> RS./Kg.</>
                                             </div>
                                             <div className="mb-4">
                                                 <label htmlFor="totalamount2" className="block text-gray-700 text-sm font-bold mb-2">Total Amount:</label>
@@ -3944,7 +4104,7 @@ const Awl = () => {
                                                 <>
                                                     <div className="mb-4">
                                                         <label htmlFor="weight3" className="block text-gray-700 text-sm font-bold mb-2">
-                                                            Weight3 :
+                                                            Weight :
                                                         </label>
                                                         <input
                                                             type="number"
@@ -3952,12 +4112,12 @@ const Awl = () => {
                                                             value={weight3}
                                                             onChange={handleweight3Change}
                                                             className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                            placeholder="Enter Weight3"
-                                                        /><> Qtl.</>
+                                                            placeholder="Enter Weight in Kg"
+                                                        /><> Kg.</>
                                                     </div>
                                                     <div className="mb-4">
                                                         <label htmlFor="perqtlrate3" className="block text-gray-700 text-sm font-bold mb-2">
-                                                            Per Qtl. Rate:
+                                                            Per Kg. Rate:
                                                         </label>
                                                         <input
                                                             type="number"
@@ -3965,8 +4125,8 @@ const Awl = () => {
                                                             value={perqtlrate3}
                                                             onChange={handleperqtlrate3Change}
                                                             className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                            placeholder="Enter Per Qtl. Rate:"
-                                                        /><> RS./Qtl.</>
+                                                            placeholder="Enter Per Kg. Rate:"
+                                                        /><> RS./Kg.</>
                                                     </div>
                                                     <div className="mb-4">
                                                         <label htmlFor="totalamount3" className="block text-gray-700 text-sm font-bold mb-2">Total Amount:</label>
@@ -4178,6 +4338,17 @@ const Awl = () => {
                         value={loadingDoneBy}
                         onChange={handleloadingDoneBy}
                         placeholder="Loading Done by"
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                </div>
+                <div className="mb-4">
+                    <label htmlFor="remarks" className="block text-gray-700 text-sm font-bold mb-2">Any Remarks :</label>
+                    <input
+                        type="text"
+                        id="remarks"
+                        value={remarks}
+                        onChange={handleremarks}
+                        placeholder="Enter Remarks Here"
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
                 </div>

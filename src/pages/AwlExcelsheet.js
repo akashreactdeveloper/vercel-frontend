@@ -146,7 +146,7 @@ const AwlExcelsheet = () => {
             getFilteredData().slice().reverse().map((el) => {
               return (
                 <tr key={el._id}>
-                  <td>A-{el?.gatepassNumber}</td>
+                  <td>{el?.gatepassNumber}</td>
                   <td>{moment(el?.createdAt).format('LL')}</td>
                   <td>{el?.trucknumber}</td>
 
