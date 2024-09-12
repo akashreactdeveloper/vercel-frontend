@@ -1,4 +1,4 @@
-const backendDomin = "https://finalgatepass.onrender.com"
+const backendDomin = "https://vercel-backend-latest.vercel.app"
 
 const SummaryApi = {
     signUP : {
