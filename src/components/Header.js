@@ -64,9 +64,10 @@ const Header = () => {
             }
 
           </div>
+          <div><Link to={"/"} className='bg-red-500 hover:bg-green-200 text-white px-3 py-1 w-full max-w-[250px] rounded-full hover:scale-110 transition-all mx-auto block mt-0 text-center'>Reset After Print</Link></div>
 
           <div>
-          <Link to={"/"} className='bg-red-500 hover:bg-green-200 text-white px-3 py-1 w-full max-w-[250px] rounded-full hover:scale-110 transition-all mx-auto block mt-0 text-center'>Reset After Print</Link>
+          
           <Link to={"/home"} className='bg-blue-500 hover:bg-red-800 text-white px-3 py-1 w-full max-w-[250px] rounded-full hover:scale-110 transition-all mx-auto block mt-0 text-center'>Home</Link>
           </div>
 
