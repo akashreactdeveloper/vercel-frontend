@@ -135,9 +135,11 @@ const AwlGatepass = () => {
         return { date, time };
     };
 
-    const handlePrint = () => {
+    const handlePrint = (event) => {
+        event.preventDefault();
         const originalTitle = document.title; // Save the original title
         document.title = ''; // Clear the title
+        
 
         if (gatepassRef.current) {
             const printContents = gatepassRef.current.innerHTML;
