@@ -161,7 +161,7 @@ const AwlGatepass = () => {
             // Delay closing the print window and redirecting after printing
             setTimeout(() => {
                 printWindow.close(); // Close the print window after printing
-                window.location.replace('/home'); // Redirect to homepage
+                window.location.replace('/'); // Redirect to homepage
             }, 500); // Adjust the timeout duration if needed
         } else {
             console.error('gatepassRef is not defined');
