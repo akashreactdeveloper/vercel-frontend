@@ -137,10 +137,10 @@ const AwlGatepass = () => {
 
     const handlePrint = (event) => {
         event.preventDefault(); // Prevent button default behavior
-    
+        
         if (gatepassRef.current) {
             const printContents = gatepassRef.current.innerHTML;
-            
+    
             const printWindow = window.open('', '', 'height=500,width=800');
             printWindow.document.write('<html><head><title>Print Gatepass</title>');
             printWindow.document.write('</head><body >');
@@ -157,7 +157,12 @@ const AwlGatepass = () => {
             printWindow.document.close(); // Close the document to trigger the printing process
             printWindow.focus();
             printWindow.print();
-            printWindow.close(); // Close the print window after printing
+    
+            // Delay closing the print window and redirecting after printing
+            setTimeout(() => {
+                printWindow.close(); // Close the print window after printing
+                window.location.replace('/home'); // Redirect to homepage
+            }, 500); // Adjust the timeout duration if needed
         } else {
             console.error('gatepassRef is not defined');
         }
