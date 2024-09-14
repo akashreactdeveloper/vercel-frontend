@@ -136,16 +136,15 @@ const AwlGatepass = () => {
     };
 
     const handlePrint = (event) => {
-        event.preventDefault();
-        const originalTitle = document.title; // Save the original title
-        document.title = ''; // Clear the title
-        
-
+        event.preventDefault(); // Prevent button default behavior
+    
         if (gatepassRef.current) {
             const printContents = gatepassRef.current.innerHTML;
-            const originalContents = document.body.innerHTML;
-
-            document.body.innerHTML = `
+            
+            const printWindow = window.open('', '', 'height=500,width=800');
+            printWindow.document.write('<html><head><title>Print Gatepass</title>');
+            printWindow.document.write('</head><body >');
+            printWindow.document.write(`
                 <div style="width: 49.5%; float: left;">
                     ${printContents}
                 </div>
@@ -153,15 +152,16 @@ const AwlGatepass = () => {
                     ${printContents}
                 </div>
                 <div style="clear: both;"></div>
-            `;
-            window.print();
-            document.body.innerHTML = originalContents;
-            document.title = originalTitle;
+            `);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close(); // Close the document to trigger the printing process
+            printWindow.focus();
+            printWindow.print();
+            printWindow.close(); // Close the print window after printing
         } else {
             console.error('gatepassRef is not defined');
         }
     };
-
     const MAX_ROWS = 4;
     const items = [
         { category: AwlformData.category, subcategories: AwlformData.subcategories, subsubcategories: AwlformData.subsubcategories, batchnumber: AwlformData.batchnumber, numberOfBags: AwlformData.numberOfBags, totalValue: AwlformData.totalValue },
