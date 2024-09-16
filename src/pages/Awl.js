@@ -2586,7 +2586,7 @@ const Awl = () => {
                         </>
                     )}
 
-                    {category === 'scrap' ||  category === "Wheat" && (
+                    {(category === 'scrap' ||  category === "Wheat") && (
                         <>
                         
                             <div className="mb-4">
