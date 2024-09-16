@@ -220,6 +220,12 @@ const Awl = () => {
                 Others: ['Others'],
             }
         },
+        Wheat: {
+            unit: 'Kg',
+            subcategories: {
+                Others: ['Others'],
+            }
+        },
     };
 
     const awlCategories1 = {
@@ -809,7 +815,7 @@ const Awl = () => {
         }
     };
     const calculateProductValue = (numberOfBags, perbagprice) => {
-        if (numberOfBags && perbagprice && category !== 'scrap') {
+        if (numberOfBags && perbagprice && category !== 'scrap' && category !== 'Wheat') {
             const product = parseFloat(numberOfBags) * parseFloat(perbagprice);
             setProductValue(product.toFixed(2));
         }
@@ -946,7 +952,7 @@ const Awl = () => {
                     setTotalWeight(total ? total.toFixed(2) : '');
                 }
             }
-            else if (category === 'scrap') {
+            else if (category === 'scrap' || category === 'Wheat') {
                 setTotalWeight(weightOfScrap);
                 console.log("total scrap weight",totalWeight)
             }
@@ -2539,7 +2545,7 @@ const Awl = () => {
                             </select>
                         </div>
                     )}
-                    {category === "Refraction"&& category !== "Scrap" && (
+                    {category === "Refraction"&& category !== "scrap" && category !== "Wheat" && (
                         <>
                             <div className="mb-4">
                                 <label htmlFor="weight" className="block text-gray-700 text-sm font-bold mb-2">
@@ -2580,7 +2586,7 @@ const Awl = () => {
                         </>
                     )}
 
-                    {category === 'scrap' && (
+                    {category === 'scrap' ||  category === "Wheat" && (
                         <>
                         
                             <div className="mb-4">
@@ -2642,7 +2648,7 @@ const Awl = () => {
 
 
 
-                    {category !== "Refraction" && category !== "scrap" && !isMaida_BulkerSelected && (
+                    {category !== "Refraction" && category !== "scrap" &&  category !== "Wheat" && !isMaida_BulkerSelected && (
                         <>
                             <div className="mb-4">
                                 <label htmlFor="subsubcategories" className="block text-gray-700 text-sm font-bold mb-2">Weight of Bag:</label>
