@@ -646,6 +646,9 @@ const Awl = () => {
             perkgrateScrap,
             totalValue,
             typeOfScrap,
+            typeOfScrap1,
+            typeOfScrap2,
+            typeOfScrap3,
             totalWeight,
             perqtlrate,
             totalamount,
@@ -718,7 +721,13 @@ const Awl = () => {
             status,
             reason,
             weightOfScrap,
-            perkgrateScrap
+            perkgrateScrap,
+            weightOfScrap1,
+            perkgrateScrap1,
+            weightOfScrap2,
+            perkgrateScrap2,
+            weightOfScrap3,
+            perkgrateScrap3,
         };
 
 
