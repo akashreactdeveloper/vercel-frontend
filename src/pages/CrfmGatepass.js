@@ -287,7 +287,7 @@ const CrfmGatepass = () => {
                                 <th className='pt-6 pb-1' colSpan={2}>Authorized Signatory</th>
                             </tr>
                         </table>
-                    ) : AwlformData.category === 'scrap' ? (
+                    ) : AwlformData.category === 'scrap' || AwlformData.category === 'Wheat' ?(
                         <table className='border-2 border-black'>
                             <thead>
                                 <tr className="border">
