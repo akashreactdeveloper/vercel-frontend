@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import SummaryApi from '../common'
 import { toast } from 'react-toastify';
 import moment from 'moment'
-import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 const AwlExcelsheet = () => {
   const [AwlExcelsheet, setAwlExcelsheet] = useState([]);
@@ -100,15 +99,6 @@ const AwlExcelsheet = () => {
           onChange={handleDateChange}
           className='border p-2 rounded'
         />
-      </div>
-      <div>
-        <ReactHTMLTableToExcel
-          id="test-table-xls-button"
-          className="download-table-xls-button bg-green-600 hover:bg-green-800 text-white px-6 py-3 w-full max-w-[200px] rounded-full transition-all mx-auto block text-center border"
-          table="table-to-xls"
-          filename="awltablexls"
-          sheet="awltablexls"
-          buttonText="Download as XLS" />
       </div>
       <table id="table-to-xls" className='w-full userTable'>
         <thead>
