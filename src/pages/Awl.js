@@ -24,7 +24,7 @@ const Awl = () => {
     const [typeOfScrap3, settypeOfScrap3] = useState('');
     const [perbagprice, setPerbagprice] = useState('');
     const [productValue, setProductValue] = useState('0');
-    const [perKgRate, setPerKgRate] = useState('');
+    const [perKgRate, setPerKgRate] = useState('0');
     const [weightOfTruck, setWeightOfTruck] = useState('');
     const [loadingCharger, setLoadingCharger] = useState('0');
     const [cgst, setCgst] = useState('0');
@@ -44,7 +44,7 @@ const Awl = () => {
     const [numberOfBags1, setNumberOfBags1] = useState('');
     const [perbagprice1, setPerbagprice1] = useState('');
     const [productValue1, setProductValue1] = useState('');
-    const [perKgRate1, setPerKgRate1] = useState('');
+    const [perKgRate1, setPerKgRate1] = useState('0');
     const [weight1OfTruck1, setWeight1OfTruck1] = useState('');
     const [loadingCharger1, setLoadingCharger1] = useState('0');
     const [cgst1, setCgst1] = useState('0');
@@ -70,7 +70,7 @@ const Awl = () => {
     const [numberOfBags2, setNumberOfBags2] = useState('');
     const [perbagprice2, setPerbagprice2] = useState('');
     const [productValue2, setProductValue2] = useState('');
-    const [perKgRate2, setPerKgRate2] = useState('');
+    const [perKgRate2, setPerKgRate2] = useState('0');
     const [weight2OfTruck2, setWeight2OfTruck2] = useState('');
     const [loadingCharger2, setLoadingCharger2] = useState('0');
     const [cgst2, setCgst2] = useState('0');
@@ -90,7 +90,7 @@ const Awl = () => {
     const [numberOfBags3, setNumberOfBags3] = useState('');
     const [perbagprice3, setPerbagprice3] = useState('');
     const [productValue3, setProductValue3] = useState('');
-    const [perKgRate3, setPerKgRate3] = useState('');
+    const [perKgRate3, setPerKgRate3] = useState('0');
     const [weight3OfTruck3, setWeight3OfTruck3] = useState('');
     const [loadingCharger3, setLoadingCharger3] = useState('0');
     const [cgst3, setCgst3] = useState('0');
