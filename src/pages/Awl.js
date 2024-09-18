@@ -8,6 +8,11 @@ const Awl = () => {
     const [type, settype] = useState('');
     const [remarks, setremarks] = useState('');
     const [partyName, setPartyName] = useState('');
+    const [billNumber, setBillNumber] = useState('');
+    const [billNumberVerifiedBy, setBillNumberVerifiedBy] = useState('')
+    const [kandaWeightVerifiedBy, setKandaWeightVerifiedBy] = useState('')
+    const [gatepassGeneratedBy, setGatepassGeneratedBy] = useState('')
+    const [canceledBy, setCanceledBy] = useState('')
     const [batchnumber, setBatchNumber] = useState('');
     const [trucknumber, settrucknumber] = useState('');
     const [totalWeight, setTotalWeight] = useState('');
@@ -106,7 +111,8 @@ const Awl = () => {
     const [TotalTruckWeight3, setTotalTruckWeight3] = useState('');
     const [typeofsale, settypeofsale] = useState('')
     const [loadingDoneBy, setloadingDoneBy] = useState('')
-    const [verified, setverified] = useState('No')
+    const [bnverified, setbnverified] = useState('No')
+    const [kwverified, setkwverified] = useState('No')
     const [weightDifference, setWeightDifference] = useState('')
     const [status, setStatus] = useState('')
     const [reason, setReason] = useState('')
@@ -190,8 +196,8 @@ const Awl = () => {
         Bran: {
             unit: 'KG',
             subcategories: {
-                Coarse: ['20', '25', '28 ', '30','34', '35', '43', '44', '48', '49', '50', 'Others'],
-                Fine: ['20', '25', '28 ', '30','34', '35', '43', '44', '48', '49', '50', 'Others']
+                Coarse: ['20', '25', '28 ', '30', '34', '35', '43', '44', '48', '49', '50', 'Others'],
+                Fine: ['20', '25', '28 ', '30', '34', '35', '43', '44', '48', '49', '50', 'Others']
             }
         },
         "Rawa Suji": {
@@ -302,8 +308,8 @@ const Awl = () => {
         Bran: {
             unit: 'KG',
             subcategories1: {
-                Coarse: ['20', '25', '28 ', '30','34', '35', '43', '44', '48', '49', '50', 'Others'],
-                Fine: ['20', '25', '28 ', '30','34', '35', '43', '44', '48', '49', '50', 'Others']
+                Coarse: ['20', '25', '28 ', '30', '34', '35', '43', '44', '48', '49', '50', 'Others'],
+                Fine: ['20', '25', '28 ', '30', '34', '35', '43', '44', '48', '49', '50', 'Others']
             }
         },
         "Rawa Suji": {
@@ -414,8 +420,8 @@ const Awl = () => {
         Bran: {
             unit: 'KG',
             subcategories2: {
-                Coarse: ['20', '25', '28 ', '30','34', '35', '43', '44', '48', '49', '50', 'Others'],
-                Fine: ['20', '25', '28 ', '30','34', '35', '43', '44', '48', '49', '50', 'Others']
+                Coarse: ['20', '25', '28 ', '30', '34', '35', '43', '44', '48', '49', '50', 'Others'],
+                Fine: ['20', '25', '28 ', '30', '34', '35', '43', '44', '48', '49', '50', 'Others']
             }
         },
         "Rawa Suji": {
@@ -526,8 +532,8 @@ const Awl = () => {
         Bran: {
             unit: 'KG',
             subcategories3: {
-                Coarse: ['20', '25', '28 ', '30','34', '35', '43', '44', '48', '49', '50', 'Others'],
-                Fine: ['20', '25', '28 ', '30','34', '35', '43', '44', '48', '49', '50', 'Others']
+                Coarse: ['20', '25', '28 ', '30', '34', '35', '43', '44', '48', '49', '50', 'Others'],
+                Fine: ['20', '25', '28 ', '30', '34', '35', '43', '44', '48', '49', '50', 'Others']
             }
         },
         "Rawa Suji": {
@@ -597,7 +603,6 @@ const Awl = () => {
     };
 
 
-
     const handleBatchNumberChange = (e) => {
         setBatchNumber(e.target.value);
     };
@@ -622,7 +627,7 @@ const Awl = () => {
         }
     };
 
-    
+
 
     const handleGenerateGatepass = async () => {
         const AwlformData = {
@@ -714,7 +719,8 @@ const Awl = () => {
             typeofsale,
             loadingDoneBy,
             kandaWeight,
-            verified,
+            bnverified,
+            kwverified,
             remarks,
             weightDifference,
             difference,
@@ -728,6 +734,11 @@ const Awl = () => {
             perkgrateScrap2,
             weightOfScrap3,
             perkgrateScrap3,
+            billNumber,
+            billNumberVerifiedBy,
+            kandaWeightVerifiedBy,
+            gatepassGeneratedBy,
+            canceledBy,
         };
 
 
@@ -899,13 +910,13 @@ const Awl = () => {
     };
     const calculatePerKgRate = (totalValue, subcategories, subsubcategories, otherSubsubcategories, numberOfBags) => {
         if (type === 'CRFM') {
-            if(category === 'Refraction' || category === 'scrap' || category === 'Bardana' || category === 'Wheat' || subcategories === 'Maida_Bulker'){
+            if (category === 'Refraction' || category === 'scrap' || category === 'Bardana' || category === 'Wheat' || subcategories === 'Maida_Bulker') {
                 setPerKgRate(0)
             }
             else if (totalValue && subsubcategories !== 'Others' && numberOfBags) {
-                console.log("total value - ",totalValue)
-                console.log("subsubcategories - ",subsubcategories)
-                console.log("numberOfBags - ",numberOfBags)
+                console.log("total value - ", totalValue)
+                console.log("subsubcategories - ", subsubcategories)
+                console.log("numberOfBags - ", numberOfBags)
                 const perKg = parseFloat(totalValue) / (parseFloat(subsubcategories) * parseFloat(numberOfBags));
                 setPerKgRate(perKg.toFixed(2));
             } else if (totalValue && otherSubsubcategories && numberOfBags) {
@@ -1317,7 +1328,7 @@ const Awl = () => {
     };
     const calculatePerKgRate1 = (totalValue1, subsubcategories1, subcategories1, numberOfBags1) => {
         if (type === 'CRFM') {
-            if(category1 === 'Refraction' || category1 === 'scrap' || category1 === 'Bardana' || category1 === 'Wheat' || subcategories1 === 'Maida_Bulker'){
+            if (category1 === 'Refraction' || category1 === 'scrap' || category1 === 'Bardana' || category1 === 'Wheat' || subcategories1 === 'Maida_Bulker') {
                 setPerKgRate1(0)
             }
             else if (totalValue1 && subsubcategories1 && numberOfBags1) {
@@ -1407,7 +1418,7 @@ const Awl = () => {
                     const total = numberOfBags1 && weightOfBag ? parseFloat(numberOfBags1) * weightOfBag : '';
                     setTotalWeight11(total ? total.toFixed(2) : '');
                 }
-            }else if (category1 === 'scrap' || category1 === 'Wheat') {
+            } else if (category1 === 'scrap' || category1 === 'Wheat') {
                 setTotalWeight11(weightOfScrap1);
                 console.log("total scrap weight", totalWeight11)
             } else {
@@ -1505,9 +1516,9 @@ const Awl = () => {
                 console.log("weightofMasterBag", total)
                 setTotalTruckWeight1(total ? total.toFixed(2) : '');
 
-            
 
-            }else {
+
+            } else {
                 const weightOfBag = subcategories1
                 const total = numberOfBags1 && weightOfBag ? parseFloat(numberOfBags1) * parseFloat(weightOfBag) : '';
                 setTotalTruckWeight1(total ? total.toFixed(2) : '');
@@ -1707,7 +1718,7 @@ const Awl = () => {
     };
     const calculatePerKgRate2 = (totalValue2, subcategories2, subsubcategories2, numberOfBags2) => {
         if (type === 'CRFM') {
-            if(category2 === 'Refraction' || category2 === 'scrap' || category2 === 'Bardana' || category2 === 'Wheat' || subcategories2 === 'Maida_Bulker'){
+            if (category2 === 'Refraction' || category2 === 'scrap' || category2 === 'Bardana' || category2 === 'Wheat' || subcategories2 === 'Maida_Bulker') {
                 setPerKgRate2(0)
             }
             else if (totalValue2 && subsubcategories2 && numberOfBags2) {
@@ -1796,11 +1807,11 @@ const Awl = () => {
                     const total = numberOfBags2 && weightOfBag ? parseFloat(numberOfBags2) * weightOfBag : '';
                     setTotalWeight2(total ? total.toFixed(2) : '');
                 }
-            }else if (category2 === 'scrap' || category2 === 'Wheat') {
+            } else if (category2 === 'scrap' || category2 === 'Wheat') {
                 setTotalWeight2(weightOfScrap2);
                 console.log("total scrap weight", totalWeight2)
             }
-             else {
+            else {
                 const weightOfBag = subsubcategories2 === 'Others' ? parseFloat(otherSubsubcategories2) : parseFloat(subsubcategories2);
                 const total = numberOfBags2 && weightOfBag ? parseFloat(numberOfBags2) * weightOfBag : '';
                 setTotalWeight2(total ? total.toFixed(2) : '');
@@ -2094,7 +2105,7 @@ const Awl = () => {
     };
     const calculatePerKgRate3 = (totalValue3, subsubcategories3, subcategories3, numberOfBags3) => {
         if (type === 'CRFM') {
-            if(category3 === 'Refraction' || category3 === 'scrap' || category3 === 'Bardana' || category3 === 'Wheat' || subcategories3 === 'Maida_Bulker'){
+            if (category3 === 'Refraction' || category3 === 'scrap' || category3 === 'Bardana' || category3 === 'Wheat' || subcategories3 === 'Maida_Bulker') {
                 setPerKgRate3(0)
             }
             else if (totalValue3 && subsubcategories3 && numberOfBags3) {
@@ -2185,7 +2196,7 @@ const Awl = () => {
                     setTotalWeight3(total ? total.toFixed(2) : '');
                 }
 
-            }else if (category3 === 'scrap' || category3 === 'Wheat') {
+            } else if (category3 === 'scrap' || category3 === 'Wheat') {
                 setTotalWeight3(weightOfScrap3);
                 console.log("total scrap weight", totalWeight3)
             } else {
@@ -4582,112 +4593,112 @@ const Awl = () => {
                                                 </>
                                             )}
 
-{category3 === 'scrap' && category3 !== 'Wheat' && (
-                                        <>
+                                            {category3 === 'scrap' && category3 !== 'Wheat' && (
+                                                <>
 
-                                            <div className="mb-4">
-                                                <label htmlFor="typeOfScrap3" className="block text-gray-700 text-sm font-bold mb-2">type of Scrap :</label>
-                                                <input
-                                                    type="text"
-                                                    id="typeOfScrap3"
-                                                    value={typeOfScrap3}
-                                                    onChange={handletypeOfScrap3Change}
-                                                    placeholder="type of Scrap"
-                                                    className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                />
-                                            </div>
-                                            <div className="mb-4">
-                                                <label htmlFor="weightOfScrap3" className="block text-gray-700 text-sm font-bold mb-2">Weight of Scrap :</label>
-                                                <input
-                                                    type="number"
-                                                    id="weightOfScrap3"
-                                                    value={weightOfScrap3}
-                                                    onChange={handleWeightOfScrap3Change}
-                                                    placeholder="Weight of Scrap"
-                                                    className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                /><> Kg.</>
-                                            </div>
-                                            <div className="mb-4">
-                                                <label htmlFor="perkgrateScrap3" className="block text-gray-700 text-sm font-bold mb-2">Per Kg. Rate:</label>
-                                                <input
-                                                    type="number"
-                                                    id="perkgrateScrap3"
-                                                    value={perkgrateScrap3}
-                                                    onChange={handleperkgrateScrap3Change}
-                                                    placeholder="Per kg. Rate"
-                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                />
-                                            </div>
-                                            <div className="mb-4">
-                                                <label htmlFor="productValue3" className="block text-gray-700 text-sm font-bold mb-2">Total Price:</label>
-                                                <input
-                                                    type="text"
-                                                    id="productValue3"
-                                                    value={productValue3}
-                                                    readOnly
-                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
-                                                />
-                                            </div>
-                                            <div className="mb-4">
-                                                <label htmlFor="totalWeight3" className="block text-gray-700 text-sm font-bold mb-2">Total Weight:</label>
-                                                <input
-                                                    type="text"
-                                                    id="totalWeight3"
-                                                    value={totalWeight3}
-                                                    readOnly
-                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
-                                                />
-                                            </div>
-                                        </>
-                                    )}
-                                    {category3 === 'Wheat' && category3 !== 'scrap' && (
-                                        <>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="typeOfScrap3" className="block text-gray-700 text-sm font-bold mb-2">type of Scrap :</label>
+                                                        <input
+                                                            type="text"
+                                                            id="typeOfScrap3"
+                                                            value={typeOfScrap3}
+                                                            onChange={handletypeOfScrap3Change}
+                                                            placeholder="type of Scrap"
+                                                            className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="weightOfScrap3" className="block text-gray-700 text-sm font-bold mb-2">Weight of Scrap :</label>
+                                                        <input
+                                                            type="number"
+                                                            id="weightOfScrap3"
+                                                            value={weightOfScrap3}
+                                                            onChange={handleWeightOfScrap3Change}
+                                                            placeholder="Weight of Scrap"
+                                                            className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        /><> Kg.</>
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="perkgrateScrap3" className="block text-gray-700 text-sm font-bold mb-2">Per Kg. Rate:</label>
+                                                        <input
+                                                            type="number"
+                                                            id="perkgrateScrap3"
+                                                            value={perkgrateScrap3}
+                                                            onChange={handleperkgrateScrap3Change}
+                                                            placeholder="Per kg. Rate"
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="productValue3" className="block text-gray-700 text-sm font-bold mb-2">Total Price:</label>
+                                                        <input
+                                                            type="text"
+                                                            id="productValue3"
+                                                            value={productValue3}
+                                                            readOnly
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="totalWeight3" className="block text-gray-700 text-sm font-bold mb-2">Total Weight:</label>
+                                                        <input
+                                                            type="text"
+                                                            id="totalWeight3"
+                                                            value={totalWeight3}
+                                                            readOnly
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                                                        />
+                                                    </div>
+                                                </>
+                                            )}
+                                            {category3 === 'Wheat' && category3 !== 'scrap' && (
+                                                <>
 
 
-                                            <div className="mb-4">
-                                                <label htmlFor="weightOfScrap3" className="block text-gray-700 text-sm font-bold mb-2">Weight of Wheat :</label>
-                                                <input
-                                                    type="number"
-                                                    id="weightOfScrap3"
-                                                    value={weightOfScrap3}
-                                                    onChange={handleWeightOfScrap3Change}
-                                                    placeholder="Weight of Wheat"
-                                                    className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                /><> Kg.</>
-                                            </div>
-                                            <div className="mb-4">
-                                                <label htmlFor="perkgrateScrap3" className="block text-gray-700 text-sm font-bold mb-2">Per Kg. Rate:</label>
-                                                <input
-                                                    type="number"
-                                                    id="perkgrateScrap3"
-                                                    value={perkgrateScrap3}
-                                                    onChange={handleperkgrateScrap3Change}
-                                                    placeholder="Per kg. Rate"
-                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                />
-                                            </div>
-                                            <div className="mb-4">
-                                                <label htmlFor="productValue3" className="block text-gray-700 text-sm font-bold mb-2">Total Price:</label>
-                                                <input
-                                                    type="text"
-                                                    id="productValue3"
-                                                    value={productValue3}
-                                                    readOnly
-                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
-                                                />
-                                            </div>
-                                            <div className="mb-4">
-                                                <label htmlFor="totalWeight3" className="block text-gray-700 text-sm font-bold mb-2">Total Weight:</label>
-                                                <input
-                                                    type="text"
-                                                    id="totalWeight3"
-                                                    value={totalWeight3}
-                                                    readOnly
-                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
-                                                />
-                                            </div>
-                                        </>
-                                    )}
+                                                    <div className="mb-4">
+                                                        <label htmlFor="weightOfScrap3" className="block text-gray-700 text-sm font-bold mb-2">Weight of Wheat :</label>
+                                                        <input
+                                                            type="number"
+                                                            id="weightOfScrap3"
+                                                            value={weightOfScrap3}
+                                                            onChange={handleWeightOfScrap3Change}
+                                                            placeholder="Weight of Wheat"
+                                                            className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        /><> Kg.</>
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="perkgrateScrap3" className="block text-gray-700 text-sm font-bold mb-2">Per Kg. Rate:</label>
+                                                        <input
+                                                            type="number"
+                                                            id="perkgrateScrap3"
+                                                            value={perkgrateScrap3}
+                                                            onChange={handleperkgrateScrap3Change}
+                                                            placeholder="Per kg. Rate"
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="productValue3" className="block text-gray-700 text-sm font-bold mb-2">Total Price:</label>
+                                                        <input
+                                                            type="text"
+                                                            id="productValue3"
+                                                            value={productValue3}
+                                                            readOnly
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="totalWeight3" className="block text-gray-700 text-sm font-bold mb-2">Total Weight:</label>
+                                                        <input
+                                                            type="text"
+                                                            id="totalWeight3"
+                                                            value={totalWeight3}
+                                                            readOnly
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                                                        />
+                                                    </div>
+                                                </>
+                                            )}
 
 
 

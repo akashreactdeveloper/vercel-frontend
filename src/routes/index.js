@@ -22,6 +22,7 @@ import CrfmExcelsheet from "../pages/CrfmExcelsheet"
 import PracticeAWL from "../pages/PracticeAWL"
 import Verification from "../pages/Verification"
 import ChooseVerification from "../pages/ChooseVerification"
+import BillNumberVerification from "../pages/BillNumberVerification"
 
 const router = createBrowserRouter([
     {
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
             {
                 path : "chooseverification",
                 element : <ChooseVerification/>
+            },
+            {
+                path : "billnumberverification",
+                element : <BillNumberVerification/>
             },
            
             {

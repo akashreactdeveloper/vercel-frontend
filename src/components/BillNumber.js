@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { CgClose } from "react-icons/cg";
 import SummaryApi from '../common';
 
-const VerifyKandaWeight = ({ onClose, gatepassData }) => {
-    const [gateKandaWeight, setgateKandaWeight] = useState('');
+const BillNumber = ({ onClose, gatepassData }) => {
+    const [gateBillNumber, setgateBillNumber] = useState('');
 
     const updateGatepass = () => {
         const updatedGatepass = {
             ...gatepassData,
-            kwverified: "Yes",
-            kandaWeight: gateKandaWeight,
+            bnverified: "Yes",
+            billNumber: gateBillNumber,
         };
 
         fetch(SummaryApi.UpdateGatepass.url, {
@@ -35,9 +35,9 @@ const VerifyKandaWeight = ({ onClose, gatepassData }) => {
             });
     };
 
-    const handlegateKandaWeight = (e) => {
-        const newGateKandaWeight = e.target.value;
-        setgateKandaWeight(newGateKandaWeight)
+    const handlegateBillNumber = (e) => {
+        const newGateBillNumber = e.target.value;
+        setgateBillNumber(newGateBillNumber)
     }
 
 
@@ -55,14 +55,14 @@ const VerifyKandaWeight = ({ onClose, gatepassData }) => {
                 </div>
                 <form className=''>
                     <div className="flex flex-col items-center justify-center w-full">
-                        <h2 className="text-gray-700 text-lg font-bold mb-2">Enter Kanda Weight in Qtl.</h2>
+                        <h2 className="text-gray-700 text-lg font-bold mb-2">Enter Bill Number</h2>
                         <input
                             className="shadow appearance-none border rounded w-3/4 max-w-lg py-2 px-3 my-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id="gateKandaWeight"
-                            value={gateKandaWeight}
+                            id="gateBillNumber"
+                            value={gateBillNumber}
                             type="number"
-                            onChange={handlegateKandaWeight}
-                            placeholder="Enter Kanda Weight Here"
+                            onChange={handlegateBillNumber}
+                            placeholder="Enter Bill Number Here"
                             required
                         />
                     </div>
@@ -90,7 +90,10 @@ const VerifyKandaWeight = ({ onClose, gatepassData }) => {
     );
 };
 
-export default VerifyKandaWeight
+export default BillNumber
+
+
+
 
 
 
