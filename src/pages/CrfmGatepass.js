@@ -192,7 +192,8 @@ const CrfmGatepass = () => {
             perqtlrate: AwlformData.perqtlrate,
             perkgrateScrap: AwlformData.perkgrateScrap,
             typeOfScrap: AwlformData.typeOfScrap,
-            totalamount: AwlformData.totalamount
+            totalamount: AwlformData.totalamount,
+            perKgRate: AwlformData.perKgRate
         },
         {
             category: AwlformData.category1,
@@ -207,7 +208,8 @@ const CrfmGatepass = () => {
             weight: AwlformData.weight1,
             perqtlrate: AwlformData.perqtlrate1,
             typeOfScrap: AwlformData.typeOfScrap1,
-            totalamount: AwlformData.totalamount1
+            totalamount: AwlformData.totalamount1,
+            perKgRate: AwlformData.perKgRate1
         },
         {
             category: AwlformData.category2,
@@ -222,7 +224,8 @@ const CrfmGatepass = () => {
             weight: AwlformData.weight2,
             perqtlrate: AwlformData.perqtlrate2,
             typeOfScrap: AwlformData.typeOfScrap2,
-            totalamount: AwlformData.totalamount2
+            totalamount: AwlformData.totalamount2,
+            perKgRate: AwlformData.perKgRate2
         },
         {
             category: AwlformData.category3,
@@ -237,7 +240,8 @@ const CrfmGatepass = () => {
             weight: AwlformData.weight3,
             perqtlrate: AwlformData.perqtlrate3,
             typeOfScrap: AwlformData.typeOfScrap3,
-            totalamount: AwlformData.totalamount3
+            totalamount: AwlformData.totalamount3,
+            perKgRate: AwlformData.perKgRate3
         }
     ];
 
@@ -398,7 +402,7 @@ const CrfmGatepass = () => {
                                             {item.category} {item.category !== 'Refraction' && item.subsubcategories !== 'Others' ? item.subsubcategories : '' || item.subsubcategories === 'Others' ? `${item.otherSubsubcategories * 1000} gm` : ''} <br /> {item.subcategories}<br />{item.category === 'Refraction' ? `Total Weight - ${item.weight} KG` : ''}
                                         </td>
                                         <td className="px-1 text-center border border-black">{item.numberOfBags}</td>
-                                        <td className="px-1 text-center border border-black">{item.perbagprice}</td>
+                                        <td className="px-1 text-center border border-black">{item.perbagprice}<br/>{item.category !== 'Refraction' ? `Rs ${item.perKgRate}/kg` : ''}</td>
                                         <td className="px-1 text-center border border-black">{item.category === 'Refraction' ? item.totalamount : item.productValue}</td>
                                     </tr>
                                 ))}

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import AminEditGatepass from './AminEditGatepass';
 import { useSelector } from 'react-redux';
+import VerifyKandaWeight from './VerifyKandaWeight';
 
 const VerficationCard = ({ data }) => {
-    const [editGatepass, setEditGatepass] = useState(false);
+    const [verifyKandaWeight, setVerifyKandaWeight] = useState(false);
 
     const getBackgroundColor = () => {
         if (data.type === 'AWL') {
@@ -13,7 +13,7 @@ const VerficationCard = ({ data }) => {
         }
     };
 
-    const handleCardClick =async () => {
+    const handleCardClick = async () => {
     }
 
     return (
@@ -21,24 +21,27 @@ const VerficationCard = ({ data }) => {
             <div className="flex items-center justify-between">
                 <div><h1 className="text-lg font-semibold text-gray-800 truncate">Gatepass No. : {data.gatepassNumber}</h1></div>
             </div>
-            
+
             {/* Additional details or actions */}
             <div className="mt-2">
                 {data.type === 'CRFM' && (
-                  <p className="text-sm text-gray-600">Party Name : {data.partyName}</p>
+                    <p className="text-sm text-gray-600">Party Name : {data.partyName}</p>
                 )}
                 <p className="text-sm text-gray-600">Truck Number: {data.trucknumber}</p>
                 <p className="text-sm text-gray-600 font-semibold">Total Amount: Rs. {data.totalValue} /-</p>
                 <p className="text-sm text-gray-600">Total Truck Weight: {(data.TotalGatepassTruckWeight / 100).toFixed(2)} Qtl.</p>
-                <button className='flex justify-center items-center text-center bg-red-600 border-2 border-red-50 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-700 hover:border-red-200 transition duration-300 ease-in-out'>
-    Verify
-</button>
+                <button className='flex justify-center items-center text-center bg-red-600 border-2 border-red-50 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-700 hover:border-red-200 transition duration-300 ease-in-out' onClick={(e) => {
+                    e.stopPropagation();
+                    setVerifyKandaWeight(true);
+                }}>
+                    Verify
+                </button>
                 {/* You can add more details or actions here */}
             </div>
 
             {/* Edit gatepass modal */}
-            {editGatepass && (
-                <AminEditGatepass gatepassData={data} onClose={() => setEditGatepass(false)} />
+            {verifyKandaWeight && (
+                <VerifyKandaWeight gatepassData={data} onClose={() => setVerifyKandaWeight(false)} />
             )}
         </div>
     );

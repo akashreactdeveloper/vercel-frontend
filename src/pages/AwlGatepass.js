@@ -135,16 +135,15 @@ const AwlGatepass = () => {
         return { date, time };
     };
 
-    const handlePrint = (event) => {
-        event.preventDefault(); // Prevent button default behavior
-        
+    const handlePrint = () => {
+        const originalTitle = document.title; // Save the original title
+        document.title = ''; // Clear the title
+
         if (gatepassRef.current) {
             const printContents = gatepassRef.current.innerHTML;
-    
-            const printWindow = window.open('', '', 'height=500,width=800');
-            printWindow.document.write('<html><head><title>Print Gatepass</title>');
-            printWindow.document.write('</head><body >');
-            printWindow.document.write(`
+            const originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = `
                 <div style="width: 49.5%; float: left;">
                     ${printContents}
                 </div>
@@ -152,27 +151,20 @@ const AwlGatepass = () => {
                     ${printContents}
                 </div>
                 <div style="clear: both;"></div>
-            `);
-            printWindow.document.write('</body></html>');
-            printWindow.document.close(); // Close the document to trigger the printing process
-            printWindow.focus();
-            printWindow.print();
-    
-            // Delay closing the print window and redirecting after printing
-            setTimeout(() => {
-                printWindow.close(); // Close the print window after printing
-                window.location.replace('/'); // Redirect to homepage
-            }, 500); // Adjust the timeout duration if needed
+            `;
+            window.print();
+            document.body.innerHTML = originalContents;
+            document.title = originalTitle;
         } else {
             console.error('gatepassRef is not defined');
         }
     };
     const MAX_ROWS = 4;
     const items = [
-        { category: AwlformData.category, subcategories: AwlformData.subcategories, subsubcategories: AwlformData.subsubcategories, batchnumber: AwlformData.batchnumber, numberOfBags: AwlformData.numberOfBags, totalValue: AwlformData.totalValue },
-        { category: AwlformData.category1, subcategories: AwlformData.subcategories1, subsubcategories: AwlformData.subsubcategories1, batchnumber: AwlformData.batchnumber, numberOfBags: AwlformData.numberOfBags1, totalValue: AwlformData.totalValue1 },
-        { category: AwlformData.category2, subcategories: AwlformData.subcategories2, subsubcategories: AwlformData.subsubcategories2, batchnumber: AwlformData.batchnumber, numberOfBags: AwlformData.numberOfBags2, totalValue: AwlformData.totalValue2 },
-        { category: AwlformData.category3, subcategories: AwlformData.subcategories3, subsubcategories: AwlformData.subsubcategories3, batchnumber: AwlformData.batchnumber, numberOfBags: AwlformData.numberOfBags3, totalValue: AwlformData.totalValue3 }
+        { category: AwlformData.category, subcategories: AwlformData.subcategories, subsubcategories: AwlformData.subsubcategories, batchnumber: AwlformData.batchnumber, numberOfBags: AwlformData.numberOfBags, totalValue: AwlformData.totalValue , perKgRate : AwlformData.perKgRate},
+        { category: AwlformData.category1, subcategories: AwlformData.subcategories1, subsubcategories: AwlformData.subsubcategories1, batchnumber: AwlformData.batchnumber, numberOfBags: AwlformData.numberOfBags1, totalValue: AwlformData.totalValue1 , perKgRate : AwlformData.perKgRate1},
+        { category: AwlformData.category2, subcategories: AwlformData.subcategories2, subsubcategories: AwlformData.subsubcategories2, batchnumber: AwlformData.batchnumber, numberOfBags: AwlformData.numberOfBags2, totalValue: AwlformData.totalValue2 , perKgRate : AwlformData.perKgRate2},
+        { category: AwlformData.category3, subcategories: AwlformData.subcategories3, subsubcategories: AwlformData.subsubcategories3, batchnumber: AwlformData.batchnumber, numberOfBags: AwlformData.numberOfBags3, totalValue: AwlformData.totalValue3 , perKgRate : AwlformData.perKgRate3}
     ];
 
     const selectedGatepassData = gatepassNumberList.find(el => el.gatepassNumber === selectedGatepass);

@@ -32,7 +32,7 @@ const Home = () => {
             AWL Excel Sheet
           </Link>
           <Link
-            to={"/verification"}
+            to={"/chooseverification"}
             className='bg-blue-600 hover:bg-blue-800 text-white px-6 py-3 w-full max-w-[200px] rounded-full transition-all mx-auto block text-center border'
           >
             Verificaton

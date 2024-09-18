@@ -190,8 +190,8 @@ const Awl = () => {
         Bran: {
             unit: 'KG',
             subcategories: {
-                Coarse: ['20', '25', '28 ', '30', '35', '43', '44', '48', '49', '50', 'Others'],
-                Fine: ['20', '25', '28 ', '30', '35', '43', '44', '48', '49', '50', 'Others']
+                Coarse: ['20', '25', '28 ', '30','34', '35', '43', '44', '48', '49', '50', 'Others'],
+                Fine: ['20', '25', '28 ', '30','34', '35', '43', '44', '48', '49', '50', 'Others']
             }
         },
         "Rawa Suji": {
@@ -302,8 +302,8 @@ const Awl = () => {
         Bran: {
             unit: 'KG',
             subcategories1: {
-                Coarse: ['20', '25', '28 ', '30', '35', '43', '44', '48', '49', '50', 'Others'],
-                Fine: ['20', '25', '28 ', '30', '35', '43', '44', '48', '49', '50', 'Others']
+                Coarse: ['20', '25', '28 ', '30','34', '35', '43', '44', '48', '49', '50', 'Others'],
+                Fine: ['20', '25', '28 ', '30','34', '35', '43', '44', '48', '49', '50', 'Others']
             }
         },
         "Rawa Suji": {
@@ -414,8 +414,8 @@ const Awl = () => {
         Bran: {
             unit: 'KG',
             subcategories2: {
-                Coarse: ['20', '25', '28 ', '30', '35', '43', '44', '48', '49', '50', 'Others'],
-                Fine: ['20', '25', '28 ', '30', '35', '43', '44', '48', '49', '50', 'Others']
+                Coarse: ['20', '25', '28 ', '30','34', '35', '43', '44', '48', '49', '50', 'Others'],
+                Fine: ['20', '25', '28 ', '30','34', '35', '43', '44', '48', '49', '50', 'Others']
             }
         },
         "Rawa Suji": {
@@ -526,8 +526,8 @@ const Awl = () => {
         Bran: {
             unit: 'KG',
             subcategories3: {
-                Coarse: ['20', '25', '28 ', '30', '35', '43', '44', '48', '49', '50', 'Others'],
-                Fine: ['20', '25', '28 ', '30', '35', '43', '44', '48', '49', '50', 'Others']
+                Coarse: ['20', '25', '28 ', '30','34', '35', '43', '44', '48', '49', '50', 'Others'],
+                Fine: ['20', '25', '28 ', '30','34', '35', '43', '44', '48', '49', '50', 'Others']
             }
         },
         "Rawa Suji": {
@@ -899,7 +899,13 @@ const Awl = () => {
     };
     const calculatePerKgRate = (totalValue, subcategories, subsubcategories, otherSubsubcategories, numberOfBags) => {
         if (type === 'CRFM') {
-            if (totalValue && subsubcategories !== 'Others' && numberOfBags) {
+            if(category === 'Refraction' || category === 'scrap' || category === 'Bardana' || category === 'Wheat' || subcategories === 'Maida_Bulker'){
+                setPerKgRate(0)
+            }
+            else if (totalValue && subsubcategories !== 'Others' && numberOfBags) {
+                console.log("total value - ",totalValue)
+                console.log("subsubcategories - ",subsubcategories)
+                console.log("numberOfBags - ",numberOfBags)
                 const perKg = parseFloat(totalValue) / (parseFloat(subsubcategories) * parseFloat(numberOfBags));
                 setPerKgRate(perKg.toFixed(2));
             } else if (totalValue && otherSubsubcategories && numberOfBags) {
@@ -1311,7 +1317,10 @@ const Awl = () => {
     };
     const calculatePerKgRate1 = (totalValue1, subsubcategories1, subcategories1, numberOfBags1) => {
         if (type === 'CRFM') {
-            if (totalValue1 && subsubcategories1 && numberOfBags1) {
+            if(category1 === 'Refraction' || category1 === 'scrap' || category1 === 'Bardana' || category1 === 'Wheat' || subcategories1 === 'Maida_Bulker'){
+                setPerKgRate1(0)
+            }
+            else if (totalValue1 && subsubcategories1 && numberOfBags1) {
                 const perKg = parseFloat(totalValue1) / (parseFloat(subsubcategories1) * parseFloat(numberOfBags1));
                 setPerKgRate1(perKg.toFixed(2));
             } else {
@@ -1698,7 +1707,10 @@ const Awl = () => {
     };
     const calculatePerKgRate2 = (totalValue2, subcategories2, subsubcategories2, numberOfBags2) => {
         if (type === 'CRFM') {
-            if (totalValue2 && subsubcategories2 && numberOfBags2) {
+            if(category2 === 'Refraction' || category2 === 'scrap' || category2 === 'Bardana' || category2 === 'Wheat' || subcategories2 === 'Maida_Bulker'){
+                setPerKgRate2(0)
+            }
+            else if (totalValue2 && subsubcategories2 && numberOfBags2) {
                 const perKg = parseFloat(totalValue2) / (parseFloat(subsubcategories2) * parseFloat(numberOfBags2));
                 setPerKgRate2(perKg.toFixed(2));
             } else {
@@ -2082,7 +2094,10 @@ const Awl = () => {
     };
     const calculatePerKgRate3 = (totalValue3, subsubcategories3, subcategories3, numberOfBags3) => {
         if (type === 'CRFM') {
-            if (totalValue3 && subsubcategories3 && numberOfBags3) {
+            if(category3 === 'Refraction' || category3 === 'scrap' || category3 === 'Bardana' || category3 === 'Wheat' || subcategories3 === 'Maida_Bulker'){
+                setPerKgRate3(0)
+            }
+            else if (totalValue3 && subsubcategories3 && numberOfBags3) {
                 const perKg = parseFloat(totalValue3) / (parseFloat(subsubcategories3) * parseFloat(numberOfBags3));
                 setPerKgRate3(perKg.toFixed(2));
             } else {
