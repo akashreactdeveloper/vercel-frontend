@@ -61,6 +61,8 @@ const AwlExcelsheet = () => {
       'Besan 12kg': 0,
       'Atta Weight(Qtl.)': 0,
       'Truck Weight(Qtl.)': 0,
+      'weighing scale(Qtl.)' : 0,
+      'weight Difference(Kg.)' : 0,
     };
 
     getFilteredData().forEach(el => {
@@ -80,6 +82,9 @@ const AwlExcelsheet = () => {
 
       totals['Atta Weight(Qtl.)'] += (el?.TotalGatepassWeight) || 0
       totals['Truck Weight(Qtl.)'] += (el?.TotalGatepassTruckWeight) || 0
+      totals['weighing scale(Qtl.)'] += (el?.kandaWeight) || 0
+      totals['weight Difference(Kg.)'] += (el?.weightDifference) || 0
+
       
     });
 
@@ -119,7 +124,9 @@ const AwlExcelsheet = () => {
             <th rowSpan={2}>Besan 12kg</th>
             <th rowSpan={2}>Atta Weight(Qtl.)</th>
             <th rowSpan={2}>Truck Weight(Qtl.)</th>
-            <th rowSpan={2}>weighing scale</th>
+            <th rowSpan={2}>weighing scale(Qtl.)</th>
+            <th rowSpan={2}>weight Difference(Kg.)</th>
+            <th rowSpan={2}>Remarks</th>
           </tr>
           <tr className='bg-black text-white'>
 
@@ -169,8 +176,9 @@ const AwlExcelsheet = () => {
 
                   <td>{(el?.TotalGatepassWeight / 100).toFixed(2)}</td>
                   <td>{(el?.TotalGatepassTruckWeight / 100).toFixed(2)}</td>
-                  <td></td>
-
+                  <td>{(el?.kandaWeight / 100).toFixed(2)}</td>
+                  <td>{el?.weightDifference}</td>
+                  <td>{el?.trucknumber === 'Cancel'?`Cancel By - ${el?.canceledBy}` :''}</td>
                 </tr>
               )
             })
@@ -193,7 +201,8 @@ const AwlExcelsheet = () => {
             <td>{computeTotals()['Besan 12kg']}</td>
             <td>{((computeTotals()['Atta Weight(Qtl.)'])/100).toFixed(2)}</td>
             <td>{((computeTotals()['Truck Weight(Qtl.)'])/100).toFixed(2)}</td>
-            <td></td>
+            <td>{((computeTotals()['weighing scale(Qtl.)'])/100).toFixed(2)}</td>
+            <td>{computeTotals()['weight Difference(Kg.)']}</td>
           </tr>
         </tbody>
       </table>

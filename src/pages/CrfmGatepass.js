@@ -310,6 +310,10 @@ const CrfmGatepass = () => {
                                 <th className='pt-6 pb-1' colSpan={2}>Loading Done By</th>
                                 <th className='pt-6 pb-1' colSpan={2}>Authorized Signatory</th>
                             </tr>
+                            <tr>
+                                <th className='pb-2' colSpan={2}>{AwlformData.loadingDoneBy}</th>
+                                <th className='pb-2' colSpan={2}>{AwlformData.gatepassGeneratedBy}</th>
+                            </tr>
                         </table>
                     ) : AwlformData.category === 'scrap' || AwlformData.category === 'Wheat' ? (
                         <table className='border-2 border-black'>
@@ -370,6 +374,10 @@ const CrfmGatepass = () => {
                                 <th className='pt-6 pb-1' colSpan={2}>Loading Done By</th>
                                 <th className='pt-6 pb-1' colSpan={2}>Authorized Signatory</th>
                             </tr>
+                            <tr>
+                                <th className='pb-2' colSpan={2}>{AwlformData.loadingDoneBy}</th>
+                                <th className='pb-2' colSpan={2}>{AwlformData.gatepassGeneratedBy}</th>
+                            </tr>
                         </table>
                     ) : (
                         <table className='border-2 border-black'>
@@ -427,6 +435,10 @@ const CrfmGatepass = () => {
                             <tr>
                                 <th className='pt-6 pb-1' colSpan={2}>Loading Done By</th>
                                 <th className='pt-6 pb-1' colSpan={2}>Authorized Signatory</th>
+                            </tr>
+                            <tr>
+                                <th className='pb-2' colSpan={2}>{AwlformData.loadingDoneBy}</th>
+                                <th className='pb-2' colSpan={2}>{AwlformData.gatepassGeneratedBy}</th>
                             </tr>
                         </table>
                     )}

@@ -116,7 +116,7 @@ const Awl = () => {
     const [bnverified, setbnverified] = useState('No')
     const [kwverified, setkwverified] = useState('No')
     const [weightDifference, setWeightDifference] = useState('')
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState('Pending')
     const [reason, setReason] = useState('')
     const [difference, setDifference] = useState('')
     const [kandaWeight, setkandaWeight] = useState('')

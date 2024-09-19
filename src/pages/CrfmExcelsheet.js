@@ -225,8 +225,7 @@ const CrfmExcelsheet = () => {
                   <td>{el?.kandaWeight}</td>
                   <td>{el?.weightDifference}</td>
                   <td>{el?.status}</td>
-                  <td>{el?.reason}</td>
-
+                  <td>Cancel By - {el?.canceledBy}<br/>{el?.reason}</td>
                 </tr>
               )
             })

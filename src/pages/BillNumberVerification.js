@@ -18,15 +18,21 @@ const BillNumberVerification = () => {
     fetchAllGatepasses()
   }, [])
 
+  const filteredGatepasses = allGatepasses.filter(gatepass => gatepass.bnverified === 'No');
+
   return (
     <div>
       <div className="bg-white py-2 px-4 flex justify-between items-center">
         <h2 className="font-bold text-lg">Bill Number Verfication</h2>
       </div>
       <div className="flex flex-wrap gap-4 p-4">
-        {allGatepasses.map((awlformdata, index) => (
+        {filteredGatepasses.length > 0 ? (
+          filteredGatepasses.map((awlformdata, index) => (
           <BillNumberVerificationCard data={awlformdata} key={index + "allGatepasses"} />
-        ))}
+        ))
+      ) : (
+        <p className="text-center text-gray-500">No gatepasses to verify.</p>
+      )}
       </div>
     </div>
   )

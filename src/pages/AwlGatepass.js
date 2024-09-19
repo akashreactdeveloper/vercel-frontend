@@ -272,7 +272,7 @@ const AwlGatepass = () => {
                             </tr>
                             <tr>
                                 <th className='pb-2' colSpan={2}>{AwlformData.loadingDoneBy}</th>
-                                <th className='' colSpan={2}></th>
+                                <th className='pb-2' colSpan={2}>{AwlformData.gatepassGeneratedBy}</th>
                             </tr>
                         </tfoot>
                     </table>
