@@ -33,9 +33,6 @@ const CrfmExcelsheet = () => {
     setSelectedDate(event.target.value);
   }
 
-  const handleCancel = () =>{
-
-  }
   
 
   const getFilteredData = () => {
@@ -67,7 +64,7 @@ const CrfmExcelsheet = () => {
       </div>
       <table id="table-to-xls" className='w-full userTable'>
         <thead>
-          <tr className='bg-blue-400 text-black border-b border-black'>
+          <tr className='bg-blue-400 text-black border-black'>
             <th rowSpan={2}>G.P No.</th>
             <th rowSpan={2}>Date</th>
             <th rowSpan={2}>Bill no.</th>
@@ -76,7 +73,7 @@ const CrfmExcelsheet = () => {
             <th colSpan={5}>Maida</th>
             <th colSpan={9}>Chakki Atta</th>
             <th colSpan={4}>MILL ATTA</th>
-            <th colSpan={10}>Bran</th>
+            <th colSpan={11}>Bran</th>
             <th colSpan={2}>Rawa/Suji</th>
             <th rowSpan={2}>Loose Material (kg)</th>
             <th rowSpan={2}>Remarks for Loose Material</th>
@@ -122,11 +119,12 @@ const CrfmExcelsheet = () => {
             <th>48kg</th>
             <th>44kg</th>
             <th>35kg</th>
+            <th>34kg</th>
             <th>45kg</th>
             <th>30kg</th>
-            <th>28 kg</th>
-            <th>25 kg</th>
-            <th>43 kg</th>
+            <th>28kg</th>
+            <th>25kg</th>
+            <th>43kg</th>
             <th>50kg</th>
             <th>25kg</th>
             <th>Kg</th>
@@ -150,7 +148,7 @@ const CrfmExcelsheet = () => {
                 <tr>
                   <td>{el?.gatepassNumber}</td>
                   <td>{moment(el?.createdAt).format('LL')}</td>
-                  <td></td>
+                  <td>{el?.billNumber}</td>
                   <td>{el?.partyName}</td>
                   <td>{el?.trucknumber}</td>
                   <td>{el?.subsubcategories === '50' && el?.category === "Maida" ? el?.numberOfBags : '' || el?.subsubcategories1 === '50' && el?.category1 === "Maida" ? el?.numberOfBags1 : '' || el?.subsubcategories2 === '50' && el?.category2 === "Maida" ? el?.numberOfBags2 : '' || el?.subsubcategories3 === '50' && el?.category3 === "Maida" ? el?.numberOfBags3 : ''}</td>
@@ -179,6 +177,7 @@ const CrfmExcelsheet = () => {
                   <td>{el?.subsubcategories === '48' && el?.category === 'Bran' ? el?.numberOfBags : '' || el?.subsubcategories1 === '48' && el?.category1 === 'Bran' ? el?.numberOfBags1 : '' || el?.subsubcategories2 === '48' && el?.category2 === 'Bran' ? el?.numberOfBags2 : '' || el?.subsubcategories3 === '48' && el?.category3 === 'Bran' ? el?.numberOfBags3 : ''}</td>
                   <td>{el?.subsubcategories === '44' && el?.category === 'Bran' ? el?.numberOfBags : '' || el?.subsubcategories1 === '44' && el?.category1 === 'Bran' ? el?.numberOfBags1 : '' || el?.subsubcategories2 === '44' && el?.category2 === 'Bran' ? el?.numberOfBags2 : '' || el?.subsubcategories3 === '44' && el?.category3 === 'Bran' ? el?.numberOfBags3 : ''}</td>
                   <td>{el?.subsubcategories === '35' && el?.category === 'Bran' ? el?.numberOfBags : '' || el?.subsubcategories1 === '35' && el?.category1 === 'Bran' ? el?.numberOfBags1 : '' || el?.subsubcategories2 === '35' && el?.category2 === 'Bran' ? el?.numberOfBags2 : '' || el?.subsubcategories3 === '35' && el?.category3 === 'Bran' ? el?.numberOfBags3 : ''}</td>
+                  <td>{el?.subsubcategories === '34' && el?.category === 'Bran' ? el?.numberOfBags : '' || el?.subsubcategories1 === '34' && el?.category1 === 'Bran' ? el?.numberOfBags1 : '' || el?.subsubcategories2 === '34' && el?.category2 === 'Bran' ? el?.numberOfBags2 : '' || el?.subsubcategories3 === '34' && el?.category3 === 'Bran' ? el?.numberOfBags3 : ''}</td>
                   <td>{el?.subsubcategories === '45' && el?.category === 'Bran' ? el?.numberOfBags : '' || el?.subsubcategories1 === '45' && el?.category1 === 'Bran' ? el?.numberOfBags1 : '' || el?.subsubcategories2 === '45' && el?.category2 === 'Bran' ? el?.numberOfBags2 : '' || el?.subsubcategories3 === '45' && el?.category3 === 'Bran' ? el?.numberOfBags3 : ''}</td>
                   <td>{el?.subsubcategories === '30' && el?.category === 'Bran' ? el?.numberOfBags : '' || el?.subsubcategories1 === '30' && el?.category1 === 'Bran' ? el?.numberOfBags1 : '' || el?.subsubcategories2 === '30' && el?.category2 === 'Bran' ? el?.numberOfBags2 : '' || el?.subsubcategories3 === '30' && el?.category3 === 'Bran' ? el?.numberOfBags3 : ''}</td>
                   <td>{el?.subsubcategories === '28' && el?.category === 'Bran' ? el?.numberOfBags : '' || el?.subsubcategories1 === '28' && el?.category1 === 'Bran' ? el?.numberOfBags1 : '' || el?.subsubcategories2 === '28' && el?.category2 === 'Bran' ? el?.numberOfBags2 : '' || el?.subsubcategories3 === '28' && el?.category3 === 'Bran' ? el?.numberOfBags3 : ''}</td>
@@ -192,7 +191,7 @@ const CrfmExcelsheet = () => {
 
                   <td>{el?.subsubcategories === 'Others' ? el?.category + ' ' + el?.subcategories + ' ' + el?.numberOfBags + ' ' + 'Bags' : '' || el?.subsubcategories1 === 'Others' ? el?.category1 + ' ' + el?.subcategories1 + ' ' + el?.numberOfBags1 + ' ' + 'Bags' : '' || el?.subsubcategories2 === 'Others' ? el?.category2+ ' ' + el?.subcategories2 + ' ' + el?.numberOfBags2 + ' ' + 'Bags' : '' || el?.subsubcategories3 === 'Others' ? el?.category3 + ' ' + el?.subcategories3 + ' ' + el?.numberOfBags3 + ' ' + 'Bags' : '' || el?.category === 'Wheat' ? el?.category : '' || el?.category1 === 'Wheat' ? el?.category1 : '' || el?.category2 === 'Wheat' ? el?.category2 : '' || el?.category3 === 'Wheat' ? el?.category3 : '' }</td>
 
-                  <td>{el?.subcategories === 'Maida_Bulker' && el?.category === 'Maida' ? el?.totalWeight * 100 : ''}</td>
+                  <td>{el?.subcategories === 'Maida_Bulker' && el?.category === 'Maida' ? el?.totalWeight : ''}</td>
 
                   <td>{el?.category === 'scrap'?el?.weightOfScrap :''}<br/>{el?.category1 === 'scrap'?el?.weightOfScrap :''}<br/>{el?.category2 === 'scrap'?el?.weightOfScrap :''}<br/>{el?.category3 === 'scrap'?el?.weightOfScrap :''}</td>
 
@@ -214,13 +213,12 @@ const CrfmExcelsheet = () => {
 
                   <td>{el?.TotalGatepassAmount === 0 ? el?.TotalGatepassWeight : ''}</td>
 
-
                   <td>{el?.TotalGatepassAmount === 0? el?.category + ' ' + el?.subcategories + ' ' + el?.numberOfBags + ' ' + 'Bags' : '' }</td>
 
                   <td>{el?.typeofsale === 'cash' ? el?.TotalGatepassAmount : ''}</td>
                   <td>{el?.TotalGatepassAmount}</td>
                   <td></td>
-                  <td>{el?.subcategories === 'Maida_Bulker' && el?.category === 'Maida' ? el?.TotalGatepassWeight : el?.TotalGatepassWeight / 100}</td>
+                  <td>{el?.subcategories === 'Maida_Bulker' && el?.category === 'Maida' ? el?.TotalGatepassTruckWeight/100 : el?.TotalGatepassTruckWeight/100}</td>
                   <td></td>
                   <td>{el?.remarks}</td>
                   <td>{el?.difference}</td>

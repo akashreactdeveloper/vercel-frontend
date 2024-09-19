@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { CgClose } from "react-icons/cg";
 import SummaryApi from '../common';
+import { useSelector } from 'react-redux';
 
 const BillNumber = ({ onClose, gatepassData }) => {
     const [gateBillNumber, setgateBillNumber] = useState('');
+    const user = useSelector(state => state?.user?.user);
 
     const updateGatepass = () => {
         const updatedGatepass = {
             ...gatepassData,
             bnverified: "Yes",
             billNumber: gateBillNumber,
+            billNumberVerifiedBy: user.name,
         };
 
         fetch(SummaryApi.UpdateGatepass.url, {

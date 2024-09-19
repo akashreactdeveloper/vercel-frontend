@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { CgClose } from "react-icons/cg";
 import SummaryApi from '../common';
+import { useSelector } from 'react-redux';
 
 const AdminCancelGatepass = ({ onClose, gatepassData }) => {
     const [reason, setReason] = useState('');
+    const user = useSelector(state => state?.user?.user);
 
     const updateGatepass = () => {
         const updatedGatepass = {
@@ -12,6 +14,7 @@ const AdminCancelGatepass = ({ onClose, gatepassData }) => {
             verified: "Yes",
             partyName: "Cancel",
             batchnumber: "Cancel",
+            canceledBy: user.name,
             reason: reason,
             status: "Cancel",
             weight: "0",

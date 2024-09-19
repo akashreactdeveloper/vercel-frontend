@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CgClose } from "react-icons/cg";
 import SummaryApi from '../common';
+import { useSelector } from 'react-redux';
 
 const VerifyKandaWeight = ({ onClose, gatepassData }) => {
-    const [gateKandaWeight, setgateKandaWeight] = useState('');
+    const [gateKandaWeight, setgateKandaWeight] = useState('0');
+    const [gateKandaWeightDifference, setgateKandaWeightDifference] = useState('');
+    const truckWeight = gatepassData.TotalGatepassTruckWeight;
+    const user = useSelector(state => state?.user?.user);
+    console.log("user",user.name)
 
     const updateGatepass = () => {
         const updatedGatepass = {
             ...gatepassData,
             kwverified: "Yes",
             kandaWeight: gateKandaWeight,
+            kandaWeightVerifiedBy: user.name,
+            weightDifference : gateKandaWeightDifference,
         };
 
         fetch(SummaryApi.UpdateGatepass.url, {
@@ -40,6 +47,15 @@ const VerifyKandaWeight = ({ onClose, gatepassData }) => {
         setgateKandaWeight(newGateKandaWeight)
     }
 
+    const calculateKandaWeightDifference = (gateKandaWeight,truckWeight) =>{
+        const newDifference = parseFloat(gateKandaWeight) - parseFloat(truckWeight)
+        setgateKandaWeightDifference((newDifference).toFixed(2))
+    }
+
+    useEffect(()=>{
+        calculateKandaWeightDifference(gateKandaWeight,truckWeight);
+    },[gateKandaWeight,truckWeight]);
+
 
     return (
         <div className="fixed w-full h-full bg-slate-200 bg-opacity-35 top-0 left-0 right-0 bottom-0 flex justify-center items-center">
@@ -66,7 +82,7 @@ const VerifyKandaWeight = ({ onClose, gatepassData }) => {
                             required
                         />
                     </div>
-                    {/* <div className="mb-4">
+                    <div className="mb-4">
                         <label htmlFor="truckWeight" className="block text-gray-700 text-sm font-bold mb-2">Truck Weight:</label>
                         <input
                             type="text"
@@ -75,7 +91,17 @@ const VerifyKandaWeight = ({ onClose, gatepassData }) => {
                             readOnly
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
                         />
-                    </div> */}
+                    </div>
+                    <div className="mb-4">
+                        <label htmlFor="gateKandaWeightDifference" className="block text-gray-700 text-sm font-bold mb-2">Weight Differnce :</label>
+                        <input
+                            type="text"
+                            id="gateKandaWeightDifference"
+                            value={gateKandaWeightDifference}
+                            readOnly
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                        />
+                    </div>
                     <div className='flex justify-center space-x-20'>
                         <button
                             className='bg-red-600 px-8 py-2 text-white border-2 border-black hover:scale-110 transition-all'

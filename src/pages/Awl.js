@@ -3,15 +3,17 @@ import { json, useNavigate } from 'react-router-dom';
 import SummaryApi from '../common';
 import { toast } from 'react-toastify'
 import { LuIndianRupee } from "react-icons/lu";
+import { useSelector } from 'react-redux';
 
 const Awl = () => {
+    const user = useSelector(state => state?.user?.user);
     const [type, settype] = useState('');
     const [remarks, setremarks] = useState('');
     const [partyName, setPartyName] = useState('');
     const [billNumber, setBillNumber] = useState('');
     const [billNumberVerifiedBy, setBillNumberVerifiedBy] = useState('')
     const [kandaWeightVerifiedBy, setKandaWeightVerifiedBy] = useState('')
-    const [gatepassGeneratedBy, setGatepassGeneratedBy] = useState('')
+    const gatepassGeneratedBy = user.name;
     const [canceledBy, setCanceledBy] = useState('')
     const [batchnumber, setBatchNumber] = useState('');
     const [trucknumber, settrucknumber] = useState('');
@@ -175,6 +177,8 @@ const Awl = () => {
             unit: 'KG',
             subcategories: {
                 Maida_Regular: ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                'Super Maida' : ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                'Multipurpose Maida' : ['10', '20', '25', '30', '40', '45', '50', 'Others'],
                 Maida_Bulker: ['others']
             }
         },
@@ -196,8 +200,8 @@ const Awl = () => {
         Bran: {
             unit: 'KG',
             subcategories: {
-                Coarse: ['20', '25', '28 ', '30', '34', '35', '43', '44', '48', '49', '50', 'Others'],
-                Fine: ['20', '25', '28 ', '30', '34', '35', '43', '44', '48', '49', '50', 'Others']
+                Coarse: ['20', '25', '28', '30', '34', '35', '43', '44', '48', '49', '50', 'Others'],
+                Fine: ['20', '25', '28', '30', '34', '35', '43', '44', '48', '49', '50', 'Others']
             }
         },
         "Rawa Suji": {
@@ -287,6 +291,8 @@ const Awl = () => {
             unit: 'KG',
             subcategories1: {
                 Maida_Regular: ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                'Super Maida' : ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                'Multipurpose Maida' : ['10', '20', '25', '30', '40', '45', '50', 'Others'],
                 Maida_Bulker: ['others']
             }
         },
@@ -308,8 +314,8 @@ const Awl = () => {
         Bran: {
             unit: 'KG',
             subcategories1: {
-                Coarse: ['20', '25', '28 ', '30', '34', '35', '43', '44', '48', '49', '50', 'Others'],
-                Fine: ['20', '25', '28 ', '30', '34', '35', '43', '44', '48', '49', '50', 'Others']
+                Coarse: ['20', '25', '28', '30', '34', '35', '43', '44', '48', '49', '50', 'Others'],
+                Fine: ['20', '25', '28', '30', '34', '35', '43', '44', '48', '49', '50', 'Others']
             }
         },
         "Rawa Suji": {
@@ -399,6 +405,8 @@ const Awl = () => {
             unit: 'KG',
             subcategories2: {
                 Maida_Regular: ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                'Super Maida' : ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                'Multipurpose Maida' : ['10', '20', '25', '30', '40', '45', '50', 'Others'],
                 Maida_Bulker: ['others']
             }
         },
@@ -420,8 +428,8 @@ const Awl = () => {
         Bran: {
             unit: 'KG',
             subcategories2: {
-                Coarse: ['20', '25', '28 ', '30', '34', '35', '43', '44', '48', '49', '50', 'Others'],
-                Fine: ['20', '25', '28 ', '30', '34', '35', '43', '44', '48', '49', '50', 'Others']
+                Coarse: ['20', '25', '28', '30', '34', '35', '43', '44', '48', '49', '50', 'Others'],
+                Fine: ['20', '25', '28', '30', '34', '35', '43', '44', '48', '49', '50', 'Others']
             }
         },
         "Rawa Suji": {
@@ -511,6 +519,8 @@ const Awl = () => {
             unit: 'KG',
             subcategories3: {
                 Maida_Regular: ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                'Super Maida' : ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                'Multipurpose Maida' : ['10', '20', '25', '30', '40', '45', '50', 'Others'],
                 Maida_Bulker: ['others']
             }
         },
@@ -532,8 +542,8 @@ const Awl = () => {
         Bran: {
             unit: 'KG',
             subcategories3: {
-                Coarse: ['20', '25', '28 ', '30', '34', '35', '43', '44', '48', '49', '50', 'Others'],
-                Fine: ['20', '25', '28 ', '30', '34', '35', '43', '44', '48', '49', '50', 'Others']
+                Coarse: ['20', '25', '28', '30', '34', '35', '43', '44', '48', '49', '50', 'Others'],
+                Fine: ['20', '25', '28', '30', '34', '35', '43', '44', '48', '49', '50', 'Others']
             }
         },
         "Rawa Suji": {
@@ -1018,7 +1028,8 @@ const Awl = () => {
             }
         }
         else if (isMaida_BulkerSelected) {
-            setTotalWeight(weightOfTruck);
+            const newMaidaBulkerWeightOfTruck = weightOfTruck * 100;
+            setTotalWeight(newMaidaBulkerWeightOfTruck);
             console.log("total weight", totalWeight)
         }
 
@@ -1134,9 +1145,16 @@ const Awl = () => {
                     setTotalTruckWeight(total ? total.toFixed(2) : '');
                 }
             }
+
+            else if (category === 'scrap' || category === 'Wheat') {
+                setTotalTruckWeight(weightOfScrap);
+                console.log("total scrap Truckweight", TotalTruckWeight)
+            }
+
             else if (category === 'Maida' && subcategories === 'Maida_Bulker') {
                 console.log("inside", weightOfTruck)
-                setTotalTruckWeight(weightOfTruck);
+                const newMaidaBulkerWeightOfTruck = weightOfTruck * 100;
+                setTotalTruckWeight(newMaidaBulkerWeightOfTruck);
                 console.log("truck weight", TotalTruckWeight)
             }
 
@@ -1146,13 +1164,11 @@ const Awl = () => {
                 setTotalTruckWeight(total ? total.toFixed(2) : '');
             }
         }
-
     };
 
     useEffect(() => {
         calculateTotalTruckWeight(numberOfBags, subcategories, subsubcategories, otherSubsubcategories);
     }, [numberOfBags, subcategories, subsubcategories, otherSubsubcategories]);
-
 
     const selectedUnit = category ? categories[category]?.unit : '';
     const availableSubcategories = category ? Object.keys(categories[category]?.subcategories) : [];
@@ -1428,7 +1444,8 @@ const Awl = () => {
             }
         }
         else if (isMaida_BulkerSelected) {
-            setTotalWeight11(weightOfTruck);
+            const newMaidaBulkerWeightOfTruck = weightOfTruck * 100;
+            setTotalWeight11(newMaidaBulkerWeightOfTruck);
         }
     };
 
@@ -1543,6 +1560,8 @@ const Awl = () => {
                     console.log("weightofMasterBag", total)
                     setTotalTruckWeight1(total ? total.toFixed(2) : '');
                 }
+            }else if (category1 === 'scrap' || category1 === 'Wheat') {
+                setTotalTruckWeight1(weightOfScrap1);
             } else {
                 const weightOfBag = subsubcategories1 === 'Others' ? parseFloat(otherSubsubcategories1) : parseFloat(subsubcategories1);
                 const total = numberOfBags1 && weightOfBag ? parseFloat(numberOfBags1) * weightOfBag : '';
@@ -1931,6 +1950,9 @@ const Awl = () => {
                     console.log("weightofMasterBag", total)
                     setTotalTruckWeight2(total ? total.toFixed(2) : '');
                 }
+            }else if (category2 === 'scrap' || category2 === 'Wheat') {
+                setTotalTruckWeight2(weightOfScrap2);
+                console.log("total scrap weight", totalWeight2)
             } else {
                 const weightOfBag = subsubcategories2 === 'Others' ? parseFloat(otherSubsubcategories2) : parseFloat(subsubcategories2);
                 const total = numberOfBags2 && weightOfBag ? parseFloat(numberOfBags2) * weightOfBag : '';
@@ -2320,7 +2342,12 @@ const Awl = () => {
                     console.log("weightofMasterBag", total)
                     setTotalTruckWeight3(total ? total.toFixed(2) : '');
                 }
-            } else {
+            }
+            else if (category3 === 'scrap' || category3 === 'Wheat') {
+                setTotalTruckWeight3(weightOfScrap3);
+                console.log("total scrap weight", totalWeight3)
+            } 
+            else {
                 const weightOfBag = subsubcategories3 === 'Others' ? parseFloat(otherSubsubcategories3) : parseFloat(subsubcategories3);
                 const total = numberOfBags3 && weightOfBag ? parseFloat(numberOfBags3) * weightOfBag : '';
                 setTotalTruckWeight3(total ? total.toFixed(2) : '');
