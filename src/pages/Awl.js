@@ -349,13 +349,13 @@ const Awl = () => {
         },
         scrap: {
             unit: 'Kg',
-            subcategories: {
+            subcategories1: {
                 Others: ['Others'],
             }
         },
         Wheat: {
             unit: 'Kg',
-            subcategories: {
+            subcategories1: {
                 Others: ['Others'],
             }
         },
@@ -463,13 +463,13 @@ const Awl = () => {
         },
         scrap: {
             unit: 'Kg',
-            subcategories: {
+            subcategories2: {
                 Others: ['Others'],
             }
         },
         Wheat: {
             unit: 'Kg',
-            subcategories: {
+            subcategories2: {
                 Others: ['Others'],
             }
         },
@@ -577,13 +577,13 @@ const Awl = () => {
         },
         scrap: {
             unit: 'Kg',
-            subcategories: {
+            subcategories3: {
                 Others: ['Others'],
             }
         },
         Wheat: {
             unit: 'Kg',
-            subcategories: {
+            subcategories3: {
                 Others: ['Others'],
             }
         },
@@ -1028,8 +1028,7 @@ const Awl = () => {
             }
         }
         else if (isMaida_BulkerSelected) {
-            const newMaidaBulkerWeightOfTruck = weightOfTruck * 100;
-            setTotalWeight(newMaidaBulkerWeightOfTruck);
+            setTotalWeight(weightOfTruck);
             console.log("total weight", totalWeight)
         }
 
@@ -1347,7 +1346,13 @@ const Awl = () => {
             if (category1 === 'Refraction' || category1 === 'scrap' || category1 === 'Bardana' || category1 === 'Wheat' || subcategories1 === 'Maida_Bulker') {
                 setPerKgRate1(0)
             }
-            else if (totalValue1 && subsubcategories1 && numberOfBags1) {
+            else if (totalValue1 && subsubcategories1 !== 'Others' && numberOfBags1) {
+                console.log("total value - ", totalValue1)
+                console.log("subsubcategories - ", subsubcategories1)
+                console.log("numberOfBags - ", numberOfBags1)
+                const perKg = parseFloat(totalValue1) / (parseFloat(subsubcategories1) * parseFloat(numberOfBags1));
+                setPerKgRate(perKg.toFixed(2));
+            }else if (totalValue1 && subsubcategories1 && numberOfBags1) {
                 const perKg = parseFloat(totalValue1) / (parseFloat(subsubcategories1) * parseFloat(numberOfBags1));
                 setPerKgRate1(perKg.toFixed(2));
             } else {
@@ -3022,10 +3027,10 @@ const Awl = () => {
                                     onChange={handleWeightOfTruckChange}
                                     placeholder="Weight of Truck"
                                     className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                /><> Qtl.</>
+                                /><> KG.</>
                             </div>
                             <div className="mb-4">
-                                <label htmlFor="perqtlrate" className="block text-gray-700 text-sm font-bold mb-2">Per Qtl. Rate:</label>
+                                <label htmlFor="perqtlrate" className="block text-gray-700 text-sm font-bold mb-2">Per KG. Rate:</label>
                                 <input
                                     type="number"
                                     id="perqtlrate"

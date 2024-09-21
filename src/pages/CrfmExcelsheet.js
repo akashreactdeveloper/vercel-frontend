@@ -11,7 +11,7 @@ const CrfmExcelsheet = () => {
   const [selectedDate, setSelectedDate] = useState('');
   const user = useSelector(state => state?.user?.user)
 
-  
+
   const fetchCrfmExcelsheet = async () => {
     const fetchData = await fetch(SummaryApi.AllAwlGatepass.url, {
       method: SummaryApi.AllAwlGatepass.method,
@@ -27,13 +27,13 @@ const CrfmExcelsheet = () => {
     if (dataResponse.error) {
       toast.error(dataResponse.message)
     }
-    
+
   }
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
   }
 
-  
+
 
   const getFilteredData = () => {
     if (!selectedDate) {
@@ -162,7 +162,7 @@ const CrfmExcelsheet = () => {
                   <td>{el?.subsubcategories === '35' && el?.category === "Chakki aata" ? el?.numberOfBags : '' || el?.subsubcategories1 === '35' && el?.category1 === "Chakki aata" ? el?.numberOfBags1 : '' || el?.subsubcategories2 === '35' && el?.category2 === "Chakki aata" ? el?.numberOfBags2 : '' || el?.subsubcategories3 === '35' && el?.category3 === "Chakki aata" ? el?.numberOfBags3 : ''}</td>
                   <td>{el?.subcategories === 'LD' && el?.subsubcategories === '5' && el?.category === "Chakki aata" ? el?.numberOfBags : '' || el?.subcategories1 === 'LD' && el?.subsubcategories1 === '5' && el?.category1 === "Chakki aata" ? el?.numberOfBags1 : '' || el?.subcategories2 === 'LD' && el?.subsubcategories2 === '5' && el?.category2 === "Chakki aata" ? el?.numberOfBags2 : '' || el?.subcategories3 === 'LD' && el?.subsubcategories3 === '5' && el?.category3 === "Chakki aata" ? el?.numberOfBags3 : ''}</td>
                   <td>{el?.subcategories === 'LD' && el?.subsubcategories === '10' && el?.category === "Chakki aata" ? el?.numberOfBags : '' || el?.subcategories1 === 'LD' && el?.subsubcategories1 === '10' && el?.category1 === "Chakki aata" ? el?.numberOfBags1 : '' || el?.subcategories2 === 'LD' && el?.subsubcategories2 === '10' && el?.category2 === "Chakki aata" ? el?.numberOfBags2 : '' || el?.subcategories3 === 'LD' && el?.subsubcategories3 === '10' && el?.category3 === "Chakki aata" ? el?.numberOfBags3 : ''}</td>
-                  
+
                   <td>{el?.subcategories !== 'LD' && el?.subsubcategories === '5' && el?.category === "Chakki aata" ? el?.numberOfBags : '' || el?.subcategories1 !== 'LD' && el?.subsubcategories1 === '5' && el?.category1 === "Chakki aata" ? el?.numberOfBags1 : '' || el?.subcategories2 !== 'LD' && el?.subsubcategories2 === '5' && el?.category2 === "Chakki aata" ? el?.numberOfBags2 : '' || el?.subcategories3 !== 'LD' && el?.subsubcategories3 === '5' && el?.category3 === "Chakki aata" ? el?.numberOfBags3 : ''}</td>
                   <td>{el?.subcategories !== 'LD' && el?.subsubcategories === '10' && el?.category === "Chakki aata" ? el?.numberOfBags : '' || el?.subcategories1 !== 'LD' && el?.subsubcategories1 === '10' && el?.category1 === "Chakki aata" ? el?.numberOfBags1 : '' || el?.subcategories2 !== 'LD' && el?.subsubcategories2 === '10' && el?.category2 === "Chakki aata" ? el?.numberOfBags2 : '' || el?.subcategories3 !== 'LD' && el?.subsubcategories3 === '10' && el?.category3 === "Chakki aata" ? el?.numberOfBags3 : ''}</td>
                   <td>{el?.subsubcategories === '26' && el?.category === "Chakki aata" ? el?.numberOfBags : '' || el?.subsubcategories1 === '26' && el?.category1 === "Chakki aata" ? el?.numberOfBags1 : '' || el?.subsubcategories2 === '26' && el?.category2 === "Chakki aata" ? el?.numberOfBags2 : '' || el?.subsubcategories3 === '26' && el?.category3 === "Chakki aata" ? el?.numberOfBags3 : ''}</td>
@@ -187,45 +187,53 @@ const CrfmExcelsheet = () => {
                   <td>{el?.subsubcategories === '50' && el?.category === "Rawa Suji" ? el?.numberOfBags : '' || el?.subsubcategories1 === '50' && el?.category1 === "Rawa Suji" ? el?.numberOfBags1 : '' || el?.subsubcategories2 === '50' && el?.category2 === "Rawa Suji" ? el?.numberOfBags2 : '' || el?.subsubcategories3 === '50' && el?.category3 === "Rawa Suji" ? el?.numberOfBags3 : ''}</td>
                   <td>{el?.subsubcategories === '25' && el?.category === "Rawa Suji" ? el?.numberOfBags : '' || el?.subsubcategories1 === '25' && el?.category1 === "Rawa Suji" ? el?.numberOfBags1 : '' || el?.subsubcategories2 === '25' && el?.category2 === "Rawa Suji" ? el?.numberOfBags2 : '' || el?.subsubcategories3 === '25' && el?.category3 === "Rawa Suji" ? el?.numberOfBags3 : ''}</td>
 
-                  <td>{el?.subsubcategories === 'Others' ? el?.otherSubsubcategories : '' || el?.subsubcategories1 === 'Others' ? el?.otherSubsubcategories1 : '' || el?.subsubcategories2 === 'Others' ? el?.otherSubsubcategories2 : '' || el?.subsubcategories3 === 'Others' ? el?.otherSubsubcategories3 : '' || el?.category === 'Wheat' ? el?.weightOfScrap : '' || el?.category1 === 'Wheat' ? el?.weightOfScrap1 : '' || el?.category2 === 'Wheat' ? el?.weightOfScrap2 : '' || el?.category3 === 'Wheat' ? el?.weightOfScrap3 : '' }</td>
+                  <td>{el?.subsubcategories === 'Others' ? el?.otherSubsubcategories : '' || el?.subsubcategories1 === 'Others' ? el?.otherSubsubcategories1 : '' || el?.subsubcategories2 === 'Others' ? el?.otherSubsubcategories2 : '' || el?.subsubcategories3 === 'Others' ? el?.otherSubsubcategories3 : '' || el?.category === 'Wheat' ? el?.weightOfScrap : '' || el?.category1 === 'Wheat' ? el?.weightOfScrap1 : '' || el?.category2 === 'Wheat' ? el?.weightOfScrap2 : '' || el?.category3 === 'Wheat' ? el?.weightOfScrap3 : ''}</td>
 
-                  <td>{el?.subsubcategories === 'Others' ? el?.category + ' ' + el?.subcategories + ' ' + el?.numberOfBags + ' ' + 'Bags' : '' || el?.subsubcategories1 === 'Others' ? el?.category1 + ' ' + el?.subcategories1 + ' ' + el?.numberOfBags1 + ' ' + 'Bags' : '' || el?.subsubcategories2 === 'Others' ? el?.category2+ ' ' + el?.subcategories2 + ' ' + el?.numberOfBags2 + ' ' + 'Bags' : '' || el?.subsubcategories3 === 'Others' ? el?.category3 + ' ' + el?.subcategories3 + ' ' + el?.numberOfBags3 + ' ' + 'Bags' : '' || el?.category === 'Wheat' ? el?.category : '' || el?.category1 === 'Wheat' ? el?.category1 : '' || el?.category2 === 'Wheat' ? el?.category2 : '' || el?.category3 === 'Wheat' ? el?.category3 : '' }</td>
+                  <td>{el?.subsubcategories === 'Others' ? el?.category + ' ' + el?.subcategories + ' ' + el?.numberOfBags + ' ' + 'Bags' : '' || el?.subsubcategories1 === 'Others' ? el?.category1 + ' ' + el?.subcategories1 + ' ' + el?.numberOfBags1 + ' ' + 'Bags' : '' || el?.subsubcategories2 === 'Others' ? el?.category2 + ' ' + el?.subcategories2 + ' ' + el?.numberOfBags2 + ' ' + 'Bags' : '' || el?.subsubcategories3 === 'Others' ? el?.category3 + ' ' + el?.subcategories3 + ' ' + el?.numberOfBags3 + ' ' + 'Bags' : '' || el?.category === 'Wheat' ? el?.category : '' || el?.category1 === 'Wheat' ? el?.category1 : '' || el?.category2 === 'Wheat' ? el?.category2 : '' || el?.category3 === 'Wheat' ? el?.category3 : ''}</td>
 
                   <td>{el?.subcategories === 'Maida_Bulker' && el?.category === 'Maida' ? el?.totalWeight : ''}</td>
 
-                  <td>{el?.category === 'scrap'?el?.weightOfScrap :''}<br/>{el?.category1 === 'scrap'?el?.weightOfScrap :''}<br/>{el?.category2 === 'scrap'?el?.weightOfScrap :''}<br/>{el?.category3 === 'scrap'?el?.weightOfScrap :''}</td>
+                  <td>{el?.category === 'scrap' ? el?.weightOfScrap : ''}<br />{el?.category1 === 'scrap' ? el?.weightOfScrap : ''}<br />{el?.category2 === 'scrap' ? el?.weightOfScrap : ''}<br />{el?.category3 === 'scrap' ? el?.weightOfScrap : ''}</td>
 
-                  <td>{el?.category === 'scrap' ?el?.typeOfScrap :''}<br/>{el?.category1 === 'scrap' ?el?.typeOfScrap1 :''}<br/>{el?.category2 === 'scrap' ?el?.typeOfScrap2 :''}<br/>{el?.category3 === 'scrap'?el?.typeOfScrap3 :''}</td>
+                  <td>{el?.category === 'scrap' ? el?.typeOfScrap : ''}<br />{el?.category1 === 'scrap' ? el?.typeOfScrap1 : ''}<br />{el?.category2 === 'scrap' ? el?.typeOfScrap2 : ''}<br />{el?.category3 === 'scrap' ? el?.typeOfScrap3 : ''}</td>
 
-                  <td>{el?.category === 'scrap'?el?.productValue :''}<br/>{el?.category1 === 'scrap'?el?.productValue1 :''}<br/>{el?.category2 === 'scrap'?el?.productValue2 :''}<br/>{el?.category3 === 'scrap'?el?.productValue3 :''}</td>
+                  <td>{el?.category === 'scrap' ? el?.productValue : ''}<br />{el?.category1 === 'scrap' ? el?.productValue1 : ''}<br />{el?.category2 === 'scrap' ? el?.productValue2 : ''}<br />{el?.category3 === 'scrap' ? el?.productValue3 : ''}</td>
 
-                  <td>{el?.category === 'Refraction' ? el?.weight : '' }<br/>{ el?.category1 === 'Refraction' ? el?.weight1 : '' }<br/>{ el?.category2 === 'Refraction' ? el?.weight2 : '' }<br/>{ el?.category3 === 'Refraction' ? el?.weight3 : ''}</td>
+                  <td>{el?.category === 'Refraction' ? el?.weight : ''}<br />{el?.category1 === 'Refraction' ? el?.weight1 : ''}<br />{el?.category2 === 'Refraction' ? el?.weight2 : ''}<br />{el?.category3 === 'Refraction' ? el?.weight3 : ''}</td>
 
-                  <td>{el?.category === 'Refraction' ? el?.subcategories : '' }<br/>{ el?.category1 === 'Refraction' ? el?.subcategories1 : '' }<br/>{ el?.category2 === 'Refraction' ? el?.subcategories2 : '' }<br/>{ el?.category3 === 'Refraction' ? el?.subcategories3 : ''}</td>
+                  <td>{el?.category === 'Refraction' ? el?.subcategories : ''}<br />{el?.category1 === 'Refraction' ? el?.subcategories1 : ''}<br />{el?.category2 === 'Refraction' ? el?.subcategories2 : ''}<br />{el?.category3 === 'Refraction' ? el?.subcategories3 : ''}</td>
 
-                  <td>{el?.category === 'Refraction' ? el?.totalamount : '' }<br/>{ el?.category1 === 'Refraction' ? el?.totalamount1 : '' }<br/>{ el?.category2 === 'Refraction' ? el?.totalamount2 : '' }<br/>{ el?.category3 === 'Refraction' ? el?.totalamount3 : ''}</td>
+                  <td>{el?.category === 'Refraction' ? el?.totalamount : ''}<br />{el?.category1 === 'Refraction' ? el?.totalamount1 : ''}<br />{el?.category2 === 'Refraction' ? el?.totalamount2 : ''}<br />{el?.category3 === 'Refraction' ? el?.totalamount3 : ''}</td>
 
-                  <td>{el?.category === 'Bardana' ? el?.numberOfBags : '' }<br/>{ el?.category1 === 'Bardana' ? el?.numberOfBags1 : '' }<br/>{ el?.category2 === 'Bardana' ? el?.numberOfBags2 : '' }<br/>{ el?.category3 === 'Bardana' ? el?.numberOfBags3 : ''}</td>
+                  <td>{el?.category === 'Bardana' ? el?.numberOfBags : ''}<br />{el?.category1 === 'Bardana' ? el?.numberOfBags1 : ''}<br />{el?.category2 === 'Bardana' ? el?.numberOfBags2 : ''}<br />{el?.category3 === 'Bardana' ? el?.numberOfBags3 : ''}</td>
 
-                  <td>{el?.category === 'Bardana' ? el?.subcategories : '' }<br/>{ el?.category1 === 'Bardana' ? el?.subcategories1 : '' }<br/>{ el?.category2 === 'Bardana' ? el?.subcategories2 : '' }<br/>{ el?.category3 === 'Bardana' ? el?.subcategories3 : ''}</td>
+                  <td>{el?.category === 'Bardana' ? el?.subcategories : ''}<br />{el?.category1 === 'Bardana' ? el?.subcategories1 : ''}<br />{el?.category2 === 'Bardana' ? el?.subcategories2 : ''}<br />{el?.category3 === 'Bardana' ? el?.subcategories3 : ''}</td>
 
-                  <td>{el?.category === 'Bardana' ? el?.totalValue : '' }<br/>{ el?.category1 === 'Bardana' ? el?.totalValue1 : '' }<br/>{ el?.category2 === 'Bardana' ? el?.totalValue2 : '' }<br/>{ el?.category3 === 'Bardana' ? el?.totalValue3 : ''}</td>
+                  <td>{el?.category === 'Bardana' ? el?.totalValue : ''}<br />{el?.category1 === 'Bardana' ? el?.totalValue1 : ''}<br />{el?.category2 === 'Bardana' ? el?.totalValue2 : ''}<br />{el?.category3 === 'Bardana' ? el?.totalValue3 : ''}</td>
 
                   <td>{el?.TotalGatepassAmount === 0 ? el?.TotalGatepassWeight : ''}</td>
 
-                  <td>{el?.TotalGatepassAmount === 0? el?.category + ' ' + el?.subcategories + ' ' + el?.numberOfBags + ' ' + 'Bags' : '' }</td>
+                  <td>{el?.TotalGatepassAmount === 0 ? el?.category + ' ' + el?.subcategories + ' ' + el?.numberOfBags + ' ' + 'Bags' : ''}</td>
 
                   <td>{el?.typeofsale === 'cash' ? el?.TotalGatepassAmount : ''}</td>
                   <td>{el?.TotalGatepassAmount}</td>
                   <td></td>
-                  <td>{el?.subcategories === 'Maida_Bulker' && el?.category === 'Maida' ? el?.TotalGatepassTruckWeight/100 : el?.TotalGatepassTruckWeight/100}</td>
+                  <td>{el?.subcategories === 'Maida_Bulker' && el?.category === 'Maida' ? el?.TotalGatepassTruckWeight / 100 : el?.TotalGatepassTruckWeight / 100}</td>
                   <td></td>
                   <td>{el?.remarks}</td>
                   <td>{el?.difference}</td>
-                  <td>{el?.kandaWeight}</td>
+                  <td>{(el?.kandaWeight / 100).toFixed(2)}</td>
                   <td>{el?.weightDifference}</td>
-                  <td>{el?.status}</td>
-                  <td>Cancel By - {el?.canceledBy}<br/>{el?.reason}</td>
+                  <td className={
+                    el?.status === 'Pending'
+                      ? 'bg-yellow-500'
+                      : el?.status === 'Cancel'
+                        ? 'bg-red-600 text-white'
+                        : ''
+                  }>
+                    {el?.status}
+                  </td>
+                  <td>{el?.status === 'Cancel'? `Cancel By - ${el?.canceledBy} ${el?.reason}`:''}</td>
                 </tr>
               )
             })
