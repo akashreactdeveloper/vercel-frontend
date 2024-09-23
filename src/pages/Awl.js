@@ -185,7 +185,7 @@ const Awl = () => {
         "Chakki aata": {
             unit: 'KG',
             subcategories: {
-                Regular: ['5', '10', '26', '30', '40', '50 ', 'Others'],
+                Regular: ['5', '10', '26', '30', '40', '50', 'Others'],
                 Jute: ['10', '5'],
                 LD: ['10', '5'],
                 'D-Mart Regular': ['5', '10', '26']
@@ -299,7 +299,7 @@ const Awl = () => {
         "Chakki aata": {
             unit: 'KG',
             subcategories1: {
-                Regular: ['5', '10', '26', '30', '40', '50 ', 'Others'],
+                Regular: ['5', '10', '26', '30', '40', '50', 'Others'],
                 Jute: ['10', '5'],
                 LD: ['10', '5'],
                 'D-Mart Regular': ['5', '10', '26']
@@ -413,7 +413,7 @@ const Awl = () => {
         "Chakki aata": {
             unit: 'KG',
             subcategories2: {
-                Regular: ['5', '10', '26', '30', '40', '50 ', 'Others'],
+                Regular: ['5', '10', '26', '30', '40', '50', 'Others'],
                 Jute: ['10', '5'],
                 LD: ['10', '5'],
                 'D-Mart Regular': ['5', '10', '26']
@@ -527,7 +527,7 @@ const Awl = () => {
         "Chakki aata": {
             unit: 'KG',
             subcategories3: {
-                Regular: ['5', '10', '26', '30', '40', '50 ', 'Others'],
+                Regular: ['5', '10', '26', '30', '40', '50', 'Others'],
                 Jute: ['10', '5'],
                 LD: ['10', '5'],
                 'D-Mart Regular': ['5', '10', '26']
