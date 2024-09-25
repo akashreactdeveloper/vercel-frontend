@@ -193,7 +193,8 @@ const CrfmGatepass = () => {
             perkgrateScrap: AwlformData.perkgrateScrap,
             typeOfScrap: AwlformData.typeOfScrap,
             totalamount: AwlformData.totalamount,
-            perKgRate: AwlformData.perKgRate
+            perKgRate: AwlformData.perKgRate,
+            perqtlrate: AwlformData.perqtlrate
         },
         {
             category: AwlformData.category1,
@@ -209,7 +210,8 @@ const CrfmGatepass = () => {
             perqtlrate: AwlformData.perqtlrate1,
             typeOfScrap: AwlformData.typeOfScrap1,
             totalamount: AwlformData.totalamount1,
-            perKgRate: AwlformData.perKgRate1
+            perKgRate: AwlformData.perKgRate1,
+            perqtlrate: AwlformData.perqtlrate1
         },
         {
             category: AwlformData.category2,
@@ -225,7 +227,8 @@ const CrfmGatepass = () => {
             perqtlrate: AwlformData.perqtlrate2,
             typeOfScrap: AwlformData.typeOfScrap2,
             totalamount: AwlformData.totalamount2,
-            perKgRate: AwlformData.perKgRate2
+            perKgRate: AwlformData.perKgRate2,
+            perqtlrate: AwlformData.perqtlrate2
         },
         {
             category: AwlformData.category3,
@@ -241,7 +244,8 @@ const CrfmGatepass = () => {
             perqtlrate: AwlformData.perqtlrate3,
             typeOfScrap: AwlformData.typeOfScrap3,
             totalamount: AwlformData.totalamount3,
-            perKgRate: AwlformData.perKgRate3
+            perKgRate: AwlformData.perKgRate3,
+            perqtlrate: AwlformData.perqtlrate3
         }
     ];
 
@@ -283,8 +287,8 @@ const CrfmGatepass = () => {
                                         <td className="px-1 text-center border border-black">
                                             {item.category} <br /> {item.subcategories}
                                         </td>
-                                        <td className="px-1 text-center border border-black">{item.totalWeight}</td>
-                                        <td className="px-1 text-center border border-black">{item.perqtlrate}</td>
+                                        <td className="px-1 text-center border border-black">{item.totalWeight/100}</td>
+                                        <td className="px-1 text-center border border-black">{item.perqtlrate * 100}</td>
                                         <td className="px-1 text-center border border-black">{item.productValue}</td>
                                     </tr>
                                 ))}
@@ -298,12 +302,12 @@ const CrfmGatepass = () => {
                                 ))}
                                 <tr>
                                     <th className="px-1 text-center border border-black">Total</th>
-                                    <td className="px-1 text-center border border-black">{AwlformData.TotalGatepassWeight} Qtl.</td>
+                                    <td className="px-1 text-center border border-black">{AwlformData.TotalGatepassWeight/100} Qtl.</td>
                                     <td className="px-1 text-center border border-black"></td>
                                     <td className="px-1 text-center border border-black">Rs. {AwlformData.TotalGatepassAmount}</td>
                                 </tr>
                                 <tr className="h-8"> {/* Adjust the height here */}
-                                    <th colSpan={4}>Total Truck Weight : {(parseFloat(AwlformData.TotalGatepassWeight) || 0).toFixed(2)} Qtl.</th>
+                                    <th colSpan={4}>Total Truck Weight : {(parseFloat(AwlformData.TotalGatepassWeight/100) || 0).toFixed(2)} Qtl.</th>
                                 </tr>
                             </tbody>
                             <tr>
@@ -410,7 +414,7 @@ const CrfmGatepass = () => {
                                             {item.category} {item.category !== 'Refraction' && item.subsubcategories !== 'Others' ? item.subsubcategories : '' || item.subsubcategories === 'Others' ? `${item.otherSubsubcategories * 1000} gm` : ''} <br /> {item.subcategories}<br />{item.category === 'Refraction' ? `Total Weight - ${item.weight} KG` : ''}
                                         </td>
                                         <td className="px-1 text-center border border-black">{item.numberOfBags}</td>
-                                        <td className="px-1 text-center border border-black">{item.perbagprice}<br/>{item.category !== 'Refraction' ? `Rs ${item.perKgRate}/kg` : ''}</td>
+                                        <td className="px-1 text-center border border-black">{item.perbagprice}<br/>{item.category !== 'Refraction' ? `Rs ${item.perKgRate}/kg` : `Rs ${item.perqtlrate}/kg`}</td>
                                         <td className="px-1 text-center border border-black">{item.category === 'Refraction' ? item.totalamount : item.productValue}</td>
                                     </tr>
                                 ))}
