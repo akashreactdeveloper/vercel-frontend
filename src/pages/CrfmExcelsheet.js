@@ -118,6 +118,9 @@ const CrfmExcelsheet = () => {
       'Difference': 0,
       'Kanda Weight': 0,
       'Kanda Difference': 0,
+      'Number of Pending': 0,
+      'Number of Cancel' : 0,
+      'Number of Verified' : 0,
     }
 
     getFilteredData().forEach(el => {
@@ -210,6 +213,10 @@ const CrfmExcelsheet = () => {
 
       totals['Kanda Difference'] += (el?.weightDifference*100) || 0
 
+      totals['Number of Pending'] += el?.status === 'Pending' ? 1 : 0
+      totals['Number of Cancel'] += el?.status === 'Cancel' ? 1 : 0
+      totals['Number of Verified'] += el?.status === 'Verified' ? 1 : 0
+
 
     });
 
@@ -263,7 +270,7 @@ const CrfmExcelsheet = () => {
             <th rowSpan={2}>Kanda Weight</th>
             <th rowSpan={2}>Weight Difference</th>
             <th rowSpan={2}>Status</th>
-            <th rowSpan={2}>Reason for Cancel</th>
+            <th rowSpan={2}>Reason_for_Cancel</th>
           </tr>
           <tr className='bg-blue-400 text-black border-b border-black'>
             <th>50kg</th>
@@ -459,8 +466,7 @@ const CrfmExcelsheet = () => {
             <td className = 'border-2 border-black'>{computeTotals()['Difference']}</td>
             <td className = 'border-2 border-black'>{((computeTotals()['Kanda Weight'])/10000)}</td>
             <td className = 'border-2 border-black'>{((computeTotals()['Kanda Difference'])/10000)}</td>
-            <td className = 'border-2 border-black'></td>
-            <td className = 'border-2 border-black'></td>
+            <td colSpan={2} className = 'border-2 border-black'>Total Pending : {computeTotals()['Number of Pending']}<br/>Total Cancel : {computeTotals()['Number of Cancel']}<br/>Total Verfied : {computeTotals()['Number of Verified']}</td>
           </tr>
         </tbody>
       </table>
