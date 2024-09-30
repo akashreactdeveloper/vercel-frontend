@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import SummaryApi from '../common'
 import { toast } from 'react-toastify';
 import moment from 'moment'
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 const AwlExcelsheet = () => {
   const [AwlExcelsheet, setAwlExcelsheet] = useState([]);
@@ -95,6 +97,25 @@ const AwlExcelsheet = () => {
     fetchAwlExcelsheet()
   }, [])
 
+  const handleExport = () => {
+    // Get the table element
+    const table = document.getElementById('table-to-xls');
+
+    // Convert table to a worksheet
+    const worksheet = XLSX.utils.table_to_sheet(table);
+
+    // Create a new workbook and add the worksheet to it
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+    // Convert the workbook to a binary format
+    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    // Save the file using file-saver
+    const file = new Blob([excelBuffer], { type: 'application/octet-stream' });
+    saveAs(file, 'table_data.xlsx');
+  };
+
   return (
     <div className='bg-white pb-4'>
       <div className='flex justify-center mb-4'>
@@ -104,6 +125,9 @@ const AwlExcelsheet = () => {
           onChange={handleDateChange}
           className='border p-2 rounded'
         />
+      </div>
+      <div className='flex justify-center'>
+        <button className='bg-green-400 px-10 py-2 mb-5' onClick={handleExport}>Download Excel File</button>
       </div>
       <table id="table-to-xls" className='w-full userTable'>
         <thead>
