@@ -183,20 +183,20 @@ const CrfmExcelsheet = () => {
 
       totals['Rawa/Suji 25kg'] += el?.subsubcategories === '25' && el?.category === "Rawa Suji" ? el?.numberOfBags : 0 || el?.subsubcategories1 === '25' && el?.category1 === "Rawa Suji" ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '25' && el?.category2 === "Rawa Suji" ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '25' && el?.category3 === "Rawa Suji" ? el?.numberOfBags3 : 0
 
-      totals['Loose Material'] += el?.subsubcategories === 'Others' ? el?.otherSubsubcategories : 0 || el?.subsubcategories1 === 'Others' ? el?.otherSubsubcategories1 : 0 || el?.subsubcategories2 === 'Others' ? el?.otherSubsubcategories2 : 0 || el?.subsubcategories3 === 'Others' ? el?.otherSubsubcategories3 : 0 || el?.category === 'Wheat' ? el?.weightOfScrap : 0 || el?.category1 === 'Wheat' ? el?.weightOfScrap1 : 0 || el?.category2 === 'Wheat' ? el?.weightOfScrap2 : 0 || el?.category3 === 'Wheat' ? el?.weightOfScrap3 : 0
+      totals['Loose Material'] += el?.subsubcategories === 'Others' ? el?.otherSubsubcategories * 100 : 0 || el?.subsubcategories1 === 'Others' ? el?.otherSubsubcategories1 * 100 : 0 || el?.subsubcategories2 === 'Others' ? el?.otherSubsubcategories2 * 100 : 0 || el?.subsubcategories3 === 'Others' ? el?.otherSubsubcategories3 * 100 : 0 || el?.category === 'Wheat' ? el?.weightOfScrap * 100 : 0 || el?.category1 === 'Wheat' ? el?.weightOfScrap1 * 100 : 0 || el?.category2 === 'Wheat' ? el?.weightOfScrap2 * 100 : 0 || el?.category3 === 'Wheat' ? el?.weightOfScrap3 * 100 : 0
 
       totals['Bulker'] += el?.subcategories === 'Maida_Bulker' && el?.category === 'Maida' ? el?.totalWeight : 0
 
-      totals['Scrap'] += el?.category === 'scrap' ? el?.weightOfScrap : 0 || el?.category1 === 'scrap' ? el?.weightOfScrap1 : 0 || el?.category2 === 'scrap' ? el?.weightOfScrap2 : 0 || el?.category3 === 'scrap' ? el?.weightOfScrap3 : 0
-      totals['Scrap Amount'] += el?.category === 'scrap' ? el?.productValue : 0 || el?.category1 === 'scrap' ? el?.productValue1 : 0 || el?.category2 === 'scrap' ? el?.productValue2 : 0 || el?.category3 === 'scrap' ? el?.productValue3 : 0
+      totals['Scrap'] += el?.category === 'scrap' ? el?.weightOfScrap * 100 : 0 || el?.category1 === 'scrap' ? el?.weightOfScrap1 * 100 : 0 || el?.category2 === 'scrap' ? el?.weightOfScrap2 * 100 : 0 || el?.category3 === 'scrap' ? el?.weightOfScrap3 * 100 : 0
+      totals['Scrap Amount'] += el?.category === 'scrap' ? el?.productValue * 100 : 0 || el?.category1 === 'scrap' ? el?.productValue1 * 100 : 0 || el?.category2 === 'scrap' ? el?.productValue2 * 100 : 0 || el?.category3 === 'scrap' ? el?.productValue3 * 100 : 0
 
       totals['Refraction'] += el?.category === 'Refraction' ? el?.weight : 0 || el?.category1 === 'Refraction' ? el?.weight1 : 0 || el?.category2 === 'Refraction' ? el?.weight2 : 0 || el?.category3 === 'Refraction' ? el?.weight3 : 0
-      totals['Refraction Amount'] += el?.category === 'Refraction' ? el?.totalamount : 0 || el?.category1 === 'Refraction' ? el?.totalamount1 : 0 || el?.category2 === 'Refraction' ? el?.totalamount2 : 0 || el?.category3 === 'Refraction' ? el?.totalamount3 : 0
+      totals['Refraction Amount'] += el?.category === 'Refraction' ? el?.totalamount * 100 : 0 || el?.category1 === 'Refraction' ? el?.totalamount1 * 100 : 0 || el?.category2 === 'Refraction' ? el?.totalamount2 * 100 : 0 || el?.category3 === 'Refraction' ? el?.totalamount3 * 100 : 0
 
       totals['Bardana'] += el?.category === 'Bardana' ? el?.numberOfBags : 0 || el?.category1 === 'Bardana' ? el?.numberOfBags1 : 0 || el?.category2 === 'Bardana' ? el?.numberOfBags2 : 0 || el?.category3 === 'Bardana' ? el?.numberOfBags3 : 0
-      totals['Bardana Amount'] += el?.category === 'Bardana' ? el?.totalValue : 0 || el?.category1 === 'Bardana' ? el?.totalValue1 : 0 || el?.category2 === 'Bardana' ? el?.totalValue2 : 0 || el?.category3 === 'Bardana' ? el?.totalValue3 : 0
+      totals['Bardana Amount'] += el?.category === 'Bardana' ? el?.totalValue * 100 : 0 || el?.category1 === 'Bardana' ? el?.totalValue1 * 100 : 0 || el?.category2 === 'Bardana' ? el?.totalValue2 * 100 : 0 || el?.category3 === 'Bardana' ? el?.totalValue3 * 100 : 0
 
-      totals['FOC'] += el?.TotalGatepassAmount === 0 ? el?.TotalGatepassWeight : 0
+      totals['FOC'] += el?.TotalGatepassAmount === 0 ? el?.TotalGatepassWeight * 100 : 0
 
       totals['Cash Sale'] += el?.typeofsale === 'cash' ? el?.TotalGatepassAmount : 0
 
@@ -408,59 +408,59 @@ const CrfmExcelsheet = () => {
               )
             })
           }
-          <tr className='bg-gray-200 font-bold'>
-            <td colSpan={5}>Total</td>
-            <td>{computeTotals()['Maida 50kg']}</td>
-            <td>{computeTotals()['Maida 45kg']}</td>
-            <td>{computeTotals()['Maida 40kg']}</td>
-            <td>{computeTotals()['Maida 30kg']}</td>
-            <td>{computeTotals()['Maida 25KG']}</td>
-            <td>{computeTotals()['Chakki Atta 50kg']}</td>
-            <td>{computeTotals()['Chakki Atta 40kg']}</td>
-            <td>{computeTotals()['Chakki Atta 30kg']}</td>
-            <td>{computeTotals()['Chakki Atta 35kg']}</td>
-            <td>{computeTotals()['Chakki Atta LD 5 kg']}</td>
-            <td>{computeTotals()['Chakki Atta LD 10 KG']}</td>
-            <td>{computeTotals()['Chakki Atta 5 kg']}</td>
-            <td>{computeTotals()['Chakki Atta 10 KG']}</td>
-            <td>{computeTotals()['Chakki Atta 26 Kg']}</td>
-            <td>{computeTotals()['Mill Atta 50 KG']}</td>
-            <td>{computeTotals()['Mill Atta 40 kg']}</td>
-            <td>{computeTotals()['Mill Atta 30kg']}</td>
-            <td>{computeTotals()['Mill Atta 10kg']}</td>
-            <td>{computeTotals()['Bran 50kg']}</td>
-            <td>{computeTotals()['Bran 49kg']}</td>
-            <td>{computeTotals()['Bran 48kg']}</td>
-            <td>{computeTotals()['Bran 44kg']}</td>
-            <td>{computeTotals()['Bran 35kg']}</td>
-            <td>{computeTotals()['Bran 34kg']}</td>
-            <td>{computeTotals()['Bran 45kg']}</td>
-            <td>{computeTotals()['Bran 30kg']}</td>
-            <td>{computeTotals()['Bran 28kg']}</td>
-            <td>{computeTotals()['Bran 25kg']}</td>
-            <td>{computeTotals()['Bran 43kg']}</td>
-            <td>{computeTotals()['Rawa/Suji 50kg']}</td>
-            <td>{computeTotals()['Rawa/Suji 25kg']}</td>
-            <td colSpan={2}>{computeTotals()['Loose Material']}</td>
-            <td>{computeTotals()['Bulker']}</td>
-            <td colSpan={2}>{computeTotals()['Scrap']}</td>
-            <td>{computeTotals()['Scrap Amount']}</td>
-            <td colSpan={2}>{computeTotals()['Refraction']}</td>
-            <td>{computeTotals()['Refraction Amount']}</td>
-            <td colSpan={2}>{computeTotals()['Bardana']}</td>
-            <td>{computeTotals()['Bardana Amount']}</td>
-            <td colSpan={2}>{computeTotals()['FOC']}</td>
-            <td>{computeTotals()['Cash Sale']}</td>
-            <td>{((computeTotals()['Total Amount'])/100).toFixed(2)}</td>
-            <td></td>
-            <td>{((computeTotals()['Total Weight'])/100).toFixed(2)}</td>
-            <td></td>
-            <td></td>
-            <td>{computeTotals()['Difference']}</td>
-            <td>{((computeTotals()['Kanda Weight'])/10000).toFixed(2)}</td>
-            <td>{((computeTotals()['Kanda Difference'])/100).toFixed(2)}</td>
-            <td></td>
-            <td></td>
+          <tr className='bg-gray-200 font-bold border-2 border-black'>
+            <td className = 'border-2 border-black' colSpan={5}>Total</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Maida 50kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Maida 45kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Maida 40kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Maida 30kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Maida 25KG']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Chakki Atta 50kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Chakki Atta 40kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Chakki Atta 30kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Chakki Atta 35kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Chakki Atta LD 5 kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Chakki Atta LD 10 KG']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Chakki Atta 5 kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Chakki Atta 10 KG']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Chakki Atta 26 Kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Mill Atta 50 KG']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Mill Atta 40 kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Mill Atta 30kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Mill Atta 10kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Bran 50kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Bran 49kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Bran 48kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Bran 44kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Bran 35kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Bran 34kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Bran 45kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Bran 30kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Bran 28kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Bran 25kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Bran 43kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Rawa/Suji 50kg']}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Rawa/Suji 25kg']}</td>
+            <td className = 'border-2 border-black' colSpan={2}>{((computeTotals()['Loose Material'])/100)}</td>
+            <td className = 'border-2 border-black'>{((computeTotals()['Bulker'])/100)}</td>
+            <td className = 'border-2 border-black' colSpan={2}>{((computeTotals()['Scrap'])/100)}</td>
+            <td className = 'border-2 border-black'>{((computeTotals()['Scrap Amount'])/100)}</td>
+            <td className = 'border-2 border-black' colSpan={2}>{(computeTotals()['Refraction'])/100}</td>
+            <td className = 'border-2 border-black'>{((computeTotals()['Refraction Amount'])/100)}</td>
+            <td className = 'border-2 border-black' colSpan={2}>{computeTotals()['Bardana']}</td>
+            <td className = 'border-2 border-black'>{((computeTotals()['Bardana Amount'])/100)}</td>
+            <td className = 'border-2 border-black' colSpan={2}>{((computeTotals()['FOC'])/100)}</td>
+            <td className = 'border-2 border-black'>{computeTotals()['Cash Sale']}</td>
+            <td className = 'border-2 border-black'>{((computeTotals()['Total Amount'])/100)}</td>
+            <td className = 'border-2 border-black'></td>
+            <td className = 'border-2 border-black'>{((computeTotals()['Total Weight'])/100)}</td>
+            <td className = 'border-2 border-black'></td>
+            <td className = 'border-2 border-black'></td>
+            <td className = 'border-2 border-black'>{computeTotals()['Difference']}</td>
+            <td className = 'border-2 border-black'>{((computeTotals()['Kanda Weight'])/10000)}</td>
+            <td className = 'border-2 border-black'>{((computeTotals()['Kanda Difference'])/10000)}</td>
+            <td className = 'border-2 border-black'></td>
+            <td className = 'border-2 border-black'></td>
           </tr>
         </tbody>
       </table>
