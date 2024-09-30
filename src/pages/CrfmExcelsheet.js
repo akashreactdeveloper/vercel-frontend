@@ -70,6 +70,152 @@ const CrfmExcelsheet = () => {
     saveAs(file, 'table_data.xlsx');
   };
 
+  const computeTotals = () => {
+    const totals = {
+      'Maida 50kg': 0,
+      'Maida 45kg': 0,
+      'Maida 40kg': 0,
+      'Maida 30kg': 0,
+      'Maida 25KG': 0,
+      'Chakki Atta 50kg': 0,
+      'Chakki Atta 40kg': 0,
+      'Chakki Atta 30kg': 0,
+      'Chakki Atta 35kg': 0,
+      'Chakki Atta LD 5 kg': 0,
+      'Chakki Atta LD 10 KG': 0,
+      'Chakki Atta 5 kg': 0,
+      'Chakki Atta 10 KG': 0,
+      'Chakki Atta 26 Kg': 0,
+      'Mill Atta 50 KG': 0,
+      'Mill Atta 40 kg': 0,
+      'Mill Atta 30kg': 0,
+      'Mill Atta 10kg': 0,
+      'Bran 50kg': 0,
+      'Bran 49kg': 0,
+      'Bran 48kg': 0,
+      'Bran 44kg': 0,
+      'Bran 35kg': 0,
+      'Bran 34kg': 0,
+      'Bran 45kg': 0,
+      'Bran 30kg': 0,
+      'Bran 28kg': 0,
+      'Bran 25kg': 0,
+      'Bran 43kg': 0,
+      'Rawa/Suji 50kg': 0,
+      'Rawa/Suji 25kg': 0,
+      'Loose Material': 0,
+      'Bulker': 0,
+      'Scrap': 0,
+      'Scrap Amount': 0,
+      'Refraction': 0,
+      'Refraction Amount': 0,
+      'Bardana': 0,
+      'Bardana Amount': 0,
+      'FOC': 0,
+      'Cash Sale': 0,
+      'Total Amount': 0,
+      'Total Weight': 0,
+      'Difference': 0,
+      'Kanda Weight': 0,
+      'Kanda Difference': 0,
+    }
+
+    getFilteredData().forEach(el => {
+      totals['Maida 50kg'] += el?.subsubcategories === '50' && el?.category === "Maida" ? el?.numberOfBags : 0 || el?.subsubcategories1 === '50' && el?.category1 === "Maida" ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '50' && el?.category2 === "Maida" ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '50' && el?.category3 === "Maida" ? el?.numberOfBags3 : 0
+
+      totals['Maida 45kg'] += el?.subsubcategories === '45' && el?.category === "Maida" ? el?.numberOfBags : 0 || el?.subsubcategories1 === '45' && el?.category1 === "Maida" ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '45' && el?.category2 === "Maida" ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '45' && el?.category3 === "Maida" ? el?.numberOfBags3 : 0
+
+      totals['Maida 40kg'] += el?.subsubcategories === '40' && el?.category === "Maida" ? el?.numberOfBags : 0 || el?.subsubcategories1 === '40' && el?.category1 === "Maida" ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '40' && el?.category2 === "Maida" ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '40' && el?.category3 === "Maida" ? el?.numberOfBags3 : 0
+
+      totals['Maida 30kg'] += el?.subsubcategories === '30' && el?.category === "Maida" ? el?.numberOfBags : 0 || el?.subsubcategories1 === '30' && el?.category1 === "Maida" ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '30' && el?.category2 === "Maida" ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '30' && el?.category3 === "Maida" ? el?.numberOfBags3 : 0
+
+      totals['Maida 25KG'] += el?.subsubcategories === '25' && el?.category === "Maida" ? el?.numberOfBags : 0 || el?.subsubcategories1 === '25' && el?.category1 === "Maida" ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '25' && el?.category2 === "Maida" ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '25' && el?.category3 === "Maida" ? el?.numberOfBags3 : 0
+
+      totals['Chakki Atta 50kg'] += el?.subsubcategories === '50' && el?.category === "Chakki aata" ? el?.numberOfBags : 0 || el?.subsubcategories1 === '50' && el?.category1 === "Chakki aata" ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '50' && el?.category2 === "Chakki aata" ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '50' && el?.category3 === "Chakki aata" ? el?.numberOfBags3 : 0
+
+      totals['Chakki Atta 40kg'] += el?.subsubcategories === '40' && el?.category === "Chakki aata" ? el?.numberOfBags : 0 || el?.subsubcategories1 === '40' && el?.category1 === "Chakki aata" ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '40' && el?.category2 === "Chakki aata" ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '40' && el?.category3 === "Chakki aata" ? el?.numberOfBags3 : 0
+
+      totals['Chakki Atta 30kg'] += el?.subsubcategories === '30' && el?.category === "Chakki aata" ? el?.numberOfBags : 0 || el?.subsubcategories1 === '30' && el?.category1 === "Chakki aata" ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '30' && el?.category2 === "Chakki aata" ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '30' && el?.category3 === "Chakki aata" ? el?.numberOfBags3 : 0
+
+      totals['Chakki Atta 35kg'] += el?.subsubcategories === '35' && el?.category === "Chakki aata" ? el?.numberOfBags : 0 || el?.subsubcategories1 === '35' && el?.category1 === "Chakki aata" ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '35' && el?.category2 === "Chakki aata" ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '35' && el?.category3 === "Chakki aata" ? el?.numberOfBags3 : 0
+
+      totals['Chakki Atta LD 5 kg'] += el?.subcategories === 'LD' && el?.subsubcategories === '5' && el?.category === "Chakki aata" ? el?.numberOfBags : 0 || el?.subcategories1 === 'LD' && el?.subsubcategories1 === '5' && el?.category1 === "Chakki aata" ? el?.numberOfBags1 : 0 || el?.subcategories2 === 'LD' && el?.subsubcategories2 === '5' && el?.category2 === "Chakki aata" ? el?.numberOfBags2 : 0 || el?.subcategories3 === 'LD' && el?.subsubcategories3 === '5' && el?.category3 === "Chakki aata" ? el?.numberOfBags3 : 0
+
+      totals['Chakki Atta LD 10 KG'] += el?.subcategories === 'LD' && el?.subsubcategories === '10' && el?.category === "Chakki aata" ? el?.numberOfBags : 0 || el?.subcategories1 === 'LD' && el?.subsubcategories1 === '10' && el?.category1 === "Chakki aata" ? el?.numberOfBags1 : 0 || el?.subcategories2 === 'LD' && el?.subsubcategories2 === '10' && el?.category2 === "Chakki aata" ? el?.numberOfBags2 : 0 || el?.subcategories3 === 'LD' && el?.subsubcategories3 === '10' && el?.category3 === "Chakki aata" ? el?.numberOfBags3 : 0
+
+      totals['Chakki Atta 5 kg'] += el?.subcategories !== 'LD' && el?.subsubcategories === '5' && el?.category === "Chakki aata" ? el?.numberOfBags : 0 || el?.subcategories1 !== 'LD' && el?.subsubcategories1 === '5' && el?.category1 === "Chakki aata" ? el?.numberOfBags1 : 0 || el?.subcategories2 !== 'LD' && el?.subsubcategories2 === '5' && el?.category2 === "Chakki aata" ? el?.numberOfBags2 : 0 || el?.subcategories3 !== 'LD' && el?.subsubcategories3 === '5' && el?.category3 === "Chakki aata" ? el?.numberOfBags3 : 0
+
+      totals['Chakki Atta 10 KG'] += el?.subcategories !== 'LD' && el?.subsubcategories === '10' && el?.category === "Chakki aata" ? el?.numberOfBags : 0 || el?.subcategories1 !== 'LD' && el?.subsubcategories1 === '10' && el?.category1 === "Chakki aata" ? el?.numberOfBags1 : 0 || el?.subcategories2 !== 'LD' && el?.subsubcategories2 === '10' && el?.category2 === "Chakki aata" ? el?.numberOfBags2 : 0 || el?.subcategories3 !== 'LD' && el?.subsubcategories3 === '10' && el?.category3 === "Chakki aata" ? el?.numberOfBags3 : 0
+
+      totals['Chakki Atta 26 Kg'] += el?.subsubcategories === '26' && el?.category === "Chakki aata" ? el?.numberOfBags : 0 || el?.subsubcategories1 === '26' && el?.category1 === "Chakki aata" ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '26' && el?.category2 === "Chakki aata" ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '26' && el?.category3 === "Chakki aata" ? el?.numberOfBags3 : 0
+
+      totals['Mill Atta 50 KG'] += el?.subsubcategories === '50' && el?.category === "MILL ATTA" ? el?.numberOfBags : 0 || el?.subsubcategories1 === '50' && el?.category1 === "MILL ATTA" ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '50' && el?.category2 === "MILL ATTA" ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '50' && el?.category3 === "MILL ATTA" ? el?.numberOfBags3 : 0
+
+      totals['Mill Atta 40 kg'] += el?.subsubcategories === '40' && el?.category === "MILL ATTA" ? el?.numberOfBags : 0 || el?.subsubcategories1 === '40' && el?.category1 === "MILL ATTA" ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '40' && el?.category2 === "MILL ATTA" ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '40' && el?.category3 === "MILL ATTA" ? el?.numberOfBags3 : 0
+
+      totals['Mill Atta 30kg'] += el?.subsubcategories === '30' && el?.category === "MILL ATTA" ? el?.numberOfBags : 0 || el?.subsubcategories1 === '30' && el?.category1 === "MILL ATTA" ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '30' && el?.category2 === "MILL ATTA" ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '30' && el?.category3 === "MILL ATTA" ? el?.numberOfBags3 : 0
+
+      totals['Mill Atta 10kg'] += el?.subsubcategories === '10' && el?.category === 'MILL ATTA' ? el?.numberOfBags : 0 || el?.subsubcategories1 === '10' && el?.category1 === 'MILL ATTA' ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '10' && el?.category2 === 'MILL ATTA' ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '10' && el?.category3 === 'MILL ATTA' ? el?.numberOfBags3 : 0
+
+      totals['Bran 50kg'] += el?.subsubcategories === '50' && el?.category === 'Bran' ? el?.numberOfBags : 0 || el?.subsubcategories1 === '50' && el?.category1 === 'Bran' ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '50' && el?.category2 === 'Bran' ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '50' && el?.category3 === 'Bran' ? el?.numberOfBags3 : 0
+
+      totals['Bran 49kg'] += el?.subsubcategories === '49' && el?.category === 'Bran' ? el?.numberOfBags : 0 || el?.subsubcategories1 === '49' && el?.category1 === 'Bran' ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '49' && el?.category2 === 'Bran' ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '49' && el?.category3 === 'Bran' ? el?.numberOfBags3 : 0
+
+      totals['Bran 48kg'] += el?.subsubcategories === '48' && el?.category === 'Bran' ? el?.numberOfBags : 0 || el?.subsubcategories1 === '48' && el?.category1 === 'Bran' ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '48' && el?.category2 === 'Bran' ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '48' && el?.category3 === 'Bran' ? el?.numberOfBags3 : 0
+
+      totals['Bran 44kg'] += el?.subsubcategories === '44' && el?.category === 'Bran' ? el?.numberOfBags : 0 || el?.subsubcategories1 === '44' && el?.category1 === 'Bran' ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '44' && el?.category2 === 'Bran' ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '44' && el?.category3 === 'Bran' ? el?.numberOfBags3 : 0
+
+      totals['Bran 35kg'] += el?.subsubcategories === '35' && el?.category === 'Bran' ? el?.numberOfBags : 0 || el?.subsubcategories1 === '35' && el?.category1 === 'Bran' ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '35' && el?.category2 === 'Bran' ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '35' && el?.category3 === 'Bran' ? el?.numberOfBags3 : 0
+
+      totals['Bran 34kg'] += el?.subsubcategories === '34' && el?.category === 'Bran' ? el?.numberOfBags : 0 || el?.subsubcategories1 === '34' && el?.category1 === 'Bran' ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '34' && el?.category2 === 'Bran' ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '34' && el?.category3 === 'Bran' ? el?.numberOfBags3 : 0
+
+      totals['Bran 45kg'] += el?.subsubcategories === '45' && el?.category === 'Bran' ? el?.numberOfBags : 0 || el?.subsubcategories1 === '45' && el?.category1 === 'Bran' ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '45' && el?.category2 === 'Bran' ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '45' && el?.category3 === 'Bran' ? el?.numberOfBags3 : 0
+
+      totals['Bran 30kg'] += el?.subsubcategories === '30' && el?.category === 'Bran' ? el?.numberOfBags : 0 || el?.subsubcategories1 === '30' && el?.category1 === 'Bran' ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '30' && el?.category2 === 'Bran' ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '30' && el?.category3 === 'Bran' ? el?.numberOfBags3 : 0
+
+      totals['Bran 28kg'] += el?.subsubcategories === '28' && el?.category === 'Bran' ? el?.numberOfBags : 0 || el?.subsubcategories1 === '28' && el?.category1 === 'Bran' ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '28' && el?.category2 === 'Bran' ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '28' && el?.category3 === 'Bran' ? el?.numberOfBags3 : 0
+
+      totals['Bran 25kg'] += el?.subsubcategories === '25' && el?.category === 'Bran' ? el?.numberOfBags : 0 || el?.subsubcategories1 === '25' && el?.category1 === 'Bran' ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '25' && el?.category2 === 'Bran' ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '25' && el?.category3 === 'Bran' ? el?.numberOfBags3 : 0
+
+      totals['Bran 43kg'] += el?.subsubcategories === '43' && el?.category === 'Bran' ? el?.numberOfBags : 0 || el?.subsubcategories1 === '43' && el?.category1 === 'Bran' ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '43' && el?.category2 === 'Bran' ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '43' && el?.category3 === 'Bran' ? el?.numberOfBags3 : 0
+
+      totals['Rawa/Suji 50kg'] += el?.subsubcategories === '50' && el?.category === "Rawa Suji" ? el?.numberOfBags : 0 || el?.subsubcategories1 === '50' && el?.category1 === "Rawa Suji" ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '50' && el?.category2 === "Rawa Suji" ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '50' && el?.category3 === "Rawa Suji" ? el?.numberOfBags3 : 0
+
+      totals['Rawa/Suji 25kg'] += el?.subsubcategories === '25' && el?.category === "Rawa Suji" ? el?.numberOfBags : 0 || el?.subsubcategories1 === '25' && el?.category1 === "Rawa Suji" ? el?.numberOfBags1 : 0 || el?.subsubcategories2 === '25' && el?.category2 === "Rawa Suji" ? el?.numberOfBags2 : 0 || el?.subsubcategories3 === '25' && el?.category3 === "Rawa Suji" ? el?.numberOfBags3 : 0
+
+      totals['Loose Material'] += el?.subsubcategories === 'Others' ? el?.otherSubsubcategories : 0 || el?.subsubcategories1 === 'Others' ? el?.otherSubsubcategories1 : 0 || el?.subsubcategories2 === 'Others' ? el?.otherSubsubcategories2 : 0 || el?.subsubcategories3 === 'Others' ? el?.otherSubsubcategories3 : 0 || el?.category === 'Wheat' ? el?.weightOfScrap : 0 || el?.category1 === 'Wheat' ? el?.weightOfScrap1 : 0 || el?.category2 === 'Wheat' ? el?.weightOfScrap2 : 0 || el?.category3 === 'Wheat' ? el?.weightOfScrap3 : 0
+
+      totals['Bulker'] += el?.subcategories === 'Maida_Bulker' && el?.category === 'Maida' ? el?.totalWeight : 0
+
+      totals['Scrap'] += el?.category === 'scrap' ? el?.weightOfScrap : 0 || el?.category1 === 'scrap' ? el?.weightOfScrap1 : 0 || el?.category2 === 'scrap' ? el?.weightOfScrap2 : 0 || el?.category3 === 'scrap' ? el?.weightOfScrap3 : 0
+      totals['Scrap Amount'] += el?.category === 'scrap' ? el?.productValue : 0 || el?.category1 === 'scrap' ? el?.productValue1 : 0 || el?.category2 === 'scrap' ? el?.productValue2 : 0 || el?.category3 === 'scrap' ? el?.productValue3 : 0
+
+      totals['Refraction'] += el?.category === 'Refraction' ? el?.weight : 0 || el?.category1 === 'Refraction' ? el?.weight1 : 0 || el?.category2 === 'Refraction' ? el?.weight2 : 0 || el?.category3 === 'Refraction' ? el?.weight3 : 0
+      totals['Refraction Amount'] += el?.category === 'Refraction' ? el?.totalamount : 0 || el?.category1 === 'Refraction' ? el?.totalamount1 : 0 || el?.category2 === 'Refraction' ? el?.totalamount2 : 0 || el?.category3 === 'Refraction' ? el?.totalamount3 : 0
+
+      totals['Bardana'] += el?.category === 'Bardana' ? el?.numberOfBags : 0 || el?.category1 === 'Bardana' ? el?.numberOfBags1 : 0 || el?.category2 === 'Bardana' ? el?.numberOfBags2 : 0 || el?.category3 === 'Bardana' ? el?.numberOfBags3 : 0
+      totals['Bardana Amount'] += el?.category === 'Bardana' ? el?.totalValue : 0 || el?.category1 === 'Bardana' ? el?.totalValue1 : 0 || el?.category2 === 'Bardana' ? el?.totalValue2 : 0 || el?.category3 === 'Bardana' ? el?.totalValue3 : 0
+
+      totals['FOC'] += el?.TotalGatepassAmount === 0 ? el?.TotalGatepassWeight : 0
+
+      totals['Cash Sale'] += el?.typeofsale === 'cash' ? el?.TotalGatepassAmount : 0
+
+      totals['Total Amount'] += (el?.TotalGatepassAmount * 100) || 0
+
+      totals['Total Weight'] += (el?.subcategories === 'Maida_Bulker' && el?.category === 'Maida' ? el?.TotalGatepassTruckWeight : el?.TotalGatepassTruckWeight) || 0
+
+      totals['Difference'] += (el?.difference) || 0
+
+      totals['Kanda Weight'] += (el?.kandaWeight*100) || 0
+
+      totals['Kanda Difference'] += (el?.weightDifference*100) || 0
+
+
+    });
+
+    return totals;
+  };
+
 
 
 
@@ -217,7 +363,7 @@ const CrfmExcelsheet = () => {
 
                   <td>{el?.subcategories === 'Maida_Bulker' && el?.category === 'Maida' ? el?.totalWeight : ''}</td>
 
-                  <td>{el?.category === 'scrap' ? el?.weightOfScrap : ''}<br />{el?.category1 === 'scrap' ? el?.weightOfScrap : ''}<br />{el?.category2 === 'scrap' ? el?.weightOfScrap : ''}<br />{el?.category3 === 'scrap' ? el?.weightOfScrap : ''}</td>
+                  <td>{el?.category === 'scrap' ? el?.weightOfScrap : ''}<br />{el?.category1 === 'scrap' ? el?.weightOfScrap1 : ''}<br />{el?.category2 === 'scrap' ? el?.weightOfScrap2 : ''}<br />{el?.category3 === 'scrap' ? el?.weightOfScrap3 : ''}</td>
 
                   <td>{el?.category === 'scrap' ? el?.typeOfScrap : ''}<br />{el?.category1 === 'scrap' ? el?.typeOfScrap1 : ''}<br />{el?.category2 === 'scrap' ? el?.typeOfScrap2 : ''}<br />{el?.category3 === 'scrap' ? el?.typeOfScrap3 : ''}</td>
 
@@ -262,6 +408,60 @@ const CrfmExcelsheet = () => {
               )
             })
           }
+          <tr className='bg-gray-200 font-bold'>
+            <td colSpan={5}>Total</td>
+            <td>{computeTotals()['Maida 50kg']}</td>
+            <td>{computeTotals()['Maida 45kg']}</td>
+            <td>{computeTotals()['Maida 40kg']}</td>
+            <td>{computeTotals()['Maida 30kg']}</td>
+            <td>{computeTotals()['Maida 25KG']}</td>
+            <td>{computeTotals()['Chakki Atta 50kg']}</td>
+            <td>{computeTotals()['Chakki Atta 40kg']}</td>
+            <td>{computeTotals()['Chakki Atta 30kg']}</td>
+            <td>{computeTotals()['Chakki Atta 35kg']}</td>
+            <td>{computeTotals()['Chakki Atta LD 5 kg']}</td>
+            <td>{computeTotals()['Chakki Atta LD 10 KG']}</td>
+            <td>{computeTotals()['Chakki Atta 5 kg']}</td>
+            <td>{computeTotals()['Chakki Atta 10 KG']}</td>
+            <td>{computeTotals()['Chakki Atta 26 Kg']}</td>
+            <td>{computeTotals()['Mill Atta 50 KG']}</td>
+            <td>{computeTotals()['Mill Atta 40 kg']}</td>
+            <td>{computeTotals()['Mill Atta 30kg']}</td>
+            <td>{computeTotals()['Mill Atta 10kg']}</td>
+            <td>{computeTotals()['Bran 50kg']}</td>
+            <td>{computeTotals()['Bran 49kg']}</td>
+            <td>{computeTotals()['Bran 48kg']}</td>
+            <td>{computeTotals()['Bran 44kg']}</td>
+            <td>{computeTotals()['Bran 35kg']}</td>
+            <td>{computeTotals()['Bran 34kg']}</td>
+            <td>{computeTotals()['Bran 45kg']}</td>
+            <td>{computeTotals()['Bran 30kg']}</td>
+            <td>{computeTotals()['Bran 28kg']}</td>
+            <td>{computeTotals()['Bran 25kg']}</td>
+            <td>{computeTotals()['Bran 43kg']}</td>
+            <td>{computeTotals()['Rawa/Suji 50kg']}</td>
+            <td>{computeTotals()['Rawa/Suji 25kg']}</td>
+            <td colSpan={2}>{computeTotals()['Loose Material']}</td>
+            <td>{computeTotals()['Bulker']}</td>
+            <td colSpan={2}>{computeTotals()['Scrap']}</td>
+            <td>{computeTotals()['Scrap Amount']}</td>
+            <td colSpan={2}>{computeTotals()['Refraction']}</td>
+            <td>{computeTotals()['Refraction Amount']}</td>
+            <td colSpan={2}>{computeTotals()['Bardana']}</td>
+            <td>{computeTotals()['Bardana Amount']}</td>
+            <td colSpan={2}>{computeTotals()['FOC']}</td>
+            <td>{computeTotals()['Cash Sale']}</td>
+            <td>{((computeTotals()['Total Amount'])/100).toFixed(2)}</td>
+            <td></td>
+            <td>{((computeTotals()['Total Weight'])/100).toFixed(2)}</td>
+            <td></td>
+            <td></td>
+            <td>{computeTotals()['Difference']}</td>
+            <td>{((computeTotals()['Kanda Weight'])/10000).toFixed(2)}</td>
+            <td>{((computeTotals()['Kanda Difference'])/100).toFixed(2)}</td>
+            <td></td>
+            <td></td>
+          </tr>
         </tbody>
       </table>
 
