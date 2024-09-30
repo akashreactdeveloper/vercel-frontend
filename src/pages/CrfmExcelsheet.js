@@ -10,7 +10,8 @@ import { saveAs } from 'file-saver';
 const CrfmExcelsheet = () => {
 
   const [CrfmExcelsheet, setCrfmExcelsheet] = useState([])
-  const [selectedDate, setSelectedDate] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
   const user = useSelector(state => state?.user?.user)
 
 
@@ -31,19 +32,28 @@ const CrfmExcelsheet = () => {
     }
 
   }
-  const handleDateChange = (event) => {
-    setSelectedDate(event.target.value);
-  }
+  const handleStartDateChange = (event) => {
+    setStartDate(event.target.value);
+  };
+
+  const handleEndDateChange = (event) => {
+    setEndDate(event.target.value);
+  };
 
 
 
   const getFilteredData = () => {
-    if (!selectedDate) {
-      return CrfmExcelsheet;
+    
+    let filteredData = CrfmExcelsheet;
+    
+    if (startDate && endDate) {
+      filteredData = filteredData.filter(entry => {
+        const entryDate = moment(entry.createdAt).format('YYYY-MM-DD');
+        return entryDate >= startDate && entryDate <= endDate;
+      });
     }
-    return CrfmExcelsheet.filter(entry =>
-      moment(entry.createdAt).format('YYYY-MM-DD') === selectedDate
-    );
+    
+    return filteredData.sort((a, b) => b.gatepassNumber - a.gatepassNumber);
   }
 
 
@@ -231,9 +241,17 @@ const CrfmExcelsheet = () => {
       <div className='flex justify-center mb-4'>
         <input
           type='date'
-          value={selectedDate}
-          onChange={handleDateChange}
-          className='border p-2 rounded'
+          value={startDate}
+          onChange={handleStartDateChange}
+          className='border p-2 rounded mx-2'
+          placeholder="Start Date"
+        />
+        <input
+          type='date'
+          value={endDate}
+          onChange={handleEndDateChange}
+          className='border p-2 rounded mx-2'
+          placeholder="End Date"
         />
       </div>
       <div className='flex justify-center'>

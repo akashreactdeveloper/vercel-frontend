@@ -7,7 +7,8 @@ import { saveAs } from 'file-saver';
 
 const AwlExcelsheet = () => {
   const [AwlExcelsheet, setAwlExcelsheet] = useState([]);
-  const [selectedDate, setSelectedDate] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
   const fetchAwlExcelsheet = async () => {
     const fetchData = await fetch(SummaryApi.AllAwlGatepass.url, {
@@ -26,9 +27,13 @@ const AwlExcelsheet = () => {
     }
   }
 
-  const handleDateChange = (event) => {
-    setSelectedDate(event.target.value);
-  }
+  const handleStartDateChange = (event) => {
+    setStartDate(event.target.value);
+  };
+
+  const handleEndDateChange = (event) => {
+    setEndDate(event.target.value);
+  };
 
 
 
@@ -36,10 +41,11 @@ const AwlExcelsheet = () => {
     let filteredData = AwlExcelsheet;
 
     // Filter by selected date if a date is selected
-    if (selectedDate) {
-      filteredData = filteredData.filter(entry =>
-        moment(entry.createdAt).format('YYYY-MM-DD') === selectedDate
-      );
+    if (startDate && endDate) {
+      filteredData = filteredData.filter(entry => {
+        const entryDate = moment(entry.createdAt).format('YYYY-MM-DD');
+        return entryDate >= startDate && entryDate <= endDate;
+      });
     }
 
     // Sort by gatepassNumber in ascending order
@@ -121,9 +127,17 @@ const AwlExcelsheet = () => {
       <div className='flex justify-center mb-4'>
         <input
           type='date'
-          value={selectedDate}
-          onChange={handleDateChange}
-          className='border p-2 rounded'
+          value={startDate}
+          onChange={handleStartDateChange}
+          className='border p-2 rounded mx-2'
+          placeholder="Start Date"
+        />
+        <input
+          type='date'
+          value={endDate}
+          onChange={handleEndDateChange}
+          className='border p-2 rounded mx-2'
+          placeholder="End Date"
         />
       </div>
       <div className='flex justify-center'>
