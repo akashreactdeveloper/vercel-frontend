@@ -424,7 +424,7 @@ const CrfmExcelsheet = () => {
                       ? 'bg-yellow-500'
                       : el?.status === 'Cancel'
                         ? 'bg-red-600 text-white'
-                        : ''
+                        : 'bg-blue-500'
                   }>
                     {el?.status}
                   </td>
