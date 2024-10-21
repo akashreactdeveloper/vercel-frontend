@@ -29,6 +29,7 @@ const Awl = () => {
     const [typeOfScrap1, settypeOfScrap1] = useState('');
     const [typeOfScrap2, settypeOfScrap2] = useState('');
     const [typeOfScrap3, settypeOfScrap3] = useState('');
+    const [typeOfScrap4, settypeOfScrap4] = useState('');
     const [perbagprice, setPerbagprice] = useState('');
     const [productValue, setProductValue] = useState('0');
     const [perKgRate, setPerKgRate] = useState('0');
@@ -41,6 +42,14 @@ const Awl = () => {
     const [perqtlrate, setperqtlrate] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedSubcategory, setSelectedSubcategory] = useState('');
+    const [showAdditionalColumns, setShowAdditionalColumns] = useState(false);
+    const [showOneMoreAdditionalColumns, setShowOneMoreAdditionalColumns] = useState(false);
+    const [showTwoMoreAdditionalColumns, setshowTwoMoreAdditionalColumns] = useState(false);
+    const [showThreeMoreAdditionalColumns, setshowThreeMoreAdditionalColumns] = useState(false);
+    const [TotalGatepassAmount, setTotalGatepassAmount] = useState('');
+    const [TotalGatepassWeight, setTotalGatepassWeight] = useState('0');
+    const [TotalGatepassTruckWeight, setTotalGatepassTruckWeight] = useState('');
+
     const [totalWeight11, setTotalWeight11] = useState('');
     const [totalamount1, settotalamount1] = useState('');
     const [category1, setCategory1] = useState('');
@@ -61,12 +70,7 @@ const Awl = () => {
     const [perqtlrate1, setperqtlrate1] = useState('');
     const [selectedCategory1, setSelectedCategory1] = useState('');
     const [selectedSubcategory1, setSelectedSubcategory1] = useState('');
-    const [showAdditionalColumns, setShowAdditionalColumns] = useState(false);
-    const [showOneMoreAdditionalColumns, setShowOneMoreAdditionalColumns] = useState(false);
-    const [showTwoMoreAdditionalColumns, setshowTwoMoreAdditionalColumns] = useState(false);
-    const [TotalGatepassAmount, setTotalGatepassAmount] = useState('');
-    const [TotalGatepassWeight, setTotalGatepassWeight] = useState('0');
-    const [TotalGatepassTruckWeight, setTotalGatepassTruckWeight] = useState('');
+
     const [totalWeight2, setTotalWeight2] = useState('');
     const [totalamount2, settotalamount2] = useState('');
     const [category2, setCategory2] = useState('');
@@ -87,6 +91,7 @@ const Awl = () => {
     const [perqtlrate2, setperqtlrate2] = useState('');
     const [selectedCategory2, setSelectedCategory2] = useState('');
     const [selectedSubcategory2, setSelectedSubcategory2] = useState('');
+
     const [totalWeight3, setTotalWeight3] = useState('');
     const [totalamount3, settotalamount3] = useState('');
     const [category3, setCategory3] = useState('');
@@ -107,10 +112,34 @@ const Awl = () => {
     const [perqtlrate3, setperqtlrate3] = useState('');
     const [selectedCategory3, setSelectedCategory3] = useState('');
     const [selectedSubcategory3, setSelectedSubcategory3] = useState('');
+
+    const [totalWeight4, setTotalWeight4] = useState('');
+    const [totalamount4, settotalamount4] = useState('');
+    const [category4, setCategory4] = useState('');
+    const [subcategories4, setSubcategories4] = useState('');
+    const [subsubcategories4, setSubsubcategories4] = useState('');
+    const [isMaida_BulkerSelected4, setIsMaida_BulkerSelected4] = useState(false);
+    const [otherSubsubcategories4, setOtherSubsubcategories4] = useState('');
+    const [numberOfBags4, setNumberOfBags4] = useState('');
+    const [perbagprice4, setPerbagprice4] = useState('');
+    const [productValue4, setProductValue4] = useState('');
+    const [perKgRate4, setPerKgRate4] = useState('0');
+    const [weight4OfTruck4, setWeight4OfTruck4] = useState('');
+    const [loadingCharger4, setLoadingCharger4] = useState('0');
+    const [cgst4, setCgst4] = useState('0');
+    const [sgst4, setSgst4] = useState('0');
+    const [totalValue4, setTotalValue4] = useState('0');
+    const [weight4, setweight4] = useState('');
+    const [perqtlrate4, setperqtlrate4] = useState('');
+    const [selectedCategory4, setSelectedCategory4] = useState('');
+    const [selectedSubcategory4, setSelectedSubcategory4] = useState('');
+
     const [TotalTruckWeight, setTotalTruckWeight] = useState('');
     const [TotalTruckWeight1, setTotalTruckWeight1] = useState('');
     const [TotalTruckWeight2, setTotalTruckWeight2] = useState('');
     const [TotalTruckWeight3, setTotalTruckWeight3] = useState('');
+    const [TotalTruckWeight4, setTotalTruckWeight4] = useState('');
+
     const [typeofsale, settypeofsale] = useState('')
     const [loadingDoneBy, setloadingDoneBy] = useState('')
     const [bnverified, setbnverified] = useState('No')
@@ -120,6 +149,7 @@ const Awl = () => {
     const [reason, setReason] = useState('')
     const [difference, setDifference] = useState('')
     const [kandaWeight, setkandaWeight] = useState('')
+
     const [weightOfScrap, setweightOfScrap] = useState('')
     const [perkgrateScrap, setperkgrateScrap] = useState('')
     const [weightOfScrap1, setweightOfScrap1] = useState('')
@@ -128,6 +158,8 @@ const Awl = () => {
     const [perkgrateScrap2, setperkgrateScrap2] = useState('')
     const [weightOfScrap3, setweightOfScrap3] = useState('')
     const [perkgrateScrap3, setperkgrateScrap3] = useState('')
+    const [weightOfScrap4, setweightOfScrap4] = useState('')
+    const [perkgrateScrap4, setperkgrateScrap4] = useState('')
 
 
     const navigate = useNavigate();
@@ -177,8 +209,8 @@ const Awl = () => {
             unit: 'KG',
             subcategories: {
                 Maida_Regular: ['10', '20', '25', '30', '40', '45', '50', 'Others'],
-                'Super Maida' : ['10', '20', '25', '30', '40', '45', '50', 'Others'],
-                'Multipurpose Maida' : ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                'Super Maida': ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                'Multipurpose Maida': ['10', '20', '25', '30', '40', '45', '50', 'Others'],
                 Maida_Bulker: ['others']
             }
         },
@@ -291,8 +323,8 @@ const Awl = () => {
             unit: 'KG',
             subcategories1: {
                 Maida_Regular: ['10', '20', '25', '30', '40', '45', '50', 'Others'],
-                'Super Maida' : ['10', '20', '25', '30', '40', '45', '50', 'Others'],
-                'Multipurpose Maida' : ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                'Super Maida': ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                'Multipurpose Maida': ['10', '20', '25', '30', '40', '45', '50', 'Others'],
                 Maida_Bulker: ['others']
             }
         },
@@ -405,8 +437,8 @@ const Awl = () => {
             unit: 'KG',
             subcategories2: {
                 Maida_Regular: ['10', '20', '25', '30', '40', '45', '50', 'Others'],
-                'Super Maida' : ['10', '20', '25', '30', '40', '45', '50', 'Others'],
-                'Multipurpose Maida' : ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                'Super Maida': ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                'Multipurpose Maida': ['10', '20', '25', '30', '40', '45', '50', 'Others'],
                 Maida_Bulker: ['others']
             }
         },
@@ -519,8 +551,8 @@ const Awl = () => {
             unit: 'KG',
             subcategories3: {
                 Maida_Regular: ['10', '20', '25', '30', '40', '45', '50', 'Others'],
-                'Super Maida' : ['10', '20', '25', '30', '40', '45', '50', 'Others'],
-                'Multipurpose Maida' : ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                'Super Maida': ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                'Multipurpose Maida': ['10', '20', '25', '30', '40', '45', '50', 'Others'],
                 Maida_Bulker: ['others']
             }
         },
@@ -588,11 +620,125 @@ const Awl = () => {
             }
         },
     };
+    const awlCategories4 = {
+        Maida: {
+            unit: 'KG',
+            subcategories4: {
+                "10": [],
+                "30": ['Super Maida', 'Multipurpose Maida'],
+                "50": ['Super Maida', 'Multipurpose Maida']
+            }
+        },
+        "Atta Chakki": {
+            unit: 'KG',
+            subcategories4: {
+                "5": ['Normal MRP', 'High MRP'],
+                "10": ['Normal MRP', 'High MRP'],
+                "11": ['Normal MRP', 'High MRP'],
+                "30": ['Normal MRP', 'High MRP'],
+                "50": []
+            }
+        },
+        Suji: {
+            unit: 'KG',
+            subcategories4: {
+                "10": []
+            }
+        },
+        "Mill Atta (R-Atta)": {
+            unit: 'KG',
+            subcategories4: {
+                "50": []
+            }
+        },
+        "Atta Scheme": {
+            unit: 'KG',
+            subcategories4: {
+                "10": []
+            }
+        }
+    };
+
+    const crfmCategories4 = {
+        Maida: {
+            unit: 'KG',
+            subcategories4: {
+                Maida_Regular: ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                'Super Maida': ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                'Multipurpose Maida': ['10', '20', '25', '30', '40', '45', '50', 'Others'],
+                Maida_Bulker: ['others']
+            }
+        },
+        "Chakki aata": {
+            unit: 'KG',
+            subcategories4: {
+                Regular: ['5', '10', '26', '30', '40', '50', 'Others'],
+                Jute: ['10', '5'],
+                LD: ['10', '5'],
+                'D-Mart Regular': ['5', '10', '26']
+            }
+        },
+        "MILL ATTA": {
+            unit: 'KG',
+            subcategories4: {
+                Regular: ['10', '30', '40', '50', 'Others']
+            }
+        },
+        Bran: {
+            unit: 'KG',
+            subcategories4: {
+                Coarse: ['20', '25', '28', '30', '34', '35', '43', '44', '48', '49', '50', 'Others'],
+                Fine: ['20', '25', '28', '30', '34', '35', '43', '44', '48', '49', '50', 'Others']
+            }
+        },
+        "Rawa Suji": {
+            unit: 'KG',
+            subcategories4: {
+                Regular: ['25', '50', 'Others']
+            }
+        },
+        Refraction: {
+            unit: 'Qtl.',
+            subcategories4: {
+                Murgidana: ['Others'],
+                Kala_Beej: ['Others'],
+                Danthal: ['Others'],
+                Mitti: ['Others'],
+                Others: ['Others'],
+            }
+        },
+        Bardana: {
+            unit: 'Bags',
+            subcategories4: {
+                C_Quality: ['Others'],
+                F_Quality: ['Others'],
+                M_Quality: ['Others'],
+                X_Quality: ['Others'],
+                Plastic_Best_Quality: ['Others'],
+                Plastic_Medium_Quality: ['Others'],
+                Plastic_Low_Quality: ['Others'],
+                Others: ['Others'],
+            }
+        },
+        scrap: {
+            unit: 'Kg',
+            subcategories4: {
+                Others: ['Others'],
+            }
+        },
+        Wheat: {
+            unit: 'Kg',
+            subcategories4: {
+                Others: ['Others'],
+            }
+        },
+    };
 
     const categories = type === 'CRFM' ? crfmCategories : awlCategories;
     const categories1 = type === 'CRFM' ? crfmCategories1 : awlCategories1;
     const categories2 = type === 'CRFM' ? crfmCategories2 : awlCategories2;
     const categories3 = type === 'CRFM' ? crfmCategories3 : awlCategories3;
+    const categories4 = type === 'CRFM' ? crfmCategories4 : awlCategories4;
 
 
     const handleTypeChange = (e) => {
@@ -660,13 +806,17 @@ const Awl = () => {
             weightOfTruck,
             perkgrateScrap,
             totalValue,
+
             typeOfScrap,
             typeOfScrap1,
             typeOfScrap2,
             typeOfScrap3,
+            typeOfScrap4,
+
             totalWeight,
             perqtlrate,
             totalamount,
+
             weight1,
             category1,
             subcategories1,
@@ -684,6 +834,7 @@ const Awl = () => {
             totalWeight11,
             perqtlrate1,
             totalamount1,
+
             weight2,
             category2,
             subcategories2,
@@ -701,6 +852,7 @@ const Awl = () => {
             totalWeight2,
             perqtlrate2,
             totalamount2,
+
             weight3,
             category3,
             subcategories3,
@@ -718,13 +870,35 @@ const Awl = () => {
             totalWeight3,
             perqtlrate3,
             totalamount3,
+
+            weight4,
+            category4,
+            subcategories4,
+            subsubcategories4,
+            otherSubsubcategories4,
+            numberOfBags4,
+            perbagprice4,
+            productValue4,
+            perKgRate4,
+            loadingCharger4,
+            cgst4,
+            sgst4,
+            weight4OfTruck4,
+            totalValue4,
+            totalWeight4,
+            perqtlrate4,
+            totalamount4,
+
             TotalGatepassWeight,
             TotalGatepassAmount,
             TotalGatepassTruckWeight,
+
             TotalTruckWeight,
             TotalTruckWeight1,
             TotalTruckWeight2,
             TotalTruckWeight3,
+            TotalTruckWeight4,
+
             selectedUnit,
             typeofsale,
             loadingDoneBy,
@@ -736,6 +910,7 @@ const Awl = () => {
             difference,
             status,
             reason,
+
             weightOfScrap,
             perkgrateScrap,
             weightOfScrap1,
@@ -744,6 +919,9 @@ const Awl = () => {
             perkgrateScrap2,
             weightOfScrap3,
             perkgrateScrap3,
+            weightOfScrap4,
+            perkgrateScrap4,
+
             billNumber,
             billNumberVerifiedBy,
             kandaWeightVerifiedBy,
@@ -1184,6 +1362,9 @@ const Awl = () => {
     const handleButtonClick2 = () => {
         setshowTwoMoreAdditionalColumns(!showTwoMoreAdditionalColumns);
     };
+    const handleButtonClick3 = () => {
+        setshowThreeMoreAdditionalColumns(!showThreeMoreAdditionalColumns);
+    };
 
 
     const handleNumberOfBags1Change = (e) => {
@@ -1352,7 +1533,7 @@ const Awl = () => {
                 console.log("numberOfBags - ", numberOfBags1)
                 const perKg = parseFloat(totalValue1) / (parseFloat(subsubcategories1) * parseFloat(numberOfBags1));
                 setPerKgRate(perKg.toFixed(2));
-            }else if (totalValue1 && subsubcategories1 && numberOfBags1) {
+            } else if (totalValue1 && subsubcategories1 && numberOfBags1) {
                 const perKg = parseFloat(totalValue1) / (parseFloat(subsubcategories1) * parseFloat(numberOfBags1));
                 setPerKgRate1(perKg.toFixed(2));
             } else {
@@ -1565,7 +1746,7 @@ const Awl = () => {
                     console.log("weightofMasterBag", total)
                     setTotalTruckWeight1(total ? total.toFixed(2) : '');
                 }
-            }else if (category1 === 'scrap' || category1 === 'Wheat') {
+            } else if (category1 === 'scrap' || category1 === 'Wheat') {
                 setTotalTruckWeight1(weightOfScrap1);
             } else {
                 const weightOfBag = subsubcategories1 === 'Others' ? parseFloat(otherSubsubcategories1) : parseFloat(subsubcategories1);
@@ -1955,7 +2136,7 @@ const Awl = () => {
                     console.log("weightofMasterBag", total)
                     setTotalTruckWeight2(total ? total.toFixed(2) : '');
                 }
-            }else if (category2 === 'scrap' || category2 === 'Wheat') {
+            } else if (category2 === 'scrap' || category2 === 'Wheat') {
                 setTotalTruckWeight2(weightOfScrap2);
                 console.log("total scrap weight", totalWeight2)
             } else {
@@ -2351,7 +2532,7 @@ const Awl = () => {
             else if (category3 === 'scrap' || category3 === 'Wheat') {
                 setTotalTruckWeight3(weightOfScrap3);
                 console.log("total scrap weight", totalWeight3)
-            } 
+            }
             else {
                 const weightOfBag = subsubcategories3 === 'Others' ? parseFloat(otherSubsubcategories3) : parseFloat(subsubcategories3);
                 const total = numberOfBags3 && weightOfBag ? parseFloat(numberOfBags3) * weightOfBag : '';
@@ -2374,7 +2555,404 @@ const Awl = () => {
         ? categories3[category3].subcategories3[subcategories3]
         : [];
 
-    const calculateTotalGatepassAmount = (totalValue, totalamount, totalValue1, totalamount1, totalValue2, totalamount2, totalValue3, totalamount3) => {
+
+    const handleNumberOfBags4Change = (e) => {
+        const newNumberOfBags4 = e.target.value;
+        setNumberOfBags4(newNumberOfBags4);
+        calculateProductValue4(numberOfBags4, perbagprice4);
+        calculateTotalWeight4(numberOfBags4, subsubcategories4); // Calculate total weight4
+    };
+
+    const handleWeight4OfTruck4Change = (e) => {
+        const weight4 = e.target.value;
+        setWeight4OfTruck4(weight4);
+        calculateTotalPrice4(weight4, perKgRate4);
+        if (isMaida_BulkerSelected4) {
+            setTotalWeight4(weight4);
+        }
+    };
+
+    const handleCategory4Change = (e) => {
+        const selectedCategory4 = e.target.value;
+        setCategory4(selectedCategory4);
+        setSubcategories4('');
+        setSubsubcategories4('');
+        setOtherSubsubcategories4('');
+        setPerbagprice4('');
+        setProductValue4('');
+        setPerKgRate4('');
+    };
+
+    const handleSubcategories4Change = (e) => {
+        const selectedSubcategories4 = e.target.value;
+        setSubcategories4(selectedSubcategories4);
+        setSubsubcategories4('');
+        setOtherSubsubcategories4('');
+        setProductValue4('');
+        setWeight4OfTruck4('');
+        setPerKgRate4('');
+        setIsMaida_BulkerSelected4(selectedSubcategories4 === 'Maida_Bulker');
+        if (type === 'AWL') {
+            calculateTotalWeight4(numberOfBags4, selectedSubcategories4);
+        }
+    }
+    const handleSubsubcategories4Change = (e) => {
+        setSubsubcategories4(e.target.value);
+        setOtherSubsubcategories4('');
+        calculateProductValue4(numberOfBags4, perbagprice4);
+        if (type === 'CRFM') {
+            calculateTotalWeight4(numberOfBags4, subsubcategories4, otherSubsubcategories4);
+        }
+    };
+    const handleOtherSubsubcategories4Change = (e) => {
+        setOtherSubsubcategories4(e.target.value);
+        calculateProductValue4(numberOfBags4, perbagprice4);
+        if (type === 'CRFM') {
+            calculateTotalWeight4(subsubcategories4, numberOfBags4, otherSubsubcategories4);
+        }
+    };
+    const handlePerbagprice4Change = (e) => {
+        const newPrice = e.target.value;
+        setPerbagprice4(newPrice);
+        calculateProductValue4(numberOfBags4, newPrice);
+    };
+    const handleLoadingCharger4Change = (e) => {
+        const charger = e.target.value;
+        setLoadingCharger4(charger);
+        calculateTotalValue4(productValue4, charger, cgst4, sgst4);
+    };
+    const handleCgst4Change = (e) => {
+        const selectedCgst4 = e.target.value;
+        setCgst4(selectedCgst4);
+        calculateTotalValue4(productValue4, loadingCharger4, selectedCgst4, sgst4);
+    };
+    const handleSgst4Change = (e) => {
+        const selectedSgst4 = e.target.value;
+        setSgst4(selectedSgst4);
+        calculateTotalValue4(productValue4, loadingCharger4, cgst4, selectedSgst4);
+    };
+    const handleweight4Change = (e) => {
+        setweight4(e.target.value);
+
+    };
+    const handleperqtlrate4Change = (e) => {
+        setperqtlrate4(e.target.value);
+        calculateTotalPrice4(weight4OfTruck4, perqtlrate4);
+    };
+
+    const handleWeightOfScrap4Change = (e) => {
+        const scrapWeight4 = e.target.value;
+        setweightOfScrap4(scrapWeight4);
+    }
+    const handleperkgrateScrap4Change = (e) => {
+        const scrapPerKgRate4 = e.target.value;
+        setperkgrateScrap4(scrapPerKgRate4);
+    }
+
+    const handletypeOfScrap4Change = (e) => {
+        const scrapType4 = e.target.value;
+        settypeOfScrap4(scrapType4)
+    }
+
+    const calculateScrapPrice4 = (weightOfScrap4, perkgrateScrap4) => {
+        const scrapPrice4 = parseFloat(weightOfScrap4) * parseFloat(perkgrateScrap4);
+        setProductValue(scrapPrice4.toFixed(2));
+        setTotalWeight(weightOfScrap4)
+    }
+
+    useEffect(() => {
+        calculateScrapPrice4(weightOfScrap4, perkgrateScrap4);
+    }, [weightOfScrap4, perkgrateScrap4]);
+
+
+    const calculateTotalPrice4 = (weight4OfTruck4, perKgRate4) => {
+        if (weight4OfTruck4 && perKgRate4) {
+            const totalPrice = parseFloat(weight4OfTruck4) * parseFloat(perqtlrate4);
+            setProductValue4(totalPrice.toFixed(2));
+        } else {
+            setProductValue4('');
+        }
+    };
+    const calculateProductValue4 = (numberOfBags4, perbagprice4) => {
+        if (numberOfBags4 && perbagprice4) {
+            const product = parseFloat(numberOfBags4) * parseFloat(perbagprice4);
+            setProductValue4(product.toFixed(2));
+        } else {
+            setProductValue4('');
+            setPerKgRate4('');
+        }
+    };
+    useEffect(() => {
+        calculateTotalValue4(productValue4, loadingCharger4, cgst4, sgst4);
+    }, [productValue4, loadingCharger4, cgst4, sgst4]);
+    const calculatetotalamount4 = (weight4, perqtlrate4) => {
+        if (weight4 && perqtlrate4) {
+            const amount = parseFloat(weight4) * parseFloat(perqtlrate4);
+            settotalamount4(amount);
+        }
+    }
+    useEffect(() => {
+        calculatetotalamount4(weight4, perqtlrate4);
+    }, [weight4, perqtlrate4]);
+
+    const calculateTotalValue4 = (productValue4, loadingCharger4, cgst4, sgst4) => {
+        if (productValue4 && loadingCharger4 && cgst4 && sgst4) {
+            const totalValue4 = parseFloat(productValue4) + parseFloat(loadingCharger4);
+            const cgst4Amount = parseFloat(totalValue4) * parseFloat(cgst4) / 100;
+            const sgst4Amount = parseFloat(totalValue4) * parseFloat(sgst4) / 100;
+            const finalValue4 = totalValue4 + cgst4Amount + sgst4Amount;
+
+            setTotalValue4(finalValue4);
+        } else {
+            setTotalValue4('');
+        }
+    };
+    const calculatePerKgRate4 = (totalValue4, subsubcategories4, subcategories4, numberOfBags4) => {
+        if (type === 'CRFM') {
+            if (category4 === 'Refraction' || category4 === 'scrap' || category4 === 'Bardana' || category4 === 'Wheat' || subcategories4 === 'Maida_Bulker') {
+                setPerKgRate4(0)
+            }
+            else if (totalValue4 && subsubcategories4 && numberOfBags4) {
+                const perKg = parseFloat(totalValue4) / (parseFloat(subsubcategories4) * parseFloat(numberOfBags4));
+                setPerKgRate4(perKg.toFixed(2));
+            } else {
+                setPerKgRate4('');
+            }
+        } else if (type === 'AWL') {
+            if (totalValue4 && subcategories4 && numberOfBags4) {
+                const perKg = parseFloat(totalValue4) / (parseFloat(subcategories4) * parseFloat(numberOfBags4));
+                setPerKgRate4(perKg.toFixed(2));
+            } else {
+                setPerKgRate4('');
+            }
+        }
+    };
+    useEffect(() => {
+        calculatePerKgRate4(totalValue4, subsubcategories4, subcategories4, numberOfBags4);
+    }, [totalValue4, subsubcategories4, subcategories4, numberOfBags4]);
+
+
+    const calculateTotalWeight4 = (numberOfBags4, subcategories4, subsubcategories4, otherSubsubcategories4) => {
+        if (type === 'AWL') {
+            if (category4 === 'Maida') {
+
+                const total = 0;
+                setTotalWeight4(total ? total.toFixed(2) : '');
+
+
+            } else if (category4 === 'Suji') {
+                const total = 0;
+                setTotalWeight4(total ? total.toFixed(2) : '');
+
+            } else if (category4 === 'Mill Atta (R-Atta)' && subcategories4 === '50') {
+                const total = 0;
+                setTotalWeight4(total ? total.toFixed(2) : '');
+
+            } else if (category4 === 'Atta Chakki') {
+                if (subcategories4 === '5') {
+                    const NumberofTotalBags = numberOfBags4 * 6
+                    const weightOfBag = subcategories4
+                    const total = NumberofTotalBags && weightOfBag ? parseFloat(NumberofTotalBags) * parseFloat(weightOfBag) : '';
+                    setTotalWeight4(total ? total.toFixed(2) : '');
+
+                } else if (subcategories4 === '10') {
+                    const NumberofTotalBags = numberOfBags4 * 3
+                    const weightOfBag = subcategories4
+                    const total = NumberofTotalBags && weightOfBag ? parseFloat(NumberofTotalBags) * parseFloat(weightOfBag) : '';
+                    setTotalWeight4(total ? total.toFixed(2) : '');
+
+                } else {
+                    const weightOfBag = subcategories4
+                    const total = numberOfBags4 && weightOfBag ? parseFloat(numberOfBags4) * parseFloat(weightOfBag) : '';
+                    setTotalWeight4(total ? total.toFixed(2) : '');
+                }
+
+            } else if (category4 === 'Atta Scheme') {
+                if (subcategories4 === '10') {
+                    const NumberofTotalBags = numberOfBags4 * 3
+                    const weightOfBag = subcategories4
+                    const total = NumberofTotalBags && weightOfBag ? parseFloat(NumberofTotalBags) * parseFloat(weightOfBag) : '';
+                    setTotalWeight4(total ? total.toFixed(2) : '');
+                }
+            }
+
+            else {
+                const weightOfBag = subcategories4
+                const total = numberOfBags4 && weightOfBag ? parseFloat(numberOfBags4) * parseFloat(weightOfBag) : '';
+                setTotalWeight4(total ? total.toFixed(2) : '');
+            }
+        }
+        else if (type === 'CRFM') {
+            if (category4 === 'Chakki aata' && subcategories4 === 'D-Mart Regular') {
+                if (subsubcategories4 === '5') {
+                    const NumberofTotalBags = numberOfBags4 * 6
+                    const weightOfBag = subcategories4
+                    const total = NumberofTotalBags && weightOfBag ? parseFloat(NumberofTotalBags) * parseFloat(weightOfBag) : '';
+                    setTotalWeight4(total ? total.toFixed(2) : '');
+                } else if (subsubcategories4 === '10') {
+                    const NumberofTotalBags = numberOfBags4 * 3
+                    const weightOfBag = subcategories4
+                    const total = NumberofTotalBags && weightOfBag ? parseFloat(NumberofTotalBags) * parseFloat(weightOfBag) : '';
+                    setTotalWeight4(total ? total.toFixed(2) : '');
+                } else {
+                    const weightOfBag = subsubcategories4 === 'Others' ? parseFloat(otherSubsubcategories4) : parseFloat(subsubcategories4);
+                    const total = numberOfBags4 && weightOfBag ? parseFloat(numberOfBags4) * weightOfBag : '';
+                    setTotalWeight4(total ? total.toFixed(2) : '');
+                }
+
+            } else if (category4 === 'scrap' || category4 === 'Wheat') {
+                setTotalWeight4(weightOfScrap4);
+                console.log("total scrap weight", totalWeight4)
+            } else {
+                const weightOfBag = subsubcategories4 === 'Others' ? parseFloat(otherSubsubcategories4) : parseFloat(subsubcategories4);
+                const total = numberOfBags4 && weightOfBag ? parseFloat(numberOfBags4) * weightOfBag : '';
+                setTotalWeight4(total ? total.toFixed(2) : '');
+            }
+        }
+        else if (isMaida_BulkerSelected) {
+            setTotalWeight4(weightOfTruck);
+        }
+    };
+
+    useEffect(() => {
+        calculateTotalWeight4(numberOfBags4, subcategories4, subsubcategories4, otherSubsubcategories4);
+    }, [numberOfBags4, subcategories4, subsubcategories4, otherSubsubcategories4]);
+
+    const calculateTotalTruckWeight4 = (numberOfBags4, subcategories4, subsubcategories4, otherSubsubcategories4) => {
+        if (type === 'AWL') {
+            if (category4 === 'Maida' && subcategories4 === '30') {
+                const weightOfBag = 30.090
+                const total = numberOfBags4 && weightOfBag ? parseFloat(numberOfBags4) * parseFloat(weightOfBag) : '';
+                setTotalTruckWeight4(total ? total.toFixed(2) : '');
+
+            } else if (category4 === 'Maida' && subcategories4 === '50') {
+                const weightOfBag = 50.12
+                const total = numberOfBags4 && weightOfBag ? parseFloat(numberOfBags4) * parseFloat(weightOfBag) : '';
+                setTotalTruckWeight4(total ? total.toFixed(2) : '');
+
+            } else if (category4 === 'Mill Atta (R-Atta)' && subcategories4 === '50') {
+                const weightOfBag = 50.12
+                const total = numberOfBags4 && weightOfBag ? parseFloat(numberOfBags4) * parseFloat(weightOfBag) : '';
+                setTotalTruckWeight4(total ? total.toFixed(2) : '');
+
+            } else if (category4 === 'Atta Chakki') {
+
+                if (subcategories4 === '10') {
+                    const WeightofMasterBags = numberOfBags4 * 0.075;
+                    const NumberofTotalBags = numberOfBags4 * 3
+                    const weightOfBag = 10.07
+                    const total = NumberofTotalBags && weightOfBag && WeightofMasterBags ? parseFloat(NumberofTotalBags * weightOfBag) + parseFloat(WeightofMasterBags) : '';
+                    console.log("weightofMasterBag", total)
+                    setTotalTruckWeight4(total ? total.toFixed(2) : '');
+
+                } else if (subcategories4 === '5') {
+                    const WeightofMasterBags = numberOfBags4 * 0.075;
+                    const NumberofTotalBags = numberOfBags4 * 6
+                    const weightOfBag = 5.05
+                    const total = NumberofTotalBags && weightOfBag && WeightofMasterBags ? parseFloat(NumberofTotalBags * weightOfBag) + parseFloat(WeightofMasterBags) : '';
+                    console.log("weightofMasterBag", total)
+                    setTotalTruckWeight4(total ? total.toFixed(2) : '');
+
+                } else if (subcategories4 === '30') {
+                    const weightOfBag = 30.090
+                    const total = numberOfBags4 && weightOfBag ? parseFloat(numberOfBags4) * parseFloat(weightOfBag) : '';
+                    setTotalTruckWeight4(total ? total.toFixed(2) : '');
+
+                } else if (subcategories4 === '50') {
+                    const weightOfBag = 50.12
+                    const total = numberOfBags4 && weightOfBag ? parseFloat(numberOfBags4) * parseFloat(weightOfBag) : '';
+                    setTotalTruckWeight4(total ? total.toFixed(2) : '');
+                }
+
+            } else if (category4 === 'Maida' && subcategories4 === '10') {
+
+                const NumberofTotalBags = numberOfBags4
+                const weightOfBag = 10.15
+                const total = NumberofTotalBags && weightOfBag ? parseFloat(NumberofTotalBags * weightOfBag) : '';
+                console.log("weightofMasterBag", total)
+                setTotalTruckWeight4(total ? total.toFixed(2) : '');
+
+            } else if (category4 === 'Suji' && subcategories4 === '10') {
+
+                const NumberofTotalBags = numberOfBags4
+                const weightOfBag = 10.17
+                const total = NumberofTotalBags && weightOfBag ? parseFloat(NumberofTotalBags * weightOfBag) : '';
+                console.log("weightofMasterBag", total)
+                setTotalTruckWeight4(total ? total.toFixed(2) : '');
+
+            } else if (category4 === 'Besan') {
+
+                const NumberofTotalBags = numberOfBags4;
+                const weightOfBag = 12.235;
+                const total = NumberofTotalBags && weightOfBag ? parseFloat(NumberofTotalBags * weightOfBag) : '';
+                console.log("weightofMasterBag", total)
+                setTotalTruckWeight4(total ? total.toFixed(2) : '');
+
+            } else if (category4 === 'Atta Scheme' && subcategories4 === '10') {
+
+                const WeightofMasterBags = numberOfBags4 * 0.075;
+                const WeightofBesanMasterBag = numberOfBags4 >= 10 ? (Math.floor(numberOfBags4 / 10) * 12.235) : 0;
+                const NumberofTotalBags = numberOfBags4 * 3
+                const weightOfBag = 10.07
+                const total = NumberofTotalBags && weightOfBag && WeightofMasterBags && WeightofBesanMasterBag ? parseFloat(NumberofTotalBags * weightOfBag) + parseFloat(WeightofMasterBags) + parseFloat(WeightofBesanMasterBag) : '';
+                console.log("weightofMasterBag", total)
+                setTotalTruckWeight4(total ? total.toFixed(2) : '');
+
+
+            } else {
+                const weightOfBag = subcategories4
+                const total = numberOfBags4 && weightOfBag ? parseFloat(numberOfBags4) * parseFloat(weightOfBag) : '';
+                setTotalTruckWeight4(total ? total.toFixed(2) : '');
+            }
+        }
+        else if (type === 'CRFM') {
+
+            if (category4 === 'Chakki aata' && subcategories4 === 'D-Mart Regular') {
+                if (subsubcategories4 === '5') {
+                    const WeightofMasterBags = numberOfBags4 * 0.075;
+                    const NumberofTotalBags = numberOfBags4 * 6
+                    const weightOfBag = 5.05
+                    const total = NumberofTotalBags && weightOfBag && WeightofMasterBags ? parseFloat(NumberofTotalBags * weightOfBag) + parseFloat(WeightofMasterBags) : '';
+                    console.log("weightofMasterBag", total)
+                    setTotalTruckWeight4(total ? total.toFixed(2) : '');
+
+                } else if (subsubcategories4 === '10') {
+                    const WeightofMasterBags = numberOfBags4 * 0.075;
+                    const NumberofTotalBags = numberOfBags4 * 3
+                    const weightOfBag = 10.07
+                    const total = NumberofTotalBags && weightOfBag && WeightofMasterBags ? parseFloat(NumberofTotalBags * weightOfBag) + parseFloat(WeightofMasterBags) : '';
+                    console.log("weightofMasterBag", total)
+                    setTotalTruckWeight4(total ? total.toFixed(2) : '');
+                }
+            }
+            else if (category4 === 'scrap' || category4 === 'Wheat') {
+                setTotalTruckWeight4(weightOfScrap4);
+                console.log("total scrap weight", totalWeight4)
+            }
+            else {
+                const weightOfBag = subsubcategories4 === 'Others' ? parseFloat(otherSubsubcategories4) : parseFloat(subsubcategories4);
+                const total = numberOfBags4 && weightOfBag ? parseFloat(numberOfBags4) * weightOfBag : '';
+                setTotalTruckWeight4(total ? total.toFixed(2) : '');
+            }
+        }
+        else if (isMaida_BulkerSelected) {
+            setTotalTruckWeight4(weightOfTruck);
+        }
+    };
+
+    useEffect(() => {
+        calculateTotalTruckWeight4(numberOfBags4, subcategories4, subsubcategories4, otherSubsubcategories4);
+    }, [numberOfBags4, subcategories4, subsubcategories4, otherSubsubcategories4]);
+
+
+    const selectedUnit4 = category4 ? categories4[category4]?.unit : '';
+    const availableSubcategories4 = category4 ? Object.keys(categories4[category4]?.subcategories4) : [];
+    const availableSubsubcategories4 = subcategories4 && categories4[category4]?.subcategories4[subcategories4]
+        ? categories4[category4].subcategories4[subcategories4]
+        : [];
+
+
+    const calculateTotalGatepassAmount = (totalValue, totalamount, totalValue1, totalamount1, totalValue2, totalamount2, totalValue3, totalamount3, totalValue4, totalamount4) => {
         let total = 0;
 
         if (totalValue) total += totalValue;
@@ -2385,15 +2963,17 @@ const Awl = () => {
         if (totalamount2) total += totalamount2;
         if (totalValue3) total += totalValue3;
         if (totalamount3) total += totalamount3;
+        if (totalValue4) total += totalValue4;
+        if (totalamount4) total += totalamount4;
 
         setTotalGatepassAmount(total);
     }
 
     useEffect(() => {
-        calculateTotalGatepassAmount(totalValue, totalamount, totalValue1, totalamount1, totalValue2, totalamount2, totalValue3, totalamount3);
-    }, [totalValue, totalamount, totalValue1, totalamount1, totalValue2, totalamount2, totalValue3, totalamount3]);
+        calculateTotalGatepassAmount(totalValue, totalamount, totalValue1, totalamount1, totalValue2, totalamount2, totalValue3, totalamount3, totalValue4, totalamount4);
+    }, [totalValue, totalamount, totalValue1, totalamount1, totalValue2, totalamount2, totalValue3, totalamount3, totalValue4, totalamount4]);
 
-    const calculateTotalGatepassWeight = (totalWeight, totalWeight11, totalWeight2, totalWeight3, weight, weight1, weight2, weight3) => {
+    const calculateTotalGatepassWeight = (totalWeight, totalWeight11, totalWeight2, totalWeight3, totalWeight4, weight, weight1, weight2, weight3, weight4) => {
         let totalgweight = 0;
 
         if (totalWeight) totalgweight += parseFloat(totalWeight);
@@ -2404,20 +2984,22 @@ const Awl = () => {
         if (weight2) totalgweight += parseFloat(weight2);
         if (totalWeight3) totalgweight += parseFloat(totalWeight3);
         if (weight3) totalgweight += parseFloat(weight3);
+        if (totalWeight4) totalgweight += parseFloat(totalWeight4);
+        if (weight4) totalgweight += parseFloat(weight4);
 
         setTotalGatepassWeight(totalgweight ? totalgweight.toFixed(2) : '');
     }
 
 
     useEffect(() => {
-        calculateTotalGatepassWeight(totalWeight, totalWeight11, totalWeight2, totalWeight3, weight, weight1, weight2, weight3);
-    }, [totalWeight, totalWeight11, totalWeight2, totalWeight3, weight, weight1, weight2, weight3]);
+        calculateTotalGatepassWeight(totalWeight, totalWeight11, totalWeight2, totalWeight3, weight, weight1, weight2, weight3, weight4);
+    }, [totalWeight, totalWeight11, totalWeight2, totalWeight3, weight, weight1, weight2, weight3, weight4]);
 
     const handleloadingDoneBy = (e) => {
         setloadingDoneBy(e.target.value)
     }
 
-    const calculateTotalGatepassTruckWeight = (TotalTruckWeight, TotalTruckWeight1, TotalTruckWeight2, TotalTruckWeight3) => {
+    const calculateTotalGatepassTruckWeight = (TotalTruckWeight, TotalTruckWeight1, TotalTruckWeight2, TotalTruckWeight3, TotalTruckWeight4) => {
         let totaltweight = 0;
 
         if (TotalTruckWeight) totaltweight += parseFloat(TotalTruckWeight);
@@ -2428,14 +3010,16 @@ const Awl = () => {
         if (weight2) totaltweight += parseFloat(weight2);
         if (TotalTruckWeight3) totaltweight += parseFloat(TotalTruckWeight3);
         if (weight3) totaltweight += parseFloat(weight3);
+        if (TotalTruckWeight4) totaltweight += parseFloat(TotalTruckWeight4);
+        if (weight4) totaltweight += parseFloat(weight4);
 
         setTotalGatepassTruckWeight(totaltweight ? totaltweight.toFixed(2) : '');
     }
 
 
     useEffect(() => {
-        calculateTotalGatepassTruckWeight(TotalTruckWeight, TotalTruckWeight1, TotalTruckWeight2, TotalTruckWeight3);
-    }, [TotalTruckWeight, TotalTruckWeight1, TotalTruckWeight2, TotalTruckWeight3]);
+        calculateTotalGatepassTruckWeight(TotalTruckWeight, TotalTruckWeight1, TotalTruckWeight2, TotalTruckWeight3, TotalTruckWeight4);
+    }, [TotalTruckWeight, TotalTruckWeight1, TotalTruckWeight2, TotalTruckWeight3, TotalTruckWeight4]);
 
 
 
@@ -4915,8 +5499,623 @@ const Awl = () => {
                                             )}
                                         </>
                                         )}
+                                        <button type='button' onClick={handleButtonClick3} className="bg-red-600 hover:bg-red-800 text-white px-6 py-2 w-full max-w-[350px] rounded-full hover:scale-110 transition-all mx-auto block mt-6 text-center mb-4">Add new Item</button>
+                                {showThreeMoreAdditionalColumns && (
+                                    <>
+                                        <h1 className='text text-center font-bold bg-black text-cyan-200 py-3'>ITEM 5</h1>
+
+                                        <div className="mb-4">
+                                            <label htmlFor="type" className="block text-gray-700 text-sm font-bold mb-2">Type:</label>
+                                            <select
+                                                id="type"
+                                                value={type}
+                                                onChange={handleTypeChange}
+                                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            >
+                                                <option value="">Select Type</option>
+                                                <option value="AWL">AWL</option>
+                                                <option value="CRFM">CRFM</option>
+                                                <option value="others">Others</option>
+                                            </select>
+                                        </div>
+
+                                        {type === "AWL" && (<>
+                                            <div className="mb-4">
+                                                <label htmlFor="partyName" className="block text-gray-700 text-sm font-bold mb-2">Party Name:</label>
+                                                <input
+                                                    type="text"
+                                                    id="partyName"
+                                                    value={partyName}
+                                                    onChange={handlePartyNameChange}
+                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    placeholder="Enter party name"
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <label htmlFor="batchnumber" className="block text-gray-700 text-sm font-bold mb-2">Batch Number:</label>
+                                                <input
+                                                    type="text"
+                                                    id="batchnumber"
+                                                    value={batchnumber}
+                                                    onChange={handleBatchNumberChange}
+                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    placeholder="Enter batch number"
+                                                />
+                                            </div>
+
+                                            <div className="mb-4">
+                                                <label htmlFor="trucknumber" className="block text-gray-700 text-sm font-bold mb-2">
+                                                    Truck Number :
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    id="trucknumber"
+                                                    value={trucknumber}
+                                                    onChange={handletrucknumberChange}
+                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    placeholder="Enter Truck Number"
+                                                />
+                                            </div>
+
+                                            <div className="mb-4">
+                                                <label htmlFor="numberOfBags4" className="block text-gray-700 text-sm font-bold mb-2">Number of Bags:</label>
+                                                <input
+                                                    type="number"
+                                                    id="numberOfBags4"
+                                                    value={numberOfBags4}
+                                                    onChange={handleNumberOfBags4Change}
+                                                    placeholder="Number of Bags"
+                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                />
+                                            </div>
+
+                                            <div className="mb-4">
+                                                <label htmlFor="category4" className="block text-gray-700 text-sm font-bold mb-2">Product Name:</label>
+                                                <select
+                                                    id="category4"
+                                                    value={category4}
+                                                    onChange={handleCategory4Change}
+                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                >
+                                                    <option value="">Select Product Name</option>
+                                                    {Object.keys(categories4).map((cat) => (
+                                                        <option key={cat} value={cat}>{cat}</option>
+                                                    ))}
+                                                </select>
+                                            </div>
+
+                                            {category4 && (
+                                                <div className="mb-4">
+                                                    <label htmlFor="subcategories4" className="block text-gray-700 text-sm font-bold mb-2">Weight4 of Bag:</label>
+                                                    <select
+                                                        id="subcategories4"
+                                                        value={subcategories4}
+                                                        onChange={handleSubcategories4Change}
+                                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    >
+                                                        <option value="">Select Weight4 of Bag</option>
+                                                        {availableSubcategories4.map((subcat) => (
+                                                            <option key={subcat} value={subcat}>{subcat}</option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                            )}
+
+                                            {category4 && (
+                                                <div className="mb-4">
+                                                    <label htmlFor="subsubcategories4" className="block text-gray-700 text-sm font-bold mb-2">Type of Product:</label>
+                                                    <select
+                                                        id="subsubcategories4"
+                                                        value={subsubcategories4}
+                                                        onChange={handleSubsubcategories4Change}
+                                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    >
+                                                        <option value="">Select Type of Product</option>
+                                                        {availableSubsubcategories4.map((subsubcat) => (
+                                                            <option key={subsubcat} value={subsubcat}>{subsubcat}</option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                            )}
+
+                                            {subsubcategories4 === 'Others' && (
+                                                <div className="mb-4">
+                                                    <label htmlFor="otherSubsubcategories4" className="block text-gray-700 text-sm font-bold mb-2">Type of Product:</label>
+                                                    <input
+                                                        type="number"
+                                                        id="otherSubsubcategories4"
+                                                        value={otherSubsubcategories4}
+                                                        onChange={handleOtherSubsubcategories4Change}
+                                                        placeholder="Enter Weight4"
+                                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    />
+                                                </div>
+                                            )}
+
+
+
+                                            <div className="mb-4">
+                                                <label htmlFor="perbagprice4" className="block text-gray-700 text-sm font-bold mb-2">Rate per Bag:</label>
+                                                <input
+                                                    type="number"
+                                                    id="perbagprice4"
+                                                    value={perbagprice4}
+                                                    onChange={handlePerbagprice4Change}
+                                                    placeholder="Rate per Bag"
+                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                />
+                                            </div>
+
+                                            <div className="mb-4">
+                                                <label htmlFor="loadingCharger4" className="block text-gray-700 text-sm font-bold mb-2">Loading Charger:</label>
+                                                <input
+                                                    type="number"
+                                                    id="loadingCharger4"
+                                                    value={loadingCharger4}
+                                                    onChange={handleLoadingCharger4Change}
+                                                    placeholder="Loading Charger"
+                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                />
+                                            </div>
+
+                                            <div className="mb-4">
+                                                <label htmlFor="cgst4" className="block text-gray-700 text-sm font-bold mb-2">CGST4:</label>
+                                                <select
+                                                    id="cgst4"
+                                                    value={cgst4}
+                                                    onChange={handleCgst4Change}
+                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                >
+                                                    <option value="0">Select CGST4</option>
+                                                    <option value="2.5">2.5%</option>
+                                                    <option value="5">5%</option>
+                                                    <option value="6">6%</option>
+                                                    <option value="9">9%</option>
+                                                </select>
+                                            </div>
+
+                                            <div className="mb-4">
+                                                <label htmlFor="sgst4" className="block text-gray-700 text-sm font-bold mb-2">SGST4:</label>
+                                                <select
+                                                    id="sgst4"
+                                                    value={sgst4}
+                                                    onChange={handleSgst4Change}
+                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                >
+                                                    <option value="0">Select SGST4</option>
+                                                    <option value="2.5">2.5%</option>
+                                                    <option value="6">6%</option>
+                                                    <option value="9">9%</option>
+                                                </select>
+                                            </div>
+
+                                            <div className="mb-4">
+                                                <label htmlFor="totalValue4" className="block text-gray-700 text-sm font-bold mb-2">Total Value:</label>
+                                                <input
+                                                    type="text"
+                                                    id="totalValue4"
+                                                    value={totalValue4}
+                                                    readOnly
+                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                                                />
+                                            </div>
+
+
+                                            {category4 && selectedUnit4 && (
+                                                <p className="text-gray-700 text-sm mt-2">
+                                                    Selected category4 unit: {selectedUnit4}
+                                                </p>
+                                            )}
+
+                                            <div className="mb-4">
+                                                <label htmlFor="totalWeight4" className="block text-gray-700 text-sm font-bold mb-2">Total Weight4:</label>
+                                                <input
+                                                    type="text"
+                                                    id="totalWeight4"
+                                                    value={totalWeight4}
+                                                    readOnly
+                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                                                />
+                                            </div>
+                                        </>)}
+                                        {type === "CRFM" && (<>
+                                            <div className="mb-4">
+                                                <label htmlFor="partyName" className="block text-gray-700 text-sm font-bold mb-2">
+                                                    Party Name:
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    id="partyName"
+                                                    value={partyName}
+                                                    onChange={handlePartyNameChange}
+                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    placeholder="Enter party name"
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <label htmlFor="trucknumber" className="block text-gray-700 text-sm font-bold mb-2">
+                                                    Truck Number :
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    id="trucknumber"
+                                                    value={trucknumber}
+                                                    onChange={handletrucknumberChange}
+                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    placeholder="Enter Truck Number"
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <label htmlFor="category4" className="block text-gray-700 text-sm font-bold mb-2">Product Name:</label>
+                                                <select
+                                                    id="category4"
+                                                    value={category4}
+                                                    onChange={handleCategory4Change}
+                                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                >
+                                                    <option value="">Select Product Name</option>
+                                                    {Object.keys(categories4).map((cat) => (
+                                                        <option key={cat} value={cat}>
+                                                            {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                            </div>
+
+                                            {category4 && (
+                                                <div className="mb-4">
+                                                    <label htmlFor="subcategories4" className="block text-gray-700 text-sm font-bold mb-2">Type of Product:</label>
+                                                    <select
+                                                        id="subcategories4"
+                                                        value={subcategories4}
+                                                        onChange={handleSubcategories4Change}
+                                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    >
+                                                        <option value="">Select type of Product</option>
+                                                        {availableSubcategories4.map((subcat) => (
+                                                            <option key={subcat} value={subcat}>
+                                                                {subcat.charAt(0).toUpperCase() + subcat.slice(1)}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                            )}
+                                            {category4 === "Refraction" && category4 !== "scrap" && category4 !== "Wheat" && (
+                                                <>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="weight4" className="block text-gray-700 text-sm font-bold mb-2">
+                                                            Weight :
+                                                        </label>
+                                                        <input
+                                                            type="number"
+                                                            id="weight4"
+                                                            value={weight4}
+                                                            onChange={handleweight4Change}
+                                                            className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                            placeholder="Enter Weight in Kg"
+                                                        /><> Kg.</>
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="perqtlrate4" className="block text-gray-700 text-sm font-bold mb-2">
+                                                            Per Kg. Rate:
+                                                        </label>
+                                                        <input
+                                                            type="number"
+                                                            id="perqtlrate4"
+                                                            value={perqtlrate4}
+                                                            onChange={handleperqtlrate4Change}
+                                                            className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                            placeholder="Enter Per Kg. Rate:"
+                                                        /><> RS./Kg.</>
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="totalamount3" className="block text-gray-700 text-sm font-bold mb-2">Total Amount:</label>
+                                                        <LuIndianRupee /><input
+                                                            type="text"
+                                                            id="totalamount3"
+                                                            value={totalamount3}
+                                                            readOnly
+                                                            className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                                                        />
+                                                    </div>
+                                                </>
+                                            )}
+
+                                            {category4 === 'scrap' && category4 !== 'Wheat' && (
+                                                <>
+
+                                                    <div className="mb-4">
+                                                        <label htmlFor="typeOfScrap3" className="block text-gray-700 text-sm font-bold mb-2">type of Scrap :</label>
+                                                        <input
+                                                            type="text"
+                                                            id="typeOfScrap3"
+                                                            value={typeOfScrap3}
+                                                            onChange={handletypeOfScrap4Change}
+                                                            placeholder="type of Scrap"
+                                                            className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="weightOfScrap4" className="block text-gray-700 text-sm font-bold mb-2">Weight of Scrap :</label>
+                                                        <input
+                                                            type="number"
+                                                            id="weightOfScrap4"
+                                                            value={weightOfScrap4}
+                                                            onChange={handleWeightOfScrap4Change}
+                                                            placeholder="Weight of Scrap"
+                                                            className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        /><> Kg.</>
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="perkgrateScrap4" className="block text-gray-700 text-sm font-bold mb-2">Per Kg. Rate:</label>
+                                                        <input
+                                                            type="number"
+                                                            id="perkgrateScrap4"
+                                                            value={perkgrateScrap4}
+                                                            onChange={handleperkgrateScrap4Change}
+                                                            placeholder="Per kg. Rate"
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="productValue4" className="block text-gray-700 text-sm font-bold mb-2">Total Price:</label>
+                                                        <input
+                                                            type="text"
+                                                            id="productValue4"
+                                                            value={productValue4}
+                                                            readOnly
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="totalWeight4" className="block text-gray-700 text-sm font-bold mb-2">Total Weight:</label>
+                                                        <input
+                                                            type="text"
+                                                            id="totalWeight4"
+                                                            value={totalWeight4}
+                                                            readOnly
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                                                        />
+                                                    </div>
+                                                </>
+                                            )}
+                                            {category4 === 'Wheat' && category4 !== 'scrap' && (
+                                                <>
+
+
+                                                    <div className="mb-4">
+                                                        <label htmlFor="weightOfScrap4" className="block text-gray-700 text-sm font-bold mb-2">Weight of Wheat :</label>
+                                                        <input
+                                                            type="number"
+                                                            id="weightOfScrap4"
+                                                            value={weightOfScrap4}
+                                                            onChange={handleWeightOfScrap4Change}
+                                                            placeholder="Weight of Wheat"
+                                                            className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        /><> Kg.</>
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="perkgrateScrap4" className="block text-gray-700 text-sm font-bold mb-2">Per Kg. Rate:</label>
+                                                        <input
+                                                            type="number"
+                                                            id="perkgrateScrap4"
+                                                            value={perkgrateScrap4}
+                                                            onChange={handleperkgrateScrap4Change}
+                                                            placeholder="Per kg. Rate"
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="productValue4" className="block text-gray-700 text-sm font-bold mb-2">Total Price:</label>
+                                                        <input
+                                                            type="text"
+                                                            id="productValue4"
+                                                            value={productValue4}
+                                                            readOnly
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="totalWeight4" className="block text-gray-700 text-sm font-bold mb-2">Total Weight:</label>
+                                                        <input
+                                                            type="text"
+                                                            id="totalWeight4"
+                                                            value={totalWeight4}
+                                                            readOnly
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                                                        />
+                                                    </div>
+                                                </>
+                                            )}
+
+
+
+
+                                            {category4 !== "Refraction" && category4 !== "scrap" && category4 !== "Wheat" && !isMaida_BulkerSelected4 && (
+                                                <>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="subsubcategories4" className="block text-gray-700 text-sm font-bold mb-2">Weight4 of Bag:</label>
+                                                        <select
+                                                            id="subsubcategories4"
+                                                            value={subsubcategories4}
+                                                            onChange={handleSubsubcategories4Change}
+                                                            className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        >
+                                                            <option value="">Weight4 of Bag</option>
+                                                            {availableSubsubcategories4.map((subsubcat) => (
+                                                                <option key={subsubcat} value={subsubcat}>
+                                                                    {subsubcat}
+                                                                </option>
+                                                            ))}
+                                                        </select><> kg</>
+                                                    </div>
+
+                                                    {subsubcategories4 === 'Others' && (
+                                                        <div className="mb-4">
+                                                            <label htmlFor="otherSubsubcategories4" className="block text-gray-700 text-sm font-bold mb-2">Weight4 of Bag:</label>
+                                                            <input
+                                                                type="number"
+                                                                id="otherSubsubcategories4"
+                                                                value={otherSubsubcategories4}
+                                                                onChange={handleOtherSubsubcategories4Change}
+                                                                placeholder="Enter weight4"
+                                                                className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                            /><> KG</>
+                                                        </div>
+                                                    )}
+
+                                                    <div className="mb-4">
+                                                        <label htmlFor="numberOfBags4" className="block text-gray-700 text-sm font-bold mb-2">Number of Bags:</label>
+                                                        <input
+                                                            type="number"
+                                                            id="numberOfBags4"
+                                                            value={numberOfBags4}
+                                                            onChange={handleNumberOfBags4Change}
+                                                            placeholder="Number of Bags"
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        />
+                                                    </div>
+
+                                                    <div className="mb-4">
+                                                        <label htmlFor="perbagprice4" className="block text-gray-700 text-sm font-bold mb-2">Rate per bag:</label>
+                                                        <input
+                                                            type="number"
+                                                            id="perbagprice4"
+                                                            value={perbagprice4}
+                                                            onChange={handlePerbagprice4Change}
+                                                            placeholder="Rate per bag"
+                                                            className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        /><> Rs./Bag</>
+                                                    </div>
+
+                                                    <div className="mb-4">
+                                                        <label htmlFor="loadingCharger4" className="block text-gray-700 text-sm font-bold mb-2">Loading Charger:</label>
+                                                        <input
+                                                            type="number"
+                                                            id="loadingCharger4"
+                                                            value={loadingCharger4}
+                                                            onChange={handleLoadingCharger4Change}
+                                                            placeholder="Loading Charger"
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="cgst4" className="block text-gray-700 text-sm font-bold mb-2">CGST4:</label>
+                                                        <select
+                                                            id="cgst4"
+                                                            value={cgst4}
+                                                            onChange={handleCgst4Change}
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        >
+                                                            <option value="0">Total CGST4</option>
+                                                            <option value="2.5">2.5%</option>
+                                                            <option value="5">5%</option>
+                                                            <option value="6">6%</option>
+                                                            <option value="9">9%</option>
+                                                        </select>
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="sgst4" className="block text-gray-700 text-sm font-bold mb-2">SGST4:</label>
+                                                        <select
+                                                            id="sgst4"
+                                                            value={sgst4}
+                                                            onChange={handleSgst4Change}
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        >
+                                                            <option value="0">Total CGST4</option>
+                                                            <option value="2.5">2.5%</option>
+                                                            <option value="6">6%</option>
+                                                            <option value="9">9%</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div className="mb-4">
+                                                        <label htmlFor="totalValue4" className="block text-gray-700 text-sm font-bold mb-2">Total Value:</label>
+                                                        <> Rs.</><input
+                                                            type="text"
+                                                            id="totalValue4"
+                                                            value={totalValue4}
+                                                            readOnly
+                                                            className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                                                        />
+                                                    </div>
+
+                                                    <div className="mb-4">
+                                                        <label htmlFor="perKgRate4" className="block text-gray-700 text-sm font-bold mb-2">Per KG Rate:</label>
+                                                        <input
+                                                            type="text"
+                                                            id="perKgRate4"
+                                                            value={perKgRate4}
+                                                            readOnly
+                                                            className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                                                        /><> Rs./kg</>
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="totalWeight4" className="block text-gray-700 text-sm font-bold mb-2">Total Weight4:</label>
+                                                        <input
+                                                            type="text"
+                                                            id="totalWeight4"
+                                                            value={totalWeight4}
+                                                            readOnly
+                                                            className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                                                        /><> {selectedUnit4}</>
+                                                    </div>
+                                                </>
+                                            )}
+
+                                            {subcategories4 && isMaida_BulkerSelected4 && (
+                                                <>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="weight4OfTruck4" className="block text-gray-700 text-sm font-bold mb-2">Weight4 of Truck:</label>
+                                                        <input
+                                                            type="number"
+                                                            id="weight4OfTruck4"
+                                                            value={weight4OfTruck4}
+                                                            onChange={handleWeight4OfTruck4Change}
+                                                            placeholder="Weight4 of Truck"
+                                                            className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        /><> Qtl.</>
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="perqtlrate4" className="block text-gray-700 text-sm font-bold mb-2">Per Qtl. Rate:</label>
+                                                        <input
+                                                            type="number"
+                                                            id="perqtlrate4"
+                                                            value={perqtlrate4}
+                                                            onChange={handleperqtlrate4Change}
+                                                            placeholder="Per qtl. Rate"
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="productValue4" className="block text-gray-700 text-sm font-bold mb-2">Total Price:</label>
+                                                        <input
+                                                            type="text"
+                                                            id="productValue4"
+                                                            value={productValue4}
+                                                            readOnly
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                                                        />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        <label htmlFor="totalWeight4" className="block text-gray-700 text-sm font-bold mb-2">Total Weight4:</label>
+                                                        <input
+                                                            type="text"
+                                                            id="totalWeight4"
+                                                            value={totalWeight4}
+                                                            readOnly
+                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-200 cursor-not-allowed"
+                                                        />
+                                                    </div>
+                                                </>
+                                            )}
+                                        </>
+                                        )}
 
                                     </>)}
+
+                                    </>)}
+                                
                             </>
                         )}
 

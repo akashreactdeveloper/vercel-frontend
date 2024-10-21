@@ -80,6 +80,27 @@ const CrfmGatepass = () => {
         totalWeight3: '',
         perqtlrate3: '',
         totalamount3: '',
+        weight4: '',
+        category4: '',
+        subcategories4: '',
+        subsubcategories4: '',
+        otherSubsubcategories4: '',
+        numberOfBags4: '',
+        perbagprice4: '',
+        productValue4: '',
+        perKgRate4: '',
+        loadingCharger4: '',
+        cgst4: '',
+        sgst4: '',
+        weight4OfTruck4: '',
+        totalValue4: '',
+        totalWeight4: '',
+        perqtlrate4: '',
+        totalamount4: '',
+        TotalTruckWeight4: '',
+        weightOfScrap4: '',
+        perkgrateScrap4: '',
+        typeOfScrap4: '',
         TotalnumberOfBagsInGatepass: '',
         TotalGatepassAmount: '',
         typeofsale: '',
@@ -175,7 +196,7 @@ const CrfmGatepass = () => {
         }
     };
 
-    const MAX_ROWS = 4;
+    const MAX_ROWS = 5;
 
     const items = [
         {
@@ -246,6 +267,23 @@ const CrfmGatepass = () => {
             totalamount: AwlformData.totalamount3,
             perKgRate: AwlformData.perKgRate3,
             perqtlrate: AwlformData.perqtlrate3
+        },
+        {
+            category: AwlformData.category4,
+            subcategories: AwlformData.subcategories4,
+            subsubcategories: AwlformData.subsubcategories4,
+            otherSubsubcategories: AwlformData.otherSubsubcategories4,
+            totalWeight: AwlformData.totalWeight4,
+            productValue: AwlformData.productValue4,
+            numberOfBags: AwlformData.numberOfBags4,
+            perbagprice: AwlformData.perbagprice4,
+            productValue: AwlformData.productValue4,
+            weight: AwlformData.weight4,
+            perqtlrate: AwlformData.perqtlrate4,
+            typeOfScrap: AwlformData.typeOfScrap4,
+            totalamount: AwlformData.totalamount4,
+            perKgRate: AwlformData.perKgRate4,
+            perqtlrate: AwlformData.perqtlrate4
         }
     ];
 
@@ -287,7 +325,7 @@ const CrfmGatepass = () => {
                                         <td className="px-1 text-center border border-black">
                                             {item.category} <br /> {item.subcategories}
                                         </td>
-                                        <td className="px-1 text-center border border-black">{item.totalWeight/100}</td>
+                                        <td className="px-1 text-center border border-black">{item.totalWeight / 100}</td>
                                         <td className="px-1 text-center border border-black">{item.perqtlrate * 100}</td>
                                         <td className="px-1 text-center border border-black">{item.productValue}</td>
                                     </tr>
@@ -302,12 +340,12 @@ const CrfmGatepass = () => {
                                 ))}
                                 <tr>
                                     <th className="px-1 text-center border border-black">Total</th>
-                                    <td className="px-1 text-center border border-black">{AwlformData.TotalGatepassWeight/100} Qtl.</td>
+                                    <td className="px-1 text-center border border-black">{AwlformData.TotalGatepassWeight / 100} Qtl.</td>
                                     <td className="px-1 text-center border border-black"></td>
                                     <td className="px-1 text-center border border-black">Rs. {AwlformData.TotalGatepassAmount}</td>
                                 </tr>
                                 <tr className="h-8"> {/* Adjust the height here */}
-                                    <th colSpan={4}>Total Truck Weight : {(parseFloat(AwlformData.TotalGatepassWeight/100) || 0).toFixed(2)} Qtl.</th>
+                                    <th colSpan={4}>Total Truck Weight : {(parseFloat(AwlformData.TotalGatepassWeight / 100) || 0).toFixed(2)} Qtl.</th>
                                 </tr>
                             </tbody>
                             <tr>
@@ -366,12 +404,12 @@ const CrfmGatepass = () => {
                                 ))}
                                 <tr>
                                     <th className="px-1 text-center border border-black">Total</th>
-                                    <td className="px-1 text-center border border-black">{(AwlformData.TotalGatepassWeight/100).toFixed(2)} Qtl.</td>
+                                    <td className="px-1 text-center border border-black">{(AwlformData.TotalGatepassWeight / 100).toFixed(2)} Qtl.</td>
                                     <td className="px-1 text-center border border-black"></td>
                                     <td className="px-1 text-center border border-black">Rs. {AwlformData.TotalGatepassAmount}</td>
                                 </tr>
                                 <tr className="h-8"> {/* Adjust the height here */}
-                                    <th colSpan={4}>Total Truck Weight : {(parseFloat(AwlformData.TotalGatepassWeight)/100).toFixed(2)} Qtl.</th>
+                                    <th colSpan={4}>Total Truck Weight : {(parseFloat(AwlformData.TotalGatepassWeight) / 100).toFixed(2)} Qtl.</th>
                                 </tr>
                             </tbody>
                             <tr>
@@ -414,7 +452,7 @@ const CrfmGatepass = () => {
                                             {item.category} {item.category !== 'Refraction' && item.subsubcategories !== 'Others' ? item.subsubcategories : '' || item.subsubcategories === 'Others' ? `${item.otherSubsubcategories * 1000} gm` : ''} <br /> {item.subcategories}<br />{item.category === 'Refraction' ? `Total Weight - ${item.weight} KG` : ''}
                                         </td>
                                         <td className="px-1 text-center border border-black">{item.numberOfBags}</td>
-                                        <td className="px-1 text-center border border-black">{item.perbagprice}<br/>{item.category !== 'Refraction' ? `Rs ${item.perKgRate}/kg` : `Rs ${item.perqtlrate}/kg`}</td>
+                                        <td className="px-1 text-center border border-black">{item.perbagprice}<br />{item.category !== 'Refraction' ? `Rs ${item.perKgRate}/kg` : `Rs ${item.perqtlrate}/kg`}</td>
                                         <td className="px-1 text-center border border-black">{item.category === 'Refraction' ? item.totalamount : item.productValue}</td>
                                     </tr>
                                 ))}
