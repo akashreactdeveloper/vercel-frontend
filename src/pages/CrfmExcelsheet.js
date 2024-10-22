@@ -437,7 +437,7 @@ const CrfmExcelsheet = () => {
 
                   <td>{el?.category === 'Refraction' ? el?.subcategories : ''}<br />{el?.category1 === 'Refraction' ? el?.subcategories1 : ''}<br />{el?.category2 === 'Refraction' ? el?.subcategories2 : ''}<br />{el?.category3 === 'Refraction' ? el?.subcategories3 : ''}<br />{el?.category4 === 'Refraction' ? el?.subcategories4 : ''}</td>
 
-                  <td>{el?.category === 'Refraction' ? (el?.totalamount).toFixed(2) : ''}<br />{el?.category1 === 'Refraction' ? (el?.totalamount1).toFixed(2) : ''}<br />{el?.category2 === 'Refraction' ? (el?.totalamount2).toFixed(2) : ''}<br />{el?.category3 === 'Refraction' ? (el?.totalamount3).toFixed(2) : ''}</td>
+                  <td>{el?.category === 'Refraction' ? (el?.totalamount) : ''}<br />{el?.category1 === 'Refraction' ? (el?.totalamount1) : ''}<br />{el?.category2 === 'Refraction' ? (el?.totalamount2) : ''}<br />{el?.category3 === 'Refraction' ? (el?.totalamount3) : ''}<br />{el?.category4 === 'Refraction' ? (el?.totalamount4) : ''}</td>
 
                   <td>{el?.category === 'Bardana' ? el?.numberOfBags : ''}<br />{el?.category1 === 'Bardana' ? el?.numberOfBags1 : ''}<br />{el?.category2 === 'Bardana' ? el?.numberOfBags2 : ''}<br />{el?.category3 === 'Bardana' ? el?.numberOfBags3 : ''}<br />{el?.category4 === 'Bardana' ? el?.numberOfBags4 : ''}</td>
 
