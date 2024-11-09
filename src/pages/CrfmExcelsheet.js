@@ -261,7 +261,7 @@ const CrfmExcelsheet = () => {
         <button className='bg-green-400 px-10 py-2 mb-5' onClick={handleExport}>Download Excel File</button>
       </div>
       <table id="table-to-xls" className='w-full userTable'>
-        <thead>
+        <thead className='sticky top-20 z-10'>
           <tr className='bg-blue-400 text-black border-black'>
             <th rowSpan={2}>G.P No.</th>
             <th rowSpan={2}>Date</th>
