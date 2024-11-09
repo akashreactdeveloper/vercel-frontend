@@ -178,6 +178,7 @@ const AwlExcelsheet = () => {
             <th rowSpan={2}>weighing scale(Qtl.)</th>
             <th rowSpan={2}>weight Difference(Kg.)</th>
             <th rowSpan={2}>Remarks</th>
+            <th rowSpan={2}>Reason of Cancelation</th>
           </tr>
           <tr className='bg-black text-white'>
 
@@ -230,6 +231,7 @@ const AwlExcelsheet = () => {
                   <td>{(el?.kandaWeight / 100).toFixed(2)}</td>
                   <td>{el?.weightDifference}</td>
                   <td>{el?.trucknumber === 'Cancel'?`Cancel By - ${el?.canceledBy}` :''}</td>
+                  <td>{el?.reason}</td>
                 </tr>
               )
             })
